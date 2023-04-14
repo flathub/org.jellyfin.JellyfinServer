@@ -304,8 +304,8 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.246.tar.gz
-            sha256: 4fb971a152d4f02878a779d643cc86c66a0455ce23fdfa1404ce112eb8f718a5
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.247.tar.gz
+            sha256: 4c5c99bd64b5f74bdaec012e69dd5567deb52d78f12f6d2c43c29fd0a1eee87e
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: anitya
