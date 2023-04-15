@@ -512,6 +512,21 @@ modules:
               type: git
               tag-pattern: ^v([\d.]+)$
 
+  - name: clinfo
+    buildsystem: simple
+    build-commands:
+      - make -j$FLATPAK_BUILDER_N_JOBS PREFIX=$FLATPAK_DEST install
+      - chmod 755 $FLATPAK_DEST/bin/clinfo
+    sources:
+      - type: archive
+        url: https://github.com/Oblomov/clinfo/archive/refs/tags/3.0.23.01.25.tar.gz
+        sha256: 6dcdada6c115873db78c7ffc62b9fc1ee7a2d08854a3bccea396df312e7331e3
+        x-checker-data:
+          type: anitya
+          project-id: 10503
+          stable-only: true
+          url-template: https://github.com/Oblomov/clinfo/archive/refs/tags/$version.tar.gz
+
   - name: jellyfin-web
     disabled: false
     buildsystem: simple
