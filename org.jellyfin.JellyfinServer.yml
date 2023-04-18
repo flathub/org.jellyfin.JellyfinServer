@@ -40,7 +40,7 @@ finish-args:
 
 add-extensions:
   org.jellyfin.JellyfinServer.Plugin:
-    version: '1'
+    version: 'stable'
     directory: extensions
     add-ld-path: lib
     merge-dirs: lib;bin;OpenCL;
