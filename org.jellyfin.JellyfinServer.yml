@@ -1,6 +1,6 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
@@ -40,7 +40,7 @@ finish-args:
 
 add-extensions:
   org.jellyfin.JellyfinServer.Plugin:
-    version: 'stable'
+    version: stable
     directory: extensions
     add-ld-path: lib
     merge-dirs: lib;bin;OpenCL;
@@ -465,7 +465,7 @@ modules:
         make-install-args:
           - PREFIX=${FLATPAK_DEST}
         cleanup:
-          - '*'
+          - "*"
         sources:
           - type: git
             url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
@@ -480,7 +480,7 @@ modules:
           - mkdir -p $FLATPAK_DEST/include
           - mv amf/public/include $FLATPAK_DEST/include/AMF
         cleanup:
-          - '*'
+          - "*"
         sources:
           - type: archive
             url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.29.tar.gz
@@ -555,7 +555,7 @@ modules:
       append-path: /usr/lib/sdk/dotnet6/bin
       append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
       env:
-        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+        DOTNET_CLI_TELEMETRY_OPTOUT: "true"
       arch:
         x86_64:
           env:
