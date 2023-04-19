@@ -189,6 +189,23 @@ modules:
               project-id: 286
               stable-only: true
               url-template: https://github.com/acoustid/chromaprint/releases/download/v$version/chromaprint-$version.tar.gz
+      - name: libopenmpt
+        config-opts:
+          - --disable-examples
+          - --disable-openmpt123
+          - --disable-static
+          - --disable-tests
+          - --without-portaudio
+          - --without-portaudiocpp
+        sources:
+          - type: archive
+            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.6.10+release.autotools.tar.gz
+            sha256: c25be8dc0dac23cec025487e58f195e4d14f7d94aeddd5fe46b21c04f1ce2774
+            x-checker-data:
+              type: anitya
+              project-id: 141468
+              stable-only: true
+              url-template: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$version+release.autotools.tar.gz
       - name: libass
         config-opts:
           - --enable-shared
