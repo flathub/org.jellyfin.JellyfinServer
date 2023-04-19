@@ -84,6 +84,7 @@ modules:
       - --enable-libfreetype
       - --enable-libfribidi
       - --enable-libmp3lame
+      - --enable-libopenmpt
       - --enable-libopus
       - --enable-libplacebo
       - --enable-libshaderc
