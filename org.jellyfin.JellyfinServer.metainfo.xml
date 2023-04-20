@@ -24,6 +24,10 @@
       Open in file manager
       xdg-open ~/.var/app/org.jellyfin.JellyfinServer/media
     </p>
+    <p>
+      Raspberry Pi 4 GPU
+      flatpak override --user --device=all org.jellyfin.JellyfinServer
+    </p>
   </description>
   
   <releases>
@@ -32,16 +36,16 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/istori1/flathub/raw/istori1-patch-1/10.8-home.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-home.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/istori1/flathub/raw/istori1-patch-1/10.8-details.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-details.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/istori1/flathub/raw/istori1-patch-1/10.8-library.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-library.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/istori1/flathub/raw/istori1-patch-1/10.8-playback.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-playback.png</image>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1" />
