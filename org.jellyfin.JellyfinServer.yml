@@ -1,6 +1,6 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
@@ -322,8 +322,8 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.247.tar.gz
-            sha256: 4c5c99bd64b5f74bdaec012e69dd5567deb52d78f12f6d2c43c29fd0a1eee87e
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.248.tar.gz
+            sha256: 8db01a812b244e8e1073dce3d0d5ba94fc4ebb71c6c5e6640f94644aec79e510
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: anitya
@@ -483,7 +483,7 @@ modules:
         make-install-args:
           - PREFIX=${FLATPAK_DEST}
         cleanup:
-          - "*"
+          - '*'
         sources:
           - type: git
             url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
@@ -498,7 +498,7 @@ modules:
           - mkdir -p $FLATPAK_DEST/include
           - mv amf/public/include $FLATPAK_DEST/include/AMF
         cleanup:
-          - "*"
+          - '*'
         sources:
           - type: archive
             url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.29.tar.gz
@@ -573,7 +573,7 @@ modules:
       append-path: /usr/lib/sdk/dotnet6/bin
       append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
       env:
-        DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
       arch:
         x86_64:
           env:
