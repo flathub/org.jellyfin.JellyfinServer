@@ -31,6 +31,7 @@
   </description>
   
   <releases>
+    <release version="10.8.10" date="2023-04-23" />
     <release version="10.8.9" date="2023-01-22" />
   </releases>
   
