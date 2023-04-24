@@ -556,14 +556,13 @@ modules:
       - cp -r dist/* $FLATPAK_DEST/bin/jellyfin-web
     sources:
       - npm-generated-sources.json
-      - type: archive
-        url: https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v10.8.10.tar.gz
-        sha256: 0ed8adc9d451d69cda26ec3a8d8a5baa6f1cb3788d3f4649c435dc19bdd20b8e
+      - type: git
+        url: https://github.com/jellyfin/jellyfin-web.git
+        commit: 55714d5341d6bbfdb4d8b0b4c9b6955d4db14f34
+        tag: v10.8.10
         x-checker-data:
-          type: anitya
-          project-id: 241942
-          stable-only: true
-          url-template: https://github.com/jellyfin/jellyfin-web/archive/refs/tags/v$version.tar.gz
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: jellyfin
     disabled: false
@@ -595,14 +594,13 @@ modules:
     sources:
       - nuget-generated-sources-x64.json
       - nuget-generated-sources-arm64.json
-      - type: archive
-        url: https://github.com/jellyfin/jellyfin/archive/refs/tags/v10.8.10.tar.gz
-        sha256: a5412ae7a2470b90b51c77aee851aa1c95aaf4a51f1c830c254dc9a0cf9d0bd9
+      - type: git
+        url: https://github.com/jellyfin/jellyfin.git
+        commit: 2cd29d1cfd5cb2586aab3862e857dc85e0117ca4
+        tag: v10.8.10
         x-checker-data:
-          type: anitya
-          project-id: 241546
-          stable-only: true
-          url-template: https://github.com/jellyfin/jellyfin/archive/refs/tags/v$version.tar.gz
+          type: git
+          tag-pattern: ^v([\d.]+)$
       - type: file
         path: org.jellyfin.JellyfinServer.metainfo.xml
       - type: file
