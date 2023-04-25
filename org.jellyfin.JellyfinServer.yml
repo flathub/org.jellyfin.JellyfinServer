@@ -357,8 +357,6 @@ modules:
               url-template: https://github.com/pallets/markupsafe/releases/download/$version/MarkupSafe-$version.tar.gz
       - name: numactl
         buildsystem: autotools
-        cleanup:
-          - "/bin"
         sources:
           - type: archive
             url: https://github.com/numactl/numactl/archive/refs/tags/v2.0.16.tar.gz
