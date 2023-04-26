@@ -387,6 +387,14 @@ modules:
             x86_64:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
+            aarch64:
+              append-path: /usr/lib/sdk/llvm15/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+              env:
+                CC: clang
+                CXX: clang++
+              config-opts:
+                - -DENABLE_ASSEMBLY=OFF
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -401,14 +409,14 @@ modules:
           - type: archive
             url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
             sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-          - type: git
-            url: https://github.com/rpmfusion/x265.git
-            commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
-            dest: rpm
+            x-checker-data:
+              type: anitya
+              project-id: 7275
+              stable-only: true
+              url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
           - type: shell
             commands:
               - cp $FLATPAK_DEST/lib/libx265_main1{0,2}.a ./
-              - cat rpm/*.patch | patch -Np1 -d .
         modules:
           - name: x265-10bit
             buildsystem: cmake-ninja
@@ -421,6 +429,11 @@ modules:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
                 aarch64:
+                  append-path: /usr/lib/sdk/llvm15/bin
+                  prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+                  env:
+                    CC: clang
+                    CXX: clang++
                   config-opts:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
@@ -437,13 +450,11 @@ modules:
               - type: archive
                 url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
                 sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-              - type: git
-                url: https://github.com/rpmfusion/x265.git
-                commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
-                dest: rpm
-              - type: shell
-                commands:
-                  - cat rpm/*.patch | patch -Np1 -d .
+                x-checker-data:
+                  type: anitya
+                  project-id: 7275
+                  stable-only: true
+                  url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
           - name: x265-12bit
             buildsystem: cmake-ninja
             builddir: true
@@ -455,6 +466,11 @@ modules:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
                 aarch64:
+                  append-path: /usr/lib/sdk/llvm15/bin
+                  prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+                  env:
+                    CC: clang
+                    CXX: clang++
                   config-opts:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
@@ -472,13 +488,11 @@ modules:
               - type: archive
                 url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
                 sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-              - type: git
-                url: https://github.com/rpmfusion/x265.git
-                commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
-                dest: rpm
-              - type: shell
-                commands:
-                  - cat rpm/*.patch | patch -Np1 -d .
+                x-checker-data:
+                  type: anitya
+                  project-id: 7275
+                  stable-only: true
+                  url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
       - name: zimg
         config-opts:
           - --enable-shared
