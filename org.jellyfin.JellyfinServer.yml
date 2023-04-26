@@ -1,6 +1,6 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: "22.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
@@ -377,7 +377,7 @@ modules:
         sources:
           - type: git
             url: https://code.videolan.org/videolan/x264.git
-            commit: eaa68fad9e5d201d42fde51665f2d137ae96baf0
+            commit: baee400fa9ced6f5481a728138fed6e867b0ff7f
       - name: x265-8bit
         buildsystem: cmake-ninja
         builddir: true
@@ -389,19 +389,26 @@ modules:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
-          - -DENABLE_SHARED=ON
           - -DENABLE_CLI=OFF
+          - -DENABLE_HDR10_PLUS=ON
+          - -DENABLE_PIC=ON
+          - -DENABLE_SHARED=ON
           - -DEXTRA_LIB=x265_main10.a;x265_main12.a
           - -DEXTRA_LINK_FLAGS=-L .
           - -DLINKED_10BIT=ON
           - -DLINKED_12BIT=ON
         sources:
+          - type: archive
+            url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+            sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
           - type: git
-            url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: 38cf1c379b5af08856bb2fdd65f65a1f99384886
+            url: https://github.com/rpmfusion/x265.git
+            commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
+            dest: rpm
           - type: shell
             commands:
               - cp $FLATPAK_DEST/lib/libx265_main1{0,2}.a ./
+              - cat rpm/*.patch | patch -Np1 -d .
         modules:
           - name: x265-10bit
             buildsystem: cmake-ninja
@@ -418,17 +425,25 @@ modules:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
-              - -DENABLE_SHARED=ON
               - -DENABLE_CLI=OFF
-              - -DHIGH_BIT_DEPTH=ON
-              - -DEXPORT_C_API=OFF
               - -DENABLE_HDR10_PLUS=ON
+              - -DENABLE_PIC=ON
+              - -DENABLE_SHARED=OFF
+              - -DEXPORT_C_API=OFF
+              - -DHIGH_BIT_DEPTH=ON
             build-commands:
               - install -D libx265.a $FLATPAK_DEST/lib/libx265_main10.a
             sources:
+              - type: archive
+                url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+                sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
               - type: git
-                url: https://bitbucket.org/multicoreware/x265_git.git
-                commit: 38cf1c379b5af08856bb2fdd65f65a1f99384886
+                url: https://github.com/rpmfusion/x265.git
+                commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
+                dest: rpm
+              - type: shell
+                commands:
+                  - cat rpm/*.patch | patch -Np1 -d .
           - name: x265-12bit
             buildsystem: cmake-ninja
             builddir: true
@@ -444,18 +459,26 @@ modules:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
-              - -DENABLE_SHARED=ON
               - -DENABLE_CLI=OFF
-              - -DHIGH_BIT_DEPTH=ON
-              - -DEXPORT_C_API=OFF
               - -DENABLE_HDR10_PLUS=ON
+              - -DENABLE_PIC=ON
+              - -DENABLE_SHARED=OFF
+              - -DEXPORT_C_API=OFF
+              - -DHIGH_BIT_DEPTH=ON
               - -DMAIN12=ON
             build-commands:
               - install -D libx265.a $FLATPAK_DEST/lib/libx265_main12.a
             sources:
+              - type: archive
+                url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+                sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
               - type: git
-                url: https://bitbucket.org/multicoreware/x265_git.git
-                commit: 38cf1c379b5af08856bb2fdd65f65a1f99384886
+                url: https://github.com/rpmfusion/x265.git
+                commit: 71d6a8d94d7c5af079ca5b2db77bc8e4b6584dca
+                dest: rpm
+              - type: shell
+                commands:
+                  - cat rpm/*.patch | patch -Np1 -d .
       - name: zimg
         config-opts:
           - --enable-shared
@@ -494,7 +517,7 @@ modules:
         make-install-args:
           - PREFIX=${FLATPAK_DEST}
         cleanup:
-          - '*'
+          - "*"
         sources:
           - type: git
             url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
@@ -509,7 +532,7 @@ modules:
           - mkdir -p $FLATPAK_DEST/include
           - mv amf/public/include $FLATPAK_DEST/include/AMF
         cleanup:
-          - '*'
+          - "*"
         sources:
           - type: archive
             url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.29.tar.gz
@@ -583,7 +606,7 @@ modules:
       append-path: /usr/lib/sdk/dotnet6/bin
       append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
       env:
-        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+        DOTNET_CLI_TELEMETRY_OPTOUT: "true"
       arch:
         x86_64:
           env:
