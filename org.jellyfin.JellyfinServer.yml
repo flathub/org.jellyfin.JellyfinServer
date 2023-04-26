@@ -391,7 +391,6 @@ modules:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
           - -DENABLE_HDR10_PLUS=ON
-          - -DENABLE_PIC=ON
           - -DENABLE_SHARED=ON
           - -DEXTRA_LIB=x265_main10.a;x265_main12.a
           - -DEXTRA_LINK_FLAGS=-L .
@@ -428,7 +427,6 @@ modules:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
               - -DENABLE_HDR10_PLUS=ON
-              - -DENABLE_PIC=ON
               - -DENABLE_SHARED=OFF
               - -DEXPORT_C_API=OFF
               - -DHIGH_BIT_DEPTH=ON
@@ -463,7 +461,6 @@ modules:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
               - -DENABLE_HDR10_PLUS=ON
-              - -DENABLE_PIC=ON
               - -DENABLE_SHARED=OFF
               - -DEXPORT_C_API=OFF
               - -DHIGH_BIT_DEPTH=ON
