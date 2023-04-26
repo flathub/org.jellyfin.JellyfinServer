@@ -387,10 +387,19 @@ modules:
             x86_64:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
+            aarch64:
+              append-path: /usr/lib/sdk/llvm15/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+              env:
+                CC: clang
+                CXX: clang++
+              config-opts:
+                - -DENABLE_ASSEMBLY=OFF
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
           - -DENABLE_HDR10_PLUS=ON
+          - -DENABLE_PIC=ON
           - -DENABLE_SHARED=ON
           - -DEXTRA_LIB=x265_main10.a;x265_main12.a
           - -DEXTRA_LINK_FLAGS=-L .
@@ -400,15 +409,14 @@ modules:
           - type: archive
             url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
             sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-          - type: git
-            url: https://salsa.debian.org/multimedia-team/x265.git
-            commit: 707ff1aba6e9525d12dfa4f5d0d284cbfc7c0895
-            tag: debian/3.5-2
-            dest: deb
+            x-checker-data:
+              type: anitya
+              project-id: 7275
+              stable-only: true
+              url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
           - type: shell
             commands:
               - cp $FLATPAK_DEST/lib/libx265_main1{0,2}.a ./
-              - cat deb/debian/patches/*.patch | patch -Np1 -d .
         modules:
           - name: x265-10bit
             buildsystem: cmake-ninja
@@ -421,12 +429,18 @@ modules:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
                 aarch64:
+                  append-path: /usr/lib/sdk/llvm15/bin
+                  prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+                  env:
+                    CC: clang
+                    CXX: clang++
                   config-opts:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
               - -DENABLE_HDR10_PLUS=ON
+              - -DENABLE_PIC=ON
               - -DENABLE_SHARED=OFF
               - -DEXPORT_C_API=OFF
               - -DHIGH_BIT_DEPTH=ON
@@ -436,14 +450,11 @@ modules:
               - type: archive
                 url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
                 sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-              - type: git
-                url: https://salsa.debian.org/multimedia-team/x265.git
-                commit: 707ff1aba6e9525d12dfa4f5d0d284cbfc7c0895
-                tag: debian/3.5-2
-                dest: deb
-              - type: shell
-                commands:
-                  - cat deb/debian/patches/*.patch | patch -Np1 -d .
+                x-checker-data:
+                  type: anitya
+                  project-id: 7275
+                  stable-only: true
+                  url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
           - name: x265-12bit
             buildsystem: cmake-ninja
             builddir: true
@@ -455,12 +466,18 @@ modules:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
                 aarch64:
+                  append-path: /usr/lib/sdk/llvm15/bin
+                  prepend-ld-library-path: /usr/lib/sdk/llvm15/lib
+                  env:
+                    CC: clang
+                    CXX: clang++
                   config-opts:
                     - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
               - -DENABLE_HDR10_PLUS=ON
+              - -DENABLE_PIC=ON
               - -DENABLE_SHARED=OFF
               - -DEXPORT_C_API=OFF
               - -DHIGH_BIT_DEPTH=ON
@@ -471,14 +488,11 @@ modules:
               - type: archive
                 url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
                 sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
-              - type: git
-                url: https://salsa.debian.org/multimedia-team/x265.git
-                commit: 707ff1aba6e9525d12dfa4f5d0d284cbfc7c0895
-                tag: debian/3.5-2
-                dest: deb
-              - type: shell
-                commands:
-                  - cat deb/debian/patches/*.patch | patch -Np1 -d .
+                x-checker-data:
+                  type: anitya
+                  project-id: 7275
+                  stable-only: true
+                  url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
       - name: zimg
         config-opts:
           - --enable-shared
