@@ -420,9 +420,9 @@ modules:
                 x86_64:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-                # aarch64:
-                #   config-opts:
-                #     - -DENABLE_ASSEMBLY=OFF
+                aarch64:
+                  config-opts:
+                    - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
@@ -454,9 +454,9 @@ modules:
                 x86_64:
                   config-opts:
                     - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-                # aarch64:
-                #   config-opts:
-                #     - -DENABLE_ASSEMBLY=OFF
+                aarch64:
+                  config-opts:
+                    - -DENABLE_ASSEMBLY=OFF
             config-opts:
               - -DCMAKE_BUILD_TYPE=Release
               - -DENABLE_CLI=OFF
