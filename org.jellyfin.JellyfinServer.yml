@@ -1,6 +1,6 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
@@ -531,7 +531,7 @@ modules:
         make-install-args:
           - PREFIX=${FLATPAK_DEST}
         cleanup:
-          - "*"
+          - '*'
         sources:
           - type: git
             url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
@@ -546,7 +546,7 @@ modules:
           - mkdir -p $FLATPAK_DEST/include
           - mv amf/public/include $FLATPAK_DEST/include/AMF
         cleanup:
-          - "*"
+          - '*'
         sources:
           - type: archive
             url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.29.tar.gz
@@ -572,8 +572,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-            commit: 018276d714ce65d9b586f6205ee016cbd8d5425d
-            tag: v1.4.1
+            commit: ea296ef350714fb6f105b420fb0bc321d9997ffd
+            tag: v1.5.0
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -620,7 +620,7 @@ modules:
       append-path: /usr/lib/sdk/dotnet6/bin
       append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
       env:
-        DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
       arch:
         x86_64:
           env:
