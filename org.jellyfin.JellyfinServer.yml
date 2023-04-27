@@ -116,10 +116,19 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v(5[\d.]+)-\d$
+      # Backport patches for svt-av1 v1.5.0+
+      - type: file
+        url: https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/1c6fd7d756afe0f8b7df14dbf7a95df275f8f5ee
+        sha256: b3e4a2323c3b0ce25ba32ccc8c668e391fabd38f10c28db1a5cfe8a5e5cb8cd3
+        dest: patches
+      - type: file
+        url: https://git.ffmpeg.org/gitweb/ffmpeg.git/patch/031f1561cd286596cdb374da32f8aa816ce3b135
+        sha256: 776c7e4d86dfcdc4ce56661965f34b46b2677585f1ba910cf0fbef4f268fffa1
+        dest: patches
       - type: shell
         commands:
-          - for n in $(cat debian/patches/series); do if [[ $n != "#"* ]]; then patch
-            -Np1 -i "debian/patches/$n" -d .; fi; done
+          - cat debian/patches/*.patch | patch -Np1 -d .
+          - cat patches/* | patch -Np1 -d .
     modules:
       - shared-modules/linux-audio/fftw3f.json
       - name: ocl-icd
