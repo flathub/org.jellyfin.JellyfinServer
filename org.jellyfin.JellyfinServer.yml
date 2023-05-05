@@ -606,8 +606,8 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
     sources:
       - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.249.tar.gz
-        sha256: 08aad8545bbee2019ef8a836f66aabb94c6492ead0cbf7e931461266b1bb7030
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.250.tar.gz
+        sha256: a1cd4f7d8d58bec26efb1e5ea73f82dcf36a9662d55401b81a783071b211a35a
         x-checker-data:
           type: anitya
           project-id: 242111
@@ -618,8 +618,8 @@ modules:
         buildsystem: cmake-ninja
         sources:
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.249.tar.gz
-            sha256: 3d957cc9d07c22b35226c931ac9253321d3b56a769794081a970ccce6b1bbed7
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.250.tar.gz
+            sha256: c4c5a706a1f8f4d329fec2909b8c3fef4a4be043f393dbde5ce1439daa1194ab
             x-checker-data:
               type: anitya
               project-id: 88835
