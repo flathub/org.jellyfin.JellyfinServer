@@ -535,7 +535,8 @@ modules:
           - '*'
         sources:
           - type: git
-            url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+            # url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+            url: https://github.com/FFmpeg/nv-codec-headers.git
             commit: c5e4af74850a616c42d39ed45b9b8568b71bf8bf
             tag: n12.0.16.0
             x-checker-data:
@@ -595,6 +596,35 @@ modules:
           project-id: 10503
           stable-only: true
           url-template: https://github.com/Oblomov/clinfo/archive/refs/tags/$version.tar.gz
+
+  - name: vulkan-tools
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_CUBE=OFF
+      - -DBUILD_ICD=OFF
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DVULKAN_HEADERS_INSTALL_DIR=/app
+    sources:
+      - type: archive
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.249.tar.gz
+        sha256: 08aad8545bbee2019ef8a836f66aabb94c6492ead0cbf7e931461266b1bb7030
+        x-checker-data:
+          type: anitya
+          project-id: 242111
+          stable-only: true
+          url-template: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v$version.tar.gz
+    modules:
+      - name: vulkan-headers
+        buildsystem: cmake-ninja
+        sources:
+          - type: archive
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.249.tar.gz
+            sha256: 3d957cc9d07c22b35226c931ac9253321d3b56a769794081a970ccce6b1bbed7
+            x-checker-data:
+              type: anitya
+              project-id: 88835
+              stable-only: true
+              url-template: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v$version.tar.gz
 
   - name: jellyfin-web
     disabled: false
