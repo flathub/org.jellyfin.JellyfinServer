@@ -200,8 +200,8 @@ modules:
           - --without-portaudiocpp
         sources:
           - type: archive
-            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.0+release.autotools.tar.gz
-            sha256: 411796b55aef73cab09c7a6e65d33f1d7bf4ee7fc2dade6bc8de5138dedcc6d1
+            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.1+release.autotools.tar.gz
+            sha256: bf175d26448bb133f74714f3a8859e7000b93522fb3577559dffc037161910f9
             x-checker-data:
               type: anitya
               project-id: 141468
