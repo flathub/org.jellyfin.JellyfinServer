@@ -24,6 +24,7 @@ cleanup:
 
 finish-args:
   - --device=dri
+  - --filesystem=home/Jellyfin Server Media:create
   - --filesystem=/media:ro
   - --filesystem=/mnt:ro
   - --filesystem=/run/media:ro
