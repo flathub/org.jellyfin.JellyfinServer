@@ -32,7 +32,7 @@
     <p>
       Create media folders
     </p>
-    <p>mkdir -p ~/'Jellyfin Server Media'/{Movies,Music,Shows,Books,Photos}</p>
+    <p>mkdir -p ${HOME}/'Jellyfin Server Media'/{Movies,Music,Shows,Books,Photos}</p>
     <p>
       Open Jellyfin Data
     </p>
