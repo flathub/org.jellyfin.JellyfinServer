@@ -4,7 +4,7 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
-  - org.freedesktop.Sdk.Extension.node14
+  - org.freedesktop.Sdk.Extension.node18
   - org.freedesktop.Sdk.Extension.llvm16
 separate-locales: false
 command: org.jellyfin.JellyfinServer.sh
@@ -297,8 +297,8 @@ modules:
           - /lib/pkgconfig
         sources:
           - type: archive
-            url: https://github.com/google/shaderc/archive/refs/tags/v2023.3.tar.gz
-            sha256: 7f66435c59797cdc6370dc97aa5cab21651385ac6c5159975566d51cc3e6650f
+            url: https://github.com/google/shaderc/archive/refs/tags/v2023.4.tar.gz
+            sha256: 671c5750638ff5e42e0e0e5325b758a1ab85e6fd0fe934d369a8631c4292f12f
             x-checker-data:
               type: anitya
               project-id: 19047
@@ -664,7 +664,7 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node14/bin
+      append-path: /usr/lib/sdk/node18/bin
     build-commands:
       - npm ci --no-audit --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
       - mkdir -p $FLATPAK_DEST/bin/jellyfin-web
