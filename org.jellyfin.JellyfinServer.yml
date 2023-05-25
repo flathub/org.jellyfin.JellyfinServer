@@ -4,7 +4,7 @@ runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
-  - org.freedesktop.Sdk.Extension.node14
+  - org.freedesktop.Sdk.Extension.node18
   - org.freedesktop.Sdk.Extension.llvm16
 separate-locales: false
 command: org.jellyfin.JellyfinServer.sh
@@ -664,7 +664,7 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node14/bin
+      append-path: /usr/lib/sdk/node18/bin
     build-commands:
       - npm ci --no-audit --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
       - mkdir -p $FLATPAK_DEST/bin/jellyfin-web
