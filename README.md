@@ -6,11 +6,11 @@ https://github.com/istori1/jellyfin-flatpak-cache-sources
 
 ## Generate cache localy
 
-### Clone flatpak tools
+#### Clone flatpak tools
 
 `git clone --depth 1 https://github.com/flatpak/flatpak-builder-tools.git`
 
-### Generate cache for NuGet
+#### Generate cache for NuGet
 
 `git clone --depth 1 -b v10.8.10 https://github.com/jellyfin/jellyfin.git`
 
@@ -18,7 +18,7 @@ https://github.com/istori1/jellyfin-flatpak-cache-sources
 
 `./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py --runtime=linux-arm64 nuget-generated-sources-arm64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj`
 
-### Generate cache for npm
+#### Generate cache for npm
 
 `git clone --depth 1 -b v10.8.10 https://github.com/jellyfin/jellyfin-web.git`
 
@@ -26,5 +26,5 @@ https://github.com/istori1/jellyfin-flatpak-cache-sources
 
 `.local/bin/flatpak-node-generator -o npm-generated-sources.json npm jellyfin-web/package-lock.json`
 
-### Remove source clones
+#### Remove source clones
 `rm -rf {jellyfin,jellyfin-web,flatpak-builder-tools}`
