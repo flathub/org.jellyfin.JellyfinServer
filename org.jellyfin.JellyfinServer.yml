@@ -297,8 +297,8 @@ modules:
           - /lib/pkgconfig
         sources:
           - type: archive
-            url: https://github.com/google/shaderc/archive/refs/tags/v2023.3.tar.gz
-            sha256: 7f66435c59797cdc6370dc97aa5cab21651385ac6c5159975566d51cc3e6650f
+            url: https://github.com/google/shaderc/archive/refs/tags/v2023.4.tar.gz
+            sha256: 671c5750638ff5e42e0e0e5325b758a1ab85e6fd0fe934d369a8631c4292f12f
             x-checker-data:
               type: anitya
               project-id: 19047
