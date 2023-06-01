@@ -314,8 +314,8 @@ modules:
               stable-only: true
               url-template: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.246.1.tar.gz
-            sha256: 71668e18ef7b318b06f8c466f46abad965b2646eaa322594cd015c2ac87133e6
+            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.250.0.tar.gz
+            sha256: 9d632a4dddd11f89a74a8c6f19cd29e8b0741d2fbb41ecc4dec26b922d28a2f3
             dest: third_party/spirv-headers
             x-checker-data:
               type: anitya
@@ -640,8 +640,8 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
     sources:
       - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.250.tar.gz
-        sha256: a1cd4f7d8d58bec26efb1e5ea73f82dcf36a9662d55401b81a783071b211a35a
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.251.tar.gz
+        sha256: 03851334d9751464f96b2d3c49cac884b7be5178c04d162a445bb2ca93f56519
         x-checker-data:
           type: anitya
           project-id: 242111
