@@ -1,0 +1,79 @@
+name: NuGet Checker
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  NuGet-Checker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: main
+          
+      - name: Check if branch exist
+        working-directory: main
+        run: |
+          if [ "$(git ls-remote --heads origin update-nuget)" != "" ]; then
+            echo "::error ::Branch update-nuget exist. Merge PR or delete the branch"
+            exit 1
+          fi
+
+      - name: Flatpak Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.local/share/flatpak
+          key: flatpak-cache-x86_64-${{ github.sha }}
+          restore-keys: |
+            flatpak
+
+      - name: Setup Dependencies
+        run: |
+          sudo apt update -y
+          sudo apt install flatpak -y
+          sudo snap install yq
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          sudo su $(whoami) -c 'flatpak install flathub org.flatpak.Builder -y'
+
+      - name: Set ENV Variables
+        run: |
+          echo "RUNTIME-VERSIONFROMYAML=$(yq '.runtime-version' main/org.jellyfin.JellyfinServer.yml)" >> "$GITHUB_ENV"
+          echo "DOTNETSDKFROMYAML=$(yq '.sdk-extensions[0]' main/org.jellyfin.JellyfinServer.yml)" >> "$GITHUB_ENV"
+          echo "TAGFROMYAML=$(yq '.modules[-1].sources[2].tag' main/org.jellyfin.JellyfinServer.yml)" >> "$GITHUB_ENV"
+
+      - name: Checkout Jellyfin
+        uses: actions/checkout@v3
+        with:
+          repository: jellyfin/jellyfin
+          path: jellyfin
+          ref: ${{ env.TAGFROMYAML }}
+
+      - name: Checkout Flatpak Builder Tools
+        uses: actions/checkout@v3
+        with:
+          repository: flatpak/flatpak-builder-tools
+          path: flatpak-builder-tools
+
+      - name: Generate cache for NuGet
+        run: |
+          sudo su $(whoami) -c 'flatpak install flathub ${{ env.DOTNETSDKFROMYAML }}//${{ env.RUNTIME-VERSIONFROMYAML }} -y'
+          ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
+            --runtime=linux-x64 main/nuget-generated-sources-x64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
+          ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
+            --runtime=linux-arm64 main/nuget-generated-sources-arm64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          path: main
+          title: Update NuGet Cache
+          commit-message: Update NuGet Cache
+          branch: update-nuget
+          delete-branch: true
