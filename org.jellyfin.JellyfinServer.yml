@@ -58,7 +58,7 @@ modules:
       arch:
         x86_64:
           config-opts:
-            - --enable-libmfx # intel-mediasdk
+            - --enable-libmfx  # intel-mediasdk
     config-opts:
       - --disable-doc
       - --disable-ffplay
