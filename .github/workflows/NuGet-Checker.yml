@@ -2,7 +2,7 @@ name: NuGet Checker
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 0/4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
         working-directory: main
         run: |
           if [ "$(git ls-remote --heads origin update-nuget)" != "" ]; then
-            echo "::error ::Branch update-nuget exist. Merge PR or delete the branch"
+            echo "::warning ::Branch update-nuget exist. Merge PR or delete the branch"
             exit 1
           fi
 
