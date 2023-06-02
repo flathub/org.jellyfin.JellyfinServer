@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  NuGet_Checker:
+  NuGet-Checker:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,6 +16,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: main
+          
+      - name: Check if branch exist
+        working-directory: main
+        run: |
+          if [ "$(git ls-remote --heads origin update-nuget)" != "" ]; then
+            echo "::error ::Branch update-nuget exist. Merge PR or delete the branch"
+            exit 1
+          fi
 
       - name: Flatpak Cache
         uses: actions/cache@v3
@@ -65,7 +73,6 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           path: main
-          # branch-suffix: random
           title: Update NuGet Cache
           commit-message: Update NuGet Cache
           branch: update-nuget
