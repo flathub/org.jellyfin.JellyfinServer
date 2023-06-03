@@ -382,8 +382,8 @@ modules:
               type: git
               tag-pattern: ^([\d.]+)$
           - type: archive
-            url: https://github.com/pallets/markupsafe/releases/download/2.1.2/MarkupSafe-2.1.2.tar.gz
-            sha256: abcabc8c2b26036d62d4c746381a6f7cf60aafcc653198ad678306986b09450d
+            url: https://github.com/pallets/markupsafe/releases/download/2.1.3/MarkupSafe-2.1.3.tar.gz
+            sha256: af598ed32d6ae86f1b747b82783958b1a4ab8f617b06fe68795c7f026abbdcad
             dest: 3rdparty/markupsafe
             x-checker-data:
               type: anitya
