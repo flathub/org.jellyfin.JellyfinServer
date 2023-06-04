@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 15c9d4fb34b2aa91619c351c87cfc060dfe94b8a
-        tag: v5.1.3-1
+        commit: 953d8862569cc95a4bab2831f534545878241e64
+        tag: v5.1.3-2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
