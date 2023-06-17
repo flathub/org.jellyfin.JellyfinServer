@@ -38,7 +38,9 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install flatpak -y
-          sudo snap install yq
+          mkdir -p ~/.local/bin
+          wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq
+          chmod +x ~/.local/bin/yq
           flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
           sudo su $(whoami) -c 'flatpak install flathub org.flatpak.Builder -y'
 
