@@ -234,8 +234,8 @@ modules:
           - --without-portaudiocpp
         sources:
           - type: archive
-            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.1+release.autotools.tar.gz
-            sha256: bf175d26448bb133f74714f3a8859e7000b93522fb3577559dffc037161910f9
+            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.2+release.autotools.tar.gz
+            sha256: 509143e5a4f3b13dd98eae289bfec1b564eddd71bbc7ca7864b82835e31330e1
             x-checker-data:
               type: anitya
               project-id: 141468
@@ -357,8 +357,8 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.253.tar.gz
-            sha256: e45a8c4289b84317252451055b0ac76b13169e10a9f619961fb6479bf6179054
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.254.tar.gz
+            sha256: 6be000a33b665ecac05971819b4c29ba5e21b800627f288f4d3a0b28e86b290f
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: anitya
@@ -608,8 +608,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-            commit: ea296ef350714fb6f105b420fb0bc321d9997ffd
-            tag: v1.5.0
+            commit: 08c18ba0768ed3dbbff0903adc326fb3a7549bd9
+            tag: v1.6.0
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -638,8 +638,8 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
     sources:
       - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.251.tar.gz
-        sha256: 03851334d9751464f96b2d3c49cac884b7be5178c04d162a445bb2ca93f56519
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.254.tar.gz
+        sha256: 9d46697d0df39e20950db2f8581b63b3d02ab5dce6b67777b9f7bdf876ae4921
         x-checker-data:
           type: anitya
           project-id: 242111
@@ -650,8 +650,8 @@ modules:
         buildsystem: cmake-ninja
         sources:
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.253.tar.gz
-            sha256: e45a8c4289b84317252451055b0ac76b13169e10a9f619961fb6479bf6179054
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.254.tar.gz
+            sha256: 6be000a33b665ecac05971819b4c29ba5e21b800627f288f4d3a0b28e86b290f
             x-checker-data:
               type: anitya
               project-id: 88835
