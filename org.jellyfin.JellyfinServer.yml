@@ -357,8 +357,8 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.254.tar.gz
-            sha256: 6be000a33b665ecac05971819b4c29ba5e21b800627f288f4d3a0b28e86b290f
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.255.tar.gz
+            sha256: 8e1db7041ad6dbaf4f3326a297b4aee17f3178a0d1cf9cd76a3f934c855357b5
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: anitya
@@ -638,8 +638,8 @@ modules:
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
     sources:
       - type: archive
-        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.254.tar.gz
-        sha256: 9d46697d0df39e20950db2f8581b63b3d02ab5dce6b67777b9f7bdf876ae4921
+        url: https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v1.3.255.tar.gz
+        sha256: ccd9175eec671b9ebff2486d1fb3e3d2f318028bbc873378ff9e1382b432abc6
         x-checker-data:
           type: anitya
           project-id: 242111
@@ -650,8 +650,8 @@ modules:
         buildsystem: cmake-ninja
         sources:
           - type: archive
-            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.254.tar.gz
-            sha256: 6be000a33b665ecac05971819b4c29ba5e21b800627f288f4d3a0b28e86b290f
+            url: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.255.tar.gz
+            sha256: 8e1db7041ad6dbaf4f3326a297b4aee17f3178a0d1cf9cd76a3f934c855357b5
             x-checker-data:
               type: anitya
               project-id: 88835
