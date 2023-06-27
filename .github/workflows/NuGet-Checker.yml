@@ -2,7 +2,7 @@ name: NuGet Checker
 
 on:
   schedule:
-    - cron: '0 0/6 * * *'
+    - cron: '0 0/12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -38,11 +38,11 @@ jobs:
         run: |
           sudo apt update -y
           sudo apt install flatpak -y
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          sudo su $(whoami) -c 'flatpak install flathub org.flatpak.Builder -y'
           mkdir -p ~/.local/bin
           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq
           chmod +x ~/.local/bin/yq
-          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          sudo su $(whoami) -c 'flatpak install flathub org.flatpak.Builder -y'
 
       - name: Set ENV Variables
         run: |
@@ -65,6 +65,7 @@ jobs:
 
       - name: Generate cache for NuGet
         run: |
+          sudo su $(whoami) -c 'flatpak update -y'
           sudo su $(whoami) -c 'flatpak install flathub ${{ env.DOTNETSDKFROMYAML }}//${{ env.RUNTIME-VERSIONFROMYAML }} -y'
           ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
             --runtime=linux-x64 main/nuget-generated-sources-x64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
