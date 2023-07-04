@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 953d8862569cc95a4bab2831f534545878241e64
-        tag: v5.1.3-2
+        commit: 8f9500e3d3332d92df2f35cc589357f53cf81524
+        tag: v5.1.3-3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
@@ -314,8 +314,8 @@ modules:
               stable-only: true
               url-template: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.250.0.tar.gz
-            sha256: 9d632a4dddd11f89a74a8c6f19cd29e8b0741d2fbb41ecc4dec26b922d28a2f3
+            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.250.1.tar.gz
+            sha256: d5f8c4b7906baf9c51aedbbb2dd942009e8658e3340c6e64699518666a03e043
             dest: third_party/spirv-headers
             x-checker-data:
               type: anitya
@@ -359,7 +359,7 @@ modules:
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
             commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
-            tag: sdk-1.3.250.0
+            tag: sdk-1.3.250.1
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: git
@@ -534,8 +534,8 @@ modules:
           - --with-pic
         sources:
           - type: archive
-            url: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.4.tar.gz
-            sha256: 219d1bc6b7fde1355d72c9b406ebd730a4aed9c21da779660f0a4c851243e32f
+            url: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.5.tar.gz
+            sha256: a9a0226bf85e0d83c41a8ebe4e3e690e1348682f6a2a7838f1b8cbff1b799bcf
             x-checker-data:
               type: anitya
               project-id: 13685
@@ -639,7 +639,7 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Tools.git
         commit: 695887a994ef9cc00a7aa3f9c00b31a56ea79534
-        tag: sdk-1.3.250.0
+        tag: sdk-1.3.250.1
         x-checker-data:
           type: git
           tag-pattern: ^sdk-([\d.]+)$
@@ -650,7 +650,7 @@ modules:
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
             commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
-            tag: sdk-1.3.250.0
+            tag: sdk-1.3.250.1
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
