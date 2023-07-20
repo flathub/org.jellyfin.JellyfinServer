@@ -357,7 +357,7 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
               versions:
-                <: 'v6.292.0'
+                <: '6.292.0'
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
             commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
