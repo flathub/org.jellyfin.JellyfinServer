@@ -297,8 +297,8 @@ modules:
           - /lib/pkgconfig
         sources:
           - type: archive
-            url: https://github.com/google/shaderc/archive/refs/tags/v2023.4.tar.gz
-            sha256: 671c5750638ff5e42e0e0e5325b758a1ab85e6fd0fe934d369a8631c4292f12f
+            url: https://github.com/google/shaderc/archive/refs/tags/v2023.5.tar.gz
+            sha256: 6db6f91d480ab7ee32f51d8ed11460ddbd31cf9cebb00df09e46a2428dc553f0
             x-checker-data:
               type: anitya
               project-id: 19047
@@ -357,7 +357,7 @@ modules:
               stable-only: true
               url-template: https://code.videolan.org/videolan/libplacebo/-/archive/v$version/libplacebo-v$version.tar.gz
               versions:
-                <: '6.292.0'
+                <: 6.292.0
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
             commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
