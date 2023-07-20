@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: b2af8d128452c4b4c94399f051c3214f11c1dfa9
-            tag: intel-onevpl-23.2.4
+            commit: 7700bb791dc1e0104a72df63ba0761c1954f2c6f
+            tag: intel-onevpl-23.3.0
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -586,8 +586,8 @@ modules:
           - '*'
         sources:
           - type: archive
-            url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v.14.30.tar.gz
-            sha256: dcfebc2bcb67e7ba199d29313953c9114bbb806d86c84068433db90bd31926e1
+            url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.30.tar.gz
+            sha256: 4a9d43c730a76df6636932cee007917409d5b3607b61cecdf6dfab410f7b5f1d
             x-checker-data:
               type: anitya
               project-id: 138182
