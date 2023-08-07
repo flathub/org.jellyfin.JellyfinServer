@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 8f9500e3d3332d92df2f35cc589357f53cf81524
-        tag: v5.1.3-3
+        commit: 2d97234ec066a5213291eecf5411d3c02ea0c096
+        tag: v5.1.3-4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: 7700bb791dc1e0104a72df63ba0761c1954f2c6f
-            tag: intel-onevpl-23.3.0
+            commit: a9fb0bcabef0b91ddfe0c70466513d33fab38557
+            tag: intel-onevpl-23.3.1
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
