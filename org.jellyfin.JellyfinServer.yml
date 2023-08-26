@@ -297,8 +297,8 @@ modules:
           - /lib/pkgconfig
         sources:
           - type: archive
-            url: https://github.com/google/shaderc/archive/refs/tags/v2023.5.tar.gz
-            sha256: 6db6f91d480ab7ee32f51d8ed11460ddbd31cf9cebb00df09e46a2428dc553f0
+            url: https://github.com/google/shaderc/archive/refs/tags/v2023.6.tar.gz
+            sha256: e40fd4a87a56f6610e223122179f086d5c4f11a7e0e2aa461f0325c3a0acc6ae
             x-checker-data:
               type: anitya
               project-id: 19047
@@ -314,8 +314,8 @@ modules:
               stable-only: true
               url-template: https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/v$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.250.1.tar.gz
-            sha256: d5f8c4b7906baf9c51aedbbb2dd942009e8658e3340c6e64699518666a03e043
+            url: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-1.3.261.0.tar.gz
+            sha256: 846d60811fb696b517e1e30073320f4e12572be57f1f4c9572843f87f2d07f81
             dest: third_party/spirv-headers
             x-checker-data:
               type: anitya
@@ -323,8 +323,8 @@ modules:
               stable-only: true
               url-template: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/glslang/archive/refs/tags/12.3.1.tar.gz
-            sha256: a57836a583b3044087ac51bb0d5d2d803ff84591d55f89087fc29ace42a8b9a8
+            url: https://github.com/KhronosGroup/glslang/archive/refs/tags/13.0.0.tar.gz
+            sha256: bcda732434f829aa74414ea0e06d329ec8ac28637c38a0de45e17c8fd25a4715
             dest: third_party/glslang
             x-checker-data:
               type: anitya
@@ -360,8 +360,8 @@ modules:
                 <: 6.292.0
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
-            commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
-            tag: sdk-1.3.250.1
+            commit: 85c2334e92e215cce34e8e0ed8b2dce4700f4a50
+            tag: sdk-1.3.261.0
             dest: 3rdparty/Vulkan-Headers
             x-checker-data:
               type: git
@@ -557,8 +557,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/zapping-vbi/zvbi.git
-            commit: 74016b7aef2f52f44920a04f9bcfe52ed72905d1
-            tag: v0.2.41
+            commit: 3785481f51f41a49e28f2b7f6fd5bd9187d24ae1
+            tag: v0.2.42
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -609,8 +609,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-            commit: 08c18ba0768ed3dbbff0903adc326fb3a7549bd9
-            tag: v1.6.0
+            commit: 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c
+            tag: v1.7.0
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -640,8 +640,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Tools.git
-        commit: 695887a994ef9cc00a7aa3f9c00b31a56ea79534
-        tag: sdk-1.3.250.1
+        commit: a7da7027ca9fd0901639f02619c226da9c6036f1
+        tag: sdk-1.3.261.0
         x-checker-data:
           type: git
           tag-pattern: ^sdk-([\d.]+)$
@@ -651,8 +651,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/KhronosGroup/Vulkan-Headers.git
-            commit: 9e61870ecbd32514113b467e0a0c46f60ed222c7
-            tag: sdk-1.3.250.1
+            commit: 85c2334e92e215cce34e8e0ed8b2dce4700f4a50
+            tag: sdk-1.3.261.0
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
