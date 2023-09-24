@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: 53191ae82605196452081c984c92d1a5c4d2306a
-            tag: intel-onevpl-23.3.2
+            commit: 365293575bab87665cc7932a76e795a7fbc0a92e
+            tag: intel-onevpl-23.3.3
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -234,8 +234,8 @@ modules:
           - --without-portaudiocpp
         sources:
           - type: archive
-            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.2+release.autotools.tar.gz
-            sha256: 509143e5a4f3b13dd98eae289bfec1b564eddd71bbc7ca7864b82835e31330e1
+            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.3+release.autotools.tar.gz
+            sha256: 2cf8369b7916b09264f3f14b9fb6cef35a6e9bee0328dec4f49d98211ccfd722
             x-checker-data:
               type: anitya
               project-id: 141468
@@ -669,8 +669,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 55714d5341d6bbfdb4d8b0b4c9b6955d4db14f34
-        tag: v10.8.10
+        commit: 1e1af1c67fd42ed6a9497734fbc32de452a37be0
+        tag: v10.8.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -706,8 +706,8 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 2cd29d1cfd5cb2586aab3862e857dc85e0117ca4
-        tag: v10.8.10
+        commit: be5e10ac373745dcb46f79d6c815ea3a480e8b8a
+        tag: v10.8.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
