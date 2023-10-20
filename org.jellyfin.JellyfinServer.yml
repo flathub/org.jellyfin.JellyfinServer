@@ -571,11 +571,13 @@ modules:
           - type: git
             # url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
             url: https://github.com/FFmpeg/nv-codec-headers.git
-            commit: 1889e62e2d35ff7aa9baca2bceb14f053785e6f1
-            tag: n12.1.14.0
+            commit: c5e4af74850a616c42d39ed45b9b8568b71bf8bf
+            tag: n12.0.16.0
             x-checker-data:
               type: git
               tag-pattern: ^n([\d.]+)$
+              versions:
+                <: '12.0.16.0'
       - name: amf
         buildsystem: simple
         build-commands:
