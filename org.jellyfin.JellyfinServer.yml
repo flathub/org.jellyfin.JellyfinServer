@@ -577,7 +577,7 @@ modules:
               type: git
               tag-pattern: ^n([\d.]+)$
               versions:
-                <: '12.0.16.0'
+                <=: '12.0.16.0'
       - name: amf
         buildsystem: simple
         build-commands:
