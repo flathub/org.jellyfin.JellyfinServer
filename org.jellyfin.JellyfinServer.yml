@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: 30963ed30d428ccaf3c80360c8657d9c831cb38c
-            tag: intel-onevpl-23.3.4
+            commit: 08a9307f6ac8b6c4f75d2557ddf97e559538d618
+            tag: intel-onevpl-23.4.0
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -577,7 +577,7 @@ modules:
               type: git
               tag-pattern: ^n([\d.]+)$
               versions:
-                <=: '12.0.16.0'
+                <=: 12.0.16.0
       - name: amf
         buildsystem: simple
         build-commands:
