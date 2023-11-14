@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: 08a9307f6ac8b6c4f75d2557ddf97e559538d618
-            tag: intel-onevpl-23.4.0
+            commit: d2b457be2e531f5e358ad427252f2c0ac761a1e5
+            tag: intel-onevpl-23.4.1
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
