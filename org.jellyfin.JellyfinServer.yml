@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: a631dfb3fd3098b9ded10e2d60b948a74e4fa78e
-        tag: v5.1.3-7
+        commit: 2e1204d9d15a0df2144951180f3dc894153fd730
+        tag: v5.1.4-1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: 08a9307f6ac8b6c4f75d2557ddf97e559538d618
-            tag: intel-onevpl-23.4.0
+            commit: aa99bdaf49870da1ff2ea74bdb7a2716d2004ad6
+            tag: intel-onevpl-23.4.2
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -671,8 +671,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 4b6bbcfe2671b21a79e347241eed3c70acaad9e3
-        tag: v10.8.12
+        commit: 8e37078b6066715b27fd2dde1f7d1eda216044d9
+        tag: v10.8.13
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -708,8 +708,8 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: a173d01139357c5913d3293cfb4c6c53019fbed0
-        tag: v10.8.12
+        commit: e93d03d8cbff2122d7296f477604146f64758a73
+        tag: v10.8.13
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
