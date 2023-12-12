@@ -202,8 +202,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: aa99bdaf49870da1ff2ea74bdb7a2716d2004ad6
-            tag: intel-onevpl-23.4.2
+            commit: 852fa9f705ef44c004d014548601f3804a6de705
+            tag: intel-onevpl-23.4.3
             x-checker-data:
               type: git
               tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -610,8 +610,8 @@ modules:
         sources:
           - type: git
             url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-            commit: 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c
-            tag: v1.7.0
+            commit: 5fbddb53b3dc1a32f35ade563e2f6d32dc500417
+            tag: v1.8.0
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
