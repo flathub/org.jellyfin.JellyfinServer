@@ -66,6 +66,7 @@ jobs:
       - name: Generate cache for NuGet
         run: |
           sudo su $(whoami) -c 'flatpak update -y'
+          sudo su $(whoami) -c 'flatpak install flathub org.freedesktop.Sdk//${{ env.RUNTIME-VERSIONFROMYAML }} -y'
           sudo su $(whoami) -c 'flatpak install flathub ${{ env.DOTNETSDKFROMYAML }}//${{ env.RUNTIME-VERSIONFROMYAML }} -y'
           ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
             --runtime=linux-x64 main/nuget-generated-sources-x64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
