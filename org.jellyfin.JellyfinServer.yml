@@ -177,7 +177,7 @@ modules:
       - name: onevpl
         only-arches:
           - x86_64
-        buildsystem: cmake
+        buildsystem: cmake-ninja
         config-opts:
           - -DBUILD_TOOLS=OFF
           - -DBUILD_TESTS=OFF
@@ -195,7 +195,7 @@ modules:
       - name: onevpl-intel-gpu
         only-arches:
           - x86_64
-        buildsystem: cmake
+        buildsystem: cmake-ninja
         config-opts:
           - -DBUILD_TOOLS=OFF
           - -DBUILD_TESTS=OFF
