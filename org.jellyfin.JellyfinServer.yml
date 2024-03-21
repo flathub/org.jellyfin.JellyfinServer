@@ -112,8 +112,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 1e776de70f5c3508dea7a1ac86e82039f797002d
-        tag: v5.1.4-2
+        commit: 61eb6f86bf4ed0678f72fa0105f18bc1ddb0cc92
+        tag: v5.1.4-3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
@@ -124,6 +124,7 @@ modules:
           - cat debian/patches/*.patch | patch -Np1 -d .
     modules:
       - shared-modules/linux-audio/fftw3f.json
+
       - name: ocl-icd
         build-options:
           arch:
@@ -138,25 +139,52 @@ modules:
           - --disable-update-database
         sources:
           - type: archive
-            url: https://github.com/OCL-dev/ocl-icd/archive/refs/tags/v2.3.2.tar.gz
-            sha256: ec47d7dcd961ea06695b067e8b7edb82e420ddce03e0081a908c62fd0b8535c5
+            url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1.orig.tar.gz
+            sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
             x-checker-data:
-              type: anitya
-              project-id: 2525
-              stable-only: true
-              url-template: https://github.com/OCL-dev/ocl-icd/archive/refs/tags/v$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/ocl-icd
+              version-pattern: ocl-icd \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1-1.debian.tar.xz
+            sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/ocl-icd
+              version-pattern: ocl-icd \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
         modules:
           - name: khronos-opencl-headers
             buildsystem: cmake-ninja
             sources:
               - type: archive
-                url: https://github.com/KhronosGroup/OpenCL-Headers/archive/refs/tags/v2023.04.17.tar.gz
-                sha256: 0ce992f4167f958f68a37918dec6325be18f848dee29a4521c633aae3304915d
+                url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06.orig.tar.gz
+                sha256: 464d1b04a5e185739065b2d86e4cebf02c154c416d63e6067a5060d7c053c79a
                 x-checker-data:
-                  type: anitya
-                  project-id: 223257
-                  stable-only: true
-                  url-template: https://github.com/KhronosGroup/OpenCL-Headers/archive/refs/tags/v$version.tar.gz
+                  type: html
+                  url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
+                  version-pattern: khronos-opencl-headers \((\d+\.\d+~\d+\.\d+\.\d+)
+                  url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.orig.tar.gz
+              - type: archive
+                url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06-1.debian.tar.xz
+                sha256: 3b935732ae4e17ac27512d97a1be287ba245b3ba0840d6a1a66e2ba4a7b2532c
+                dest: debs
+                x-checker-data:
+                  type: html
+                  url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
+                  version-pattern: khronos-opencl-headers \(([^\)]+)\)
+                  url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.debian.tar.xz
+              - type: shell
+                commands:
+                  - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                    -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: intel-mediasdk
         only-arches:
           - x86_64
@@ -167,13 +195,27 @@ modules:
           - -DENABLE_X11=OFF
         sources:
           - type: archive
-            url: https://github.com/Intel-Media-SDK/MediaSDK/archive/refs/tags/intel-mediasdk-23.2.2.tar.gz
-            sha256: 12f23a78104edc1c9bfa755effd2723866d107ad752f72d3839fcc8db0503cec
+            url: https://deb.debian.org/debian/pool/main/i/intel-mediasdk/intel-mediasdk_22.5.4.orig.tar.gz
+            sha256: 0eb04409a226da6e752576d60c46a3ec969ddfe03042897088367392207c7ab3
             x-checker-data:
-              type: anitya
-              project-id: 21814
-              stable-only: true
-              url-template: https://github.com/Intel-Media-SDK/MediaSDK/archive/refs/tags/intel-mediasdk-$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/intel-mediasdk
+              version-pattern: intel-mediasdk \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/i/intel-mediasdk/intel-mediasdk_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/i/intel-mediasdk/intel-mediasdk_22.5.4-1.debian.tar.xz
+            sha256: f6c308ec1f7e53f349941acf10d2cd0d16a2a6f5bef2da74a87003c680b6efb4
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/intel-mediasdk
+              version-pattern: intel-mediasdk \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/i/intel-mediasdk/intel-mediasdk_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: onevpl
         only-arches:
           - x86_64
@@ -185,13 +227,27 @@ modules:
           - -DINSTALL_EXAMPLE_CODE=OFF
         sources:
           - type: archive
-            url: https://github.com/oneapi-src/oneVPL/archive/refs/tags/v2023.4.0.tar.gz
-            sha256: 978398c7bb1665a6ad7a1a15cc57dc0204608e56c88436e376b717320a9e63fd
+            url: https://deb.debian.org/debian/pool/main/o/onevpl/onevpl_2023.1.1.orig.tar.xz
+            sha256: c1cef32f8896e03fe16e502cd79ced9f1fffd1b6421c64a02ec5987fcf05b10b
             x-checker-data:
-              type: anitya
-              project-id: 242664
-              stable-only: true
-              url-template: https://github.com/oneapi-src/oneVPL/archive/refs/tags/v$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/onevpl
+              version-pattern: onevpl \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/o/onevpl/onevpl_$version.orig.tar.xz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/o/onevpl/onevpl_2023.1.1-1.debian.tar.xz
+            sha256: 4ab15189699aa7138c1cd9ff2b5c0869e3b2b83fe8a2c96afd6a2a2ec8fee64e
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/onevpl
+              version-pattern: onevpl \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/o/onevpl/onevpl_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: onevpl-intel-gpu
         only-arches:
           - x86_64
@@ -200,13 +256,28 @@ modules:
           - -DBUILD_TOOLS=OFF
           - -DBUILD_TESTS=OFF
         sources:
-          - type: git
-            url: https://github.com/oneapi-src/oneVPL-intel-gpu.git
-            commit: aa99bdaf49870da1ff2ea74bdb7a2716d2004ad6
-            tag: intel-onevpl-23.4.2
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/o/onevpl-intel-gpu/onevpl-intel-gpu_22.6.4.orig.tar.gz
+            sha256: 74b0979dcb2af1b7c68edb8cbcb02d539de511090b12fac50652cbacd707c4e6
             x-checker-data:
-              type: git
-              tag-pattern: ^intel-onevpl-([\d.]+)$
+              type: html
+              url: https://packages.debian.org/source/bookworm/onevpl-intel-gpu
+              version-pattern: onevpl-intel-gpu \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/o/onevpl-intel-gpu/onevpl-intel-gpu_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/o/onevpl-intel-gpu/onevpl-intel-gpu_22.6.4-1.debian.tar.xz
+            sha256: 557d6533d7b608f02fd58f50ae71232e8b236c7a57ca681ebb6a960793d26ab9
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/onevpl-intel-gpu
+              version-pattern: onevpl-intel-gpu \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/o/onevpl-intel-gpu/onevpl-intel-gpu_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: chromaprint
         buildsystem: cmake-ninja
         config-opts:
@@ -224,6 +295,7 @@ modules:
               project-id: 286
               stable-only: true
               url-template: https://github.com/acoustid/chromaprint/releases/download/v$version/chromaprint-$version.tar.gz
+
       - name: libopenmpt
         config-opts:
           - --disable-examples
@@ -234,13 +306,27 @@ modules:
           - --without-portaudiocpp
         sources:
           - type: archive
-            url: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-0.7.3+release.autotools.tar.gz
-            sha256: 2cf8369b7916b09264f3f14b9fb6cef35a6e9bee0328dec4f49d98211ccfd722
+            url: https://deb.debian.org/debian/pool/main/libo/libopenmpt/libopenmpt_0.6.9.orig.tar.gz
+            sha256: 479e975abb7dc0fa9cad41bdd31f255d78d43e0726546208058d3c3fcf7b6e5a
             x-checker-data:
-              type: anitya
-              project-id: 141468
-              stable-only: true
-              url-template: https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$version+release.autotools.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/libopenmpt
+              version-pattern: libopenmpt \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/libo/libopenmpt/libopenmpt_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/libo/libopenmpt/libopenmpt_0.6.9-1.debian.tar.xz
+            sha256: 10b160e5686d7e2370dce941434c843b0baaa1bbb410061ecf769eeda3063e0f
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/libopenmpt
+              version-pattern: libopenmpt \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/libo/libopenmpt/libopenmpt_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: libass
         config-opts:
           - --enable-shared
@@ -276,6 +362,7 @@ modules:
               project-id: 1565
               stable-only: true
               url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.bz2
+
       - name: shaderc
         buildsystem: cmake-ninja
         builddir: true
@@ -297,13 +384,26 @@ modules:
           - /lib/pkgconfig
         sources:
           - type: archive
-            url: https://github.com/google/shaderc/archive/refs/tags/v2023.7.tar.gz
-            sha256: 681e1340726a0bf46bea7e31f10cbfe78e01e4446a35d90fedc2b78d400fcdeb
+            url: https://deb.debian.org/debian/pool/main/s/shaderc/shaderc_2023.2.orig.tar.gz
+            sha256: 06c4e2fdd63d62b73450d7011b72e7720b416182fb883fb0aac0afe6db2df3f6
             x-checker-data:
-              type: anitya
-              project-id: 19047
-              stable-only: true
-              url-template: https://github.com/google/shaderc/archive/refs/tags/v$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/shaderc
+              version-pattern: shaderc \((\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/s/shaderc/shaderc_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/s/shaderc/shaderc_2023.2-1.debian.tar.xz
+            sha256: fecd98d3b805a2ce6ff176c43f4818c29693c654e188383269a62be5e50deab4
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/shaderc
+              version-pattern: shaderc \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/s/shaderc/shaderc_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
           - type: git
             url: https://github.com/KhronosGroup/SPIRV-Tools.git
             commit: e553b884c7c9febaa4e52334f683641fb5f196a0
@@ -322,14 +422,28 @@ modules:
               stable-only: true
               url-template: https://github.com/KhronosGroup/SPIRV-Headers/archive/refs/tags/sdk-$version.tar.gz
           - type: archive
-            url: https://github.com/KhronosGroup/glslang/archive/refs/tags/13.1.1.tar.gz
-            sha256: 1c4d0a5a38c8aaf89a2d7e6093be734320599f5a6775b2726beeb05b0c054e66
+            url: https://deb.debian.org/debian/pool/main/g/glslang/glslang_12.0.0.orig.tar.gz
+            sha256: 7cb45842ec1d4b6ea775d624c3d2d8ba9450aa416b0482b0cc7e4fdd399c3d75
             dest: third_party/glslang
             x-checker-data:
-              type: anitya
-              project-id: 205796
-              stable-only: true
-              url-template: https://github.com/KhronosGroup/glslang/archive/refs/tags/$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/glslang
+              version-pattern: glslang \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/g/glslang/glslang_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/g/glslang/glslang_12.0.0-2.diff.gz
+            sha256: 7d809d51cc884868fd0f22441469d31969085be73b0f2fb2c17fd61e597bb7b9
+            dest: third_party/glslang/debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/glslang
+              version-pattern: glslang \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/g/glslang/glslang_$version.diff.gz
+          # - type: shell
+          #   commands:
+          #     - for p in $(cat third_party/glslang/debs/patches/series); do if [[ $p != "#"* ]]; then patch
+          #       -Np1 -i "third_party/glslang/debs/patches/$p" -d .; fi; done
+
       - name: libplacebo
         buildsystem: meson
         config-opts:
@@ -365,42 +479,100 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^sdk-([\d.]+)$
-          - type: git
-            url: https://github.com/Dav1dde/glad.git
-            commit: d08b1aa01f8fe57498f04d47b5fa8c48725be877
-            tag: v2.0.4
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/p/python-glad/python-glad_2.0.2.orig.tar.gz
+            sha256: 0eb04409a226da6e752576d60c46a3ec969ddfe03042897088367392207c7ab3
             dest: 3rdparty/glad
             x-checker-data:
-              type: git
-              tag-pattern: ^v([\d.]+)$
-          - type: git
-            url: https://github.com/pallets/jinja.git
-            commit: b08cd4bc64bb980df86ed2876978ae5735572280
-            dest: 3rdparty/jinja
-            tag: 3.1.2
-            x-checker-data:
-              type: git
-              tag-pattern: ^([\d.]+)$
+              type: html
+              url: https://packages.debian.org/source/bookworm/python-glad
+              version-pattern: python-glad \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/p/python-glad/python-glad_$version.orig.tar.gz
           - type: archive
-            url: https://github.com/pallets/markupsafe/releases/download/2.1.3/MarkupSafe-2.1.3.tar.gz
-            sha256: af598ed32d6ae86f1b747b82783958b1a4ab8f617b06fe68795c7f026abbdcad
+            url: https://deb.debian.org/debian/pool/main/p/python-glad/python-glad_2.0.2-0.1.debian.tar.xz
+            sha256: f6c308ec1f7e53f349941acf10d2cd0d16a2a6f5bef2da74a87003c680b6efb4
+            dest: 3rdparty/glad/debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/python-glad
+              version-pattern: python-glad \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/p/python-glad/python-glad_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat 3rdparty/glad/debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "3rdparty/glad/debs/patches/$p" -d .; fi; done
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_3.1.2.orig.tar.gz
+            sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
+            dest: 3rdparty/jinja
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/jinja2
+              version-pattern: jinja2 \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_3.1.2-1.debian.tar.xz
+            sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
+            dest: 3rdparty/jinja/debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/jinja2
+              version-pattern: jinja2 \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat 3rdparty/jinja/debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "3rdparty/jinja/debs/patches/$p" -d .; fi; done
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_2.1.2.orig.tar.gz
+            sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
             dest: 3rdparty/markupsafe
             x-checker-data:
-              type: anitya
-              project-id: 3918
-              stable-only: true
-              url-template: https://github.com/pallets/markupsafe/releases/download/$version/MarkupSafe-$version.tar.gz
-      - name: numactl
-        buildsystem: autotools
-        sources:
+              type: html
+              url: https://packages.debian.org/source/bookworm/markupsafe
+              version-pattern: markupsafe \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_$version.orig.tar.gz
           - type: archive
-            url: https://github.com/numactl/numactl/archive/refs/tags/v2.0.16.tar.gz
-            sha256: a35c3bdb3efab5c65927e0de5703227760b1101f5e27ab741d8f32b3d5f0a44c
+            url: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_2.1.2-1.debian.tar.xz
+            sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
+            dest: 3rdparty/markupsafe/debs
             x-checker-data:
-              type: anitya
-              project-id: 2507
-              stable-only: true
-              url-template: https://github.com/numactl/numactl/archive/refs/tags/v$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/markupsafe
+              version-pattern: markupsafe \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat 3rdparty/markupsafe/debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "3rdparty/markupsafe/debs/patches/$p" -d .; fi; done
+
+          - name: numactl
+            buildsystem: autotools
+            cleanup:
+              - /bin
+            sources:
+              - type: archive
+                url: https://deb.debian.org/debian/pool/main/n/numactl/numactl_2.0.16.orig.tar.gz
+                sha256: a35c3bdb3efab5c65927e0de5703227760b1101f5e27ab741d8f32b3d5f0a44c
+                x-checker-data:
+                  type: html
+                  url: https://packages.debian.org/source/bookworm/numactl
+                  version-pattern: numactl \((\d+\.\d+\.\d+)
+                  url-template: https://deb.debian.org/debian/pool/main/n/numactl/numactl_$version.orig.tar.gz
+              - type: archive
+                url: https://deb.debian.org/debian/pool/main/n/numactl/numactl_2.0.16-1.debian.tar.xz
+                sha256: 3e55d97df079693a12b92462ef9526bd305ff22e55ecbd6e37e37049e41b0a2c
+                dest: debs
+                x-checker-data:
+                  type: html
+                  url: https://packages.debian.org/source/bookworm/numactl
+                  version-pattern: numactl \(([^\)]+)\)
+                  url-template: https://deb.debian.org/debian/pool/main/n/numactl/numactl_$version.debian.tar.xz
+              - type: shell
+                commands:
+                  - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                    -Np1 -i "debs/patches/$p" -d .; fi; done
+
       - name: x264
         config-opts:
           - --disable-cli
@@ -578,6 +750,7 @@ modules:
               tag-pattern: ^n([\d.]+)$
               versions:
                 <=: 12.0.16.0
+
       - name: amf
         buildsystem: simple
         build-commands:
@@ -587,13 +760,14 @@ modules:
           - '*'
         sources:
           - type: archive
-            url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.32.tar.gz
-            sha256: f08c048e818f71bc7909c447bd810e727818d442db649d479ef87fb5a44a3474
+            url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.33.tar.gz
+            sha256: 86b39d5bd4652338bf7b4e48efec58472bb57a985250bc149e7908534a915c8e
             x-checker-data:
               type: anitya
               project-id: 138182
               stable-only: true
               url-template: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v$version.tar.gz
+
       - name: svt-av1
         buildsystem: cmake-ninja
         build-options:
@@ -608,13 +782,27 @@ modules:
           - -DBUILD_APPS=OFF
         builddir: true
         sources:
-          - type: git
-            url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-            commit: 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c
-            tag: v1.7.0
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/s/svt-av1/svt-av1_1.4.1+dfsg.orig.tar.xz
+            sha256: 4ce800449365b6a4ead77b8ce4965ef20b4e54c2950fda52273ed1914ebfae78
             x-checker-data:
-              type: git
-              tag-pattern: ^v([\d.]+)$
+              type: html
+              url: https://packages.debian.org/source/bookworm/svt-av1
+              version-pattern: svt-av1 \((\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/s/svt-av1/svt-av1_$version+dfsg.orig.tar.xz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/s/svt-av1/svt-av1_1.4.1+dfsg-1.debian.tar.xz
+            sha256: dd46e5614f04f793b01b90869cfa8e8561a4c71ac7af50deee2e5586e7028c82
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/svt-av1
+              version-pattern: svt-av1 \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/s/svt-av1/svt-av1_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: clinfo
     buildsystem: simple
