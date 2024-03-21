@@ -430,7 +430,7 @@ modules:
               url: https://packages.debian.org/source/bookworm/glslang
               version-pattern: glslang \((\d+\.\d+\.\d+)
               url-template: https://deb.debian.org/debian/pool/main/g/glslang/glslang_$version.orig.tar.gz
-          - type: archive
+          - type: file
             url: https://deb.debian.org/debian/pool/main/g/glslang/glslang_12.0.0-2.diff.gz
             sha256: 7d809d51cc884868fd0f22441469d31969085be73b0f2fb2c17fd61e597bb7b9
             dest: third_party/glslang/debs
