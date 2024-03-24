@@ -809,6 +809,7 @@ modules:
             -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: zvbi
+    subdir: zvbi-0.2.41
     config-opts:
       - --enable-shared
       - --disable-static
