@@ -636,14 +636,6 @@ modules:
         x86_64:
           config-opts:
             - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-        aarch64:
-          append-path: /usr/lib/sdk/llvm16/bin
-          prepend-ld-library-path: /usr/lib/sdk/llvm16/lib
-          env:
-            CC: clang
-            CXX: clang++
-          config-opts:
-            - -DENABLE_ASSEMBLY=OFF
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DENABLE_CLI=OFF
@@ -688,14 +680,6 @@ modules:
             x86_64:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-            aarch64:
-              append-path: /usr/lib/sdk/llvm16/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm16/lib
-              env:
-                CC: clang
-                CXX: clang++
-              config-opts:
-                - -DENABLE_ASSEMBLY=OFF
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -738,14 +722,6 @@ modules:
             x86_64:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
-            aarch64:
-              append-path: /usr/lib/sdk/llvm16/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm16/lib
-              env:
-                CC: clang
-                CXX: clang++
-              config-opts:
-                - -DENABLE_ASSEMBLY=OFF
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
