@@ -215,13 +215,26 @@ modules:
       - -DFFT_LIB=fftw3f
     sources:
       - type: archive
-        url: https://github.com/acoustid/chromaprint/releases/download/v1.5.1/chromaprint-1.5.1.tar.gz
+        url: https://deb.debian.org/debian/pool/main/c/chromaprint/chromaprint_1.5.1.orig.tar.gz
         sha256: a1aad8fa3b8b18b78d3755b3767faff9abb67242e01b478ec9a64e190f335e1c
         x-checker-data:
-          type: anitya
-          project-id: 286
-          stable-only: true
-          url-template: https://github.com/acoustid/chromaprint/releases/download/v$version/chromaprint-$version.tar.gz
+          type: html
+          url: https://packages.debian.org/source/bookworm/chromaprint
+          version-pattern: chromaprint \((\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/c/chromaprint/chromaprint_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/c/chromaprint/chromaprint_1.5.1-2.debian.tar.xz
+        sha256: e8fb8f5b309ce59a18b8d754f1ad8ada6a2246bbc8acbef47e5355c3b4fa3a1e
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/chromaprint
+          version-pattern: chromaprint \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/c/chromaprint/chromaprint_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: libopenmpt
     config-opts:
@@ -261,13 +274,27 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/libass/libass/releases/download/0.17.1/libass-0.17.1.tar.gz
+        url: https://deb.debian.org/debian/pool/main/liba/libass/libass_0.17.1.orig.tar.gz
         sha256: d653be97198a0543c69111122173c41a99e0b91426f9e17f06a858982c2fb03d
         x-checker-data:
-          type: anitya
-          project-id: 1560
-          stable-only: true
-          url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.gz
+          type: html
+          url: https://packages.debian.org/source/bookworm/libass
+          version-pattern: libass \(\d:(\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/liba/libass/libass_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/liba/libass/libass_0.17.1-1.debian.tar.xz
+        sha256: 277581e18b2ee091f338f81d1645da5bf774097e0d1ba669dee8556992ea5869
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/libass
+          version-pattern: libass \(\d:([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/liba/libass/libass_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
+
   - name: libbluray
     config-opts:
       - --enable-shared
@@ -282,13 +309,26 @@ modules:
       - --disable-bdjava-jar
     sources:
       - type: archive
-        url: https://download.videolan.org/pub/videolan/libbluray/1.3.4/libbluray-1.3.4.tar.bz2
+        url: https://deb.debian.org/debian/pool/main/libb/libbluray/libbluray_1.3.4.orig.tar.bz2
         sha256: 478ffd68a0f5dde8ef6ca989b7f035b5a0a22c599142e5cd3ff7b03bbebe5f2b
         x-checker-data:
-          type: anitya
-          project-id: 1565
-          stable-only: true
-          url-template: https://download.videolan.org/pub/videolan/libbluray/$version/libbluray-$version.tar.bz2
+          type: html
+          url: https://packages.debian.org/source/bookworm/libbluray
+          version-pattern: libbluray \(\d:(\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/libb/libbluray/libbluray_$version.orig.tar.bz2
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/libb/libbluray/libbluray_1.3.4-1.debian.tar.xz
+        sha256: 0f78f2df8d9de559f2fb6be93c899e27c5f53fe2149cefc0691ca98181d0d500
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/libbluray
+          version-pattern: libbluray \(\d:([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/libb/libbluray/libbluray_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: shaderc
     buildsystem: cmake-ninja
@@ -565,9 +605,28 @@ modules:
       - --disable-lavf
       - --disable-swscale
     sources:
-      - type: git
-        url: https://code.videolan.org/videolan/x264.git
-        commit: baee400fa9ced6f5481a728138fed6e867b0ff7f
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/x/x264/x264_0.164.3095+gitbaee400.orig.tar.gz
+        sha256: 8b237e94b08c196a1da22f2f25875f10be4cff3648df4eeff21e00da8f683fc2
+        # x-checker-data:
+        #   type: html
+        #   url: https://packages.debian.org/source/bookworm/x264
+        #   version-pattern: x264 \(\d:(\d+\.\d+\.\d+)
+        #   url-template: https://deb.debian.org/debian/pool/main/x/x264/x264_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/x/x264/x264_0.164.3095+gitbaee400-3.debian.tar.xz
+        sha256: 4980a5595db7465c8035e872d31e0eedd98dea936c1601f1cc338433eaff96b7
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/x264
+          version-pattern: x264 \(\d:([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/x/x264/x264_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
+
   - name: x265-8bit
     buildsystem: cmake-ninja
     builddir: true
@@ -597,15 +656,26 @@ modules:
       - -DLINKED_12BIT=ON
     sources:
       - type: archive
-        url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+        url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5.orig.tar.gz
         sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
         x-checker-data:
-          type: anitya
-          project-id: 7275
-          stable-only: true
-          url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
+          type: html
+          url: https://packages.debian.org/source/bookworm/x265
+          version-pattern: x265 \((\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5-2.debian.tar.xz
+        sha256: 47a111b9c3e7fd95e4e3e5db43aeb7019a4031820a80badc6dea5c5719de9264
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/x265
+          version-pattern: x265 \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.debian.tar.xz
       - type: shell
         commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
           - cp $FLATPAK_DEST/lib/libx265_main1{0,2}.a ./
     modules:
       - name: x265-10bit
@@ -638,13 +708,26 @@ modules:
           - install -D libx265.a $FLATPAK_DEST/lib/libx265_main10.a
         sources:
           - type: archive
-            url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+            url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5.orig.tar.gz
             sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
             x-checker-data:
-              type: anitya
-              project-id: 7275
-              stable-only: true
-              url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/x265
+              version-pattern: x265 \((\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5-2.debian.tar.xz
+            sha256: 47a111b9c3e7fd95e4e3e5db43aeb7019a4031820a80badc6dea5c5719de9264
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/x265
+              version-pattern: x265 \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
       - name: x265-12bit
         buildsystem: cmake-ninja
         builddir: true
@@ -676,13 +759,27 @@ modules:
           - install -D libx265.a $FLATPAK_DEST/lib/libx265_main12.a
         sources:
           - type: archive
-            url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_3.5.tar.gz
+            url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5.orig.tar.gz
             sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
             x-checker-data:
-              type: anitya
-              project-id: 7275
-              stable-only: true
-              url-template: https://bitbucket.org/multicoreware/x265_git/downloads/x265_$version.tar.gz
+              type: html
+              url: https://packages.debian.org/source/bookworm/x265
+              version-pattern: x265 \((\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.orig.tar.gz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/x/x265/x265_3.5-2.debian.tar.xz
+            sha256: 47a111b9c3e7fd95e4e3e5db43aeb7019a4031820a80badc6dea5c5719de9264
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/x265
+              version-pattern: x265 \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
+
   - name: zimg
     config-opts:
       - --enable-shared
@@ -690,13 +787,27 @@ modules:
       - --with-pic
     sources:
       - type: archive
-        url: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.5.tar.gz
-        sha256: a9a0226bf85e0d83c41a8ebe4e3e690e1348682f6a2a7838f1b8cbff1b799bcf
+        url: https://deb.debian.org/debian/pool/main/z/zimg/zimg_3.0.4+ds1.orig.tar.xz
+        sha256: 19266d15ffb2f4b36835878ac776c746664725227ac3d10ec5e415a55765cf06
         x-checker-data:
-          type: anitya
-          project-id: 13685
-          stable-only: true
-          url-template: https://github.com/sekrit-twc/zimg/archive/refs/tags/release-$version.tar.gz
+          type: html
+          url: https://packages.debian.org/source/bookworm/zimg
+          version-pattern: zimg \((\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/z/zimg/zimg_$version+ds1.orig.tar.xz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/z/zimg/zimg_3.0.4+ds1-1.debian.tar.xz
+        sha256: 4d62f65b5f236da02fc45683ce00a006ad5203a604cd5ef4385720a78078b160
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/zimg
+          version-pattern: zimg \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/z/zimg/zimg_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
+
   - name: zvbi
     config-opts:
       - --enable-shared
@@ -709,13 +820,28 @@ modules:
       - --disable-nls
       - --disable-proxy
     sources:
-      - type: git
-        url: https://github.com/zapping-vbi/zvbi.git
-        commit: 3785481f51f41a49e28f2b7f6fd5bd9187d24ae1
-        tag: v0.2.42
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/z/zvbi/zvbi_0.2.41.orig.tar.gz
+        sha256: 2f22f9846bceead26349dd0b026cd41b638171eca2af98e69fe6762b98cbcd87
         x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+          type: html
+          url: https://packages.debian.org/source/bookworm/zvbi
+          version-pattern: zvbi \((\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/z/zvbi/zvbi_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/z/zvbi/zvbi_0.2.41-1.debian.tar.xz
+        sha256: 4a8767a1fb6fcfdcf9da21945a33de9c9cfac3ebfa4222929a043fabc1110492
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/zvbi
+          version-pattern: zvbi \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/z/zvbi/zvbi_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
+
   - name: nv-codec-headers
     no-autogen: true
     make-install-args:
@@ -723,16 +849,27 @@ modules:
     cleanup:
       - "*"
     sources:
-      - type: git
-        # url: https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-        url: https://github.com/FFmpeg/nv-codec-headers.git
-        commit: c5e4af74850a616c42d39ed45b9b8568b71bf8bf
-        tag: n12.0.16.0
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/n/nv-codec-headers/nv-codec-headers_11.1.5.2.orig.tar.gz
+        sha256: 576df78bad704e2854991100bea99e974759304ac1411c02707ebc95a425191b
         x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]+)$
-          versions:
-            <=: 12.0.16.0
+          type: html
+          url: https://packages.debian.org/source/bookworm/nv-codec-headers
+          version-pattern: nv-codec-headers \((\d+\.\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/n/nv-codec-headers/nv-codec-headers_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/n/nv-codec-headers/nv-codec-headers_11.1.5.2-1.debian.tar.xz
+        sha256: 6c0210edfbe0cbca0286ed9aeefda0fce9f8ef3aa6fd5dd2e472299443ff604a
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/nv-codec-headers
+          version-pattern: nv-codec-headers \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/n/nv-codec-headers/nv-codec-headers_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: amf
     buildsystem: simple
@@ -794,13 +931,26 @@ modules:
       - chmod 755 $FLATPAK_DEST/bin/clinfo
     sources:
       - type: archive
-        url: https://github.com/Oblomov/clinfo/archive/refs/tags/3.0.23.01.25.tar.gz
+        url: https://deb.debian.org/debian/pool/main/c/clinfo/clinfo_3.0.23.01.25.orig.tar.gz
         sha256: 6dcdada6c115873db78c7ffc62b9fc1ee7a2d08854a3bccea396df312e7331e3
         x-checker-data:
-          type: anitya
-          project-id: 10503
-          stable-only: true
-          url-template: https://github.com/Oblomov/clinfo/archive/refs/tags/$version.tar.gz
+          type: html
+          url: https://packages.debian.org/source/bookworm/clinfo
+          version-pattern: clinfo \((\d+\.\d+\.\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/c/clinfo/clinfo_$version.orig.tar.gz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/c/clinfo/clinfo_3.0.23.01.25-1.debian.tar.xz
+        sha256: a5c11fa37a033baf7c9b5b7dd414b070470bb16f92c192ba5ed5edba72ff10f1
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/clinfo
+          version-pattern: clinfo \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/c/clinfo/clinfo_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: vulkan-tools
     buildsystem: cmake-ninja
@@ -810,24 +960,53 @@ modules:
       - -DCMAKE_BUILD_TYPE=Release
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
     sources:
-      - type: git
-        url: https://github.com/KhronosGroup/Vulkan-Tools.git
-        commit: a7da7027ca9fd0901639f02619c226da9c6036f1
-        tag: sdk-1.3.261.1
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_1.3.239.0+dfsg1.orig.tar.xz
+        sha256: faef7f477008b0a57bad21ee2bd791cbb08403a64d6b3eaf29d691a32eb8c592
         x-checker-data:
-          type: git
-          tag-pattern: ^sdk-([\d.]+)$
+          type: html
+          url: https://packages.debian.org/source/bookworm/vulkan-tools
+          version-pattern: vulkan-tools \((\d+\.\d+\.\d+\.\d+)
+          url-template: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_$version+dfsg1.orig.tar.xz
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_1.3.239.0+dfsg1-1.debian.tar.xz
+        sha256: c5ca62210adab80ecf0e9df732ecfce7854b6b3c5686d8d1738ffca1f92fb516
+        dest: debs
+        x-checker-data:
+          type: html
+          url: https://packages.debian.org/source/bookworm/vulkan-tools
+          version-pattern: vulkan-tools \(([^\)]+)\)
+          url-template: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_$version.debian.tar.xz
+      - type: shell
+        commands:
+          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+            -Np1 -i "debs/patches/$p" -d .; fi; done
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
+        subdir: vulkan-headers
         sources:
-          - type: git
-            url: https://github.com/KhronosGroup/Vulkan-Headers.git
-            commit: 85c2334e92e215cce34e8e0ed8b2dce4700f4a50
-            tag: sdk-1.3.261.1
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_1.3.239.0.orig.tar.xz
+            sha256: 90ca97151d774ea3f00129ad32be03cdfa310215651ceec0cd9fc2d0d1804d86
             x-checker-data:
-              type: git
-              tag-pattern: ^sdk-([\d.]+)$
+              type: html
+              url: https://packages.debian.org/source/bookworm/vulkan-loader
+              version-pattern: vulkan-loader \((\d+\.\d+\.\d+\.\d+)
+              url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.orig.tar.xz
+          - type: archive
+            url: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_1.3.239.0-1.debian.tar.xz
+            sha256: c38c319e1137549ddea481b811cfb39bca015ddc11876a915ad78c664cb7746e
+            dest: debs
+            x-checker-data:
+              type: html
+              url: https://packages.debian.org/source/bookworm/vulkan-loader
+              version-pattern: vulkan-loader \(([^\)]+)\)
+              url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.debian.tar.xz
+          - type: shell
+            commands:
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+                -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: jellyfin-ffmpeg
     disabled: false
