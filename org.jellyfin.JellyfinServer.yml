@@ -12,7 +12,6 @@ command: org.jellyfin.JellyfinServer.sh
 cleanup:
   - /include
   - /lib/cmake
-  - /lib/debug
   - /lib/pkgconfig
   - /lib/*.la
   - /lib/*.a
