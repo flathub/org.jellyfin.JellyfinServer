@@ -24,6 +24,10 @@ Remember to check and remove backups that you don't need anymore.
 git clone --recurse-submodules https://github.com/flathub/org.jellyfin.JellyfinServer
 cd "org.jellyfin.JellyfinServer"
 
+# Clone Jellyfin sources.
+git clone --depth 1 -b v10.9.10 https://github.com/jellyfin/jellyfin.git
+git clone --depth 1 -b v10.9.10 https://github.com/jellyfin/jellyfin-web.git
+
 # Fetch builder tools.
 git clone --depth 1 https://github.com/flatpak/flatpak-builder-tools.git
 
@@ -38,10 +42,6 @@ flatpak-node-generator -o "npm-generated-sources.json" npm "jellyfin-web/package
 # poetry install -C ./flatpak-builder-tools/node/
 # ./flatpak-builder-tools/node/.venv/bin/flatpak-node-generator \
 #   -o "npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
-
-# Clone Jellyfin sources.
-git clone --depth 1 -b v10.9.9 https://github.com/jellyfin/jellyfin.git
-git clone --depth 1 -b v10.9.9 https://github.com/jellyfin/jellyfin-web.git
 ```
 
 ### Build for x86_64
