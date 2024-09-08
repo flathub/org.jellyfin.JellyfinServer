@@ -735,8 +735,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 7949ff4f0aa3a3a823f98b451480938205ab0c1e
-        tag: v10.9.10
+        commit: 6f203b9d1d0010ed16c6185245e612edcc1f863f
+        tag: v10.9.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -772,8 +772,8 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 24d482b36b5b4d5c2913755aa967da5dad4b8f52
-        tag: v10.9.10
+        commit: 7bbdfc0d4943b1823d82cb85795a707a6e3a9b4d
+        tag: v10.9.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
