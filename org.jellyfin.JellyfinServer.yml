@@ -1,6 +1,6 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: "22.08"
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet6
@@ -109,8 +109,8 @@ modules:
               url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.debian.tar.xz
           - type: shell
             commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-                -Np1 -i "debs/patches/$p" -d .; fi; done
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then
+                patch -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: intel-mediasdk
     only-arches:
@@ -391,8 +391,9 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/s/spirv-tools/spirv-tools_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat third_party/spirv-tools/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./third_party/spirv-tools; fi; done
+          - for p in $(cat third_party/spirv-tools/debs/patches/series); do if [[
+            $p != "#"* ]]; then patch -Np1 -i "debs/patches/$p" -d ./third_party/spirv-tools;
+            fi; done
       - type: archive
         url: https://deb.debian.org/debian/pool/main/s/spirv-headers/spirv-headers_1.6.1+1.3.239.0.orig.tar.gz
         sha256: 1022a2a6351b06c20d53172c1acba32e14efabc2e35e6af9c214f61a3ed704c7
@@ -413,8 +414,9 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/s/spirv-headers/spirv-headers_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat third_party/spirv-headers/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./third_party/spirv-headers; fi; done
+          - for p in $(cat third_party/spirv-headers/debs/patches/series); do if [[
+            $p != "#"* ]]; then patch -Np1 -i "debs/patches/$p" -d ./third_party/spirv-headers;
+            fi; done
       - type: archive
         url: https://deb.debian.org/debian/pool/main/g/glslang/glslang_12.0.0.orig.tar.gz
         sha256: 7cb45842ec1d4b6ea775d624c3d2d8ba9450aa416b0482b0cc7e4fdd399c3d75
@@ -437,8 +439,9 @@ modules:
         commands:
           - gunzip third_party/glslang/debs/glslang_12.0.0-2.diff.gz
           - patch -Np1 -i "debs/glslang_12.0.0-2.diff" -d ./third_party/glslang
-          - for p in $(cat third_party/glslang/debian/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debian/patches/$p" -d ./third_party/glslang; fi; done
+          - for p in $(cat third_party/glslang/debian/patches/series); do if [[ $p
+            != "#"* ]]; then patch -Np1 -i "debian/patches/$p" -d ./third_party/glslang;
+            fi; done
 
   - name: libplacebo
     buildsystem: meson
@@ -498,8 +501,9 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat tmp/vulkan-loader/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./tmp/vulkan-loader; fi; done
+          - for p in $(cat tmp/vulkan-loader/debs/patches/series); do if [[ $p !=
+            "#"* ]]; then patch -Np1 -i "debs/patches/$p" -d ./tmp/vulkan-loader;
+            fi; done
           - mkdir -p 3rdparty/Vulkan-Headers
           - mv tmp/vulkan-loader/vulkan-headers/* 3rdparty/Vulkan-Headers
       - type: archive
@@ -522,8 +526,8 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/p/python-glad/python-glad_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat 3rdparty/glad/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./3rdparty/glad; fi; done
+          - for p in $(cat 3rdparty/glad/debs/patches/series); do if [[ $p != "#"*
+            ]]; then patch -Np1 -i "debs/patches/$p" -d ./3rdparty/glad; fi; done
       - type: archive
         url: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_3.1.2.orig.tar.gz
         sha256: 31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852
@@ -544,8 +548,8 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/j/jinja2/jinja2_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat 3rdparty/jinja/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./3rdparty/jinja; fi; done
+          - for p in $(cat 3rdparty/jinja/debs/patches/series); do if [[ $p != "#"*
+            ]]; then patch -Np1 -i "debs/patches/$p" -d ./3rdparty/jinja; fi; done
       - type: archive
         url: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_2.1.2.orig.tar.gz
         sha256: abcabc8c2b26036d62d4c746381a6f7cf60aafcc653198ad678306986b09450d
@@ -566,8 +570,9 @@ modules:
           url-template: https://deb.debian.org/debian/pool/main/m/markupsafe/markupsafe_$version.debian.tar.xz
       - type: shell
         commands:
-          - for p in $(cat 3rdparty/markupsafe/debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d ./3rdparty/markupsafe; fi; done
+          - for p in $(cat 3rdparty/markupsafe/debs/patches/series); do if [[ $p !=
+            "#"* ]]; then patch -Np1 -i "debs/patches/$p" -d ./3rdparty/markupsafe;
+            fi; done
 
   - name: numactl
     buildsystem: autotools
@@ -726,8 +731,8 @@ modules:
               url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.debian.tar.xz
           - type: shell
             commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-                -Np1 -i "debs/patches/$p" -d .; fi; done
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then
+                patch -Np1 -i "debs/patches/$p" -d .; fi; done
       - name: x265-12bit
         buildsystem: cmake-ninja
         builddir: true
@@ -777,8 +782,8 @@ modules:
               url-template: https://deb.debian.org/debian/pool/main/x/x265/x265_$version.debian.tar.xz
           - type: shell
             commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-                -Np1 -i "debs/patches/$p" -d .; fi; done
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then
+                patch -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: zimg
     config-opts:
@@ -848,7 +853,7 @@ modules:
     make-install-args:
       - PREFIX=${FLATPAK_DEST}
     cleanup:
-      - "*"
+      - '*'
     sources:
       - type: archive
         url: https://deb.debian.org/debian/pool/main/n/nv-codec-headers/nv-codec-headers_11.1.5.2.orig.tar.gz
@@ -878,11 +883,11 @@ modules:
       - mkdir -p $FLATPAK_DEST/include
       - mv amf/public/include $FLATPAK_DEST/include/AMF
     cleanup:
-      - "*"
+      - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.33.tar.gz
-        sha256: 86b39d5bd4652338bf7b4e48efec58472bb57a985250bc149e7908534a915c8e
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.35.tar.gz
+        sha256: 5d93101eae5895247bea58cff40bb84424158170ae7f931105666157cc187636
         x-checker-data:
           type: anitya
           project-id: 138182
@@ -1006,8 +1011,8 @@ modules:
               url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.debian.tar.xz
           - type: shell
             commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-                -Np1 -i "debs/patches/$p" -d .; fi; done
+              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then
+                patch -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: jellyfin-ffmpeg
     disabled: false
@@ -1077,7 +1082,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
           versions:
-            <: "6.0"
+            <: '6.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
@@ -1095,8 +1100,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 8e37078b6066715b27fd2dde1f7d1eda216044d9
-        tag: v10.8.13
+        commit: 6f203b9d1d0010ed16c6185245e612edcc1f863f
+        tag: v10.9.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -1109,7 +1114,7 @@ modules:
       append-path: /usr/lib/sdk/dotnet6/bin
       append-pkg-config-path: /usr/lib/sdk/dotnet6/lib/pkgconfig
       env:
-        DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+        DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
       arch:
         x86_64:
           env:
@@ -1132,8 +1137,8 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: e93d03d8cbff2122d7296f477604146f64758a73
-        tag: v10.8.13
+        commit: 7bbdfc0d4943b1823d82cb85795a707a6e3a9b4d
+        tag: v10.9.11
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
