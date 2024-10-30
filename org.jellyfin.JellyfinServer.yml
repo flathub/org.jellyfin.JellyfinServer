@@ -1,13 +1,13 @@
 id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet8
-  - org.freedesktop.Sdk.Extension.node20
-  - org.freedesktop.Sdk.Extension.llvm18
+  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.llvm19
 separate-locales: false
-command: org.jellyfin.JellyfinServer.sh
+command: jellyfin.sh
 
 cleanup:
   - /include
@@ -67,52 +67,67 @@ modules:
       - --enable-official-khronos-headers
       - --disable-update-database
     sources:
-      - type: archive
-        url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1.orig.tar.gz
-        sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
+      - type: git
+        url: https://github.com/OCL-dev/ocl-icd.git
+        commit: fdde6677b21329432db8b481e2637cd10f7d3cb2
+        tag: v2.3.2
         x-checker-data:
-          type: html
-          url: https://packages.debian.org/source/bookworm/ocl-icd
-          version-pattern: ocl-icd \((\d+\.\d+\.\d+)
-          url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.orig.tar.gz
-      - type: archive
-        url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1-1.debian.tar.xz
-        sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
-        dest: debs
-        x-checker-data:
-          type: html
-          url: https://packages.debian.org/source/bookworm/ocl-icd
-          version-pattern: ocl-icd \(([^\)]+)\)
-          url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.debian.tar.xz
-      - type: shell
-        commands:
-          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d .; fi; done
+          type: git
+          tag-pattern: ^v([\d.]+)$
+    #sources:
+    #  - type: archive
+    #    url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1.orig.tar.gz
+    #    sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
+    #    x-checker-data:
+    #      type: html
+    #      url: https://packages.debian.org/source/bookworm/ocl-icd
+    #      version-pattern: ocl-icd \((\d+\.\d+\.\d+)
+    #      url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.orig.tar.gz
+    #  - type: archive
+    #    url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1-1.debian.tar.xz
+    #    sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
+    #    dest: debs
+    #    x-checker-data:
+    #      type: html
+    #      url: https://packages.debian.org/source/bookworm/ocl-icd
+    #      version-pattern: ocl-icd \(([^\)]+)\)
+    #      url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.debian.tar.xz
+    #  - type: shell
+    #    commands:
+    #      - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+    #        -Np1 -i "debs/patches/$p" -d .; fi; done
     modules:
       - name: khronos-opencl-headers
         buildsystem: cmake-ninja
         sources:
-          - type: archive
-            url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06.orig.tar.gz
-            sha256: 464d1b04a5e185739065b2d86e4cebf02c154c416d63e6067a5060d7c053c79a
+          - type: git
+            url: https://github.com/KhronosGroup/OpenCL-Headers.git
+            commit: 8275634cf9ec31b6484c2e6be756237cb583999d
+            tag: v2024.05.08
             x-checker-data:
-              type: html
-              url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
-              version-pattern: khronos-opencl-headers \((\d+\.\d+~\d+\.\d+\.\d+)
-              url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.orig.tar.gz
-          - type: archive
-            url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06-1.debian.tar.xz
-            sha256: 3b935732ae4e17ac27512d97a1be287ba245b3ba0840d6a1a66e2ba4a7b2532c
-            dest: debs
-            x-checker-data:
-              type: html
-              url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
-              version-pattern: khronos-opencl-headers \(([^\)]+)\)
-              url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.debian.tar.xz
-          - type: shell
-            commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-                -Np1 -i "debs/patches/$p" -d .; fi; done
+              type: git
+              tag-pattern: ^v([\d.]+)$
+          #- type: archive
+          #  url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06.orig.tar.gz
+          #  sha256: 464d1b04a5e185739065b2d86e4cebf02c154c416d63e6067a5060d7c053c79a
+          #  x-checker-data:
+          #    type: html
+          #    url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
+          #    version-pattern: khronos-opencl-headers \((\d+\.\d+~\d+\.\d+\.\d+)
+          #    url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.orig.tar.gz
+          #- type: archive
+          #  url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06-1.debian.tar.xz
+          #  sha256: 3b935732ae4e17ac27512d97a1be287ba245b3ba0840d6a1a66e2ba4a7b2532c
+          #  dest: debs
+          #  x-checker-data:
+          #    type: html
+          #    url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
+          #    version-pattern: khronos-opencl-headers \(([^\)]+)\)
+          #    url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.debian.tar.xz
+          #- type: shell
+          #  commands:
+          #    - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+          #      -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: intel-mediasdk
     only-arches:
@@ -157,8 +172,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/libvpl.git
-        commit: 0c13c410095764799afea0cf645bd896378579b8
-        tag: v2.12.0
+        commit: 5f6bd8a1e753c8f63a3fd8b36894d6968b808a6d
+        tag: v2.13.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -173,9 +188,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: e0b981d1bf8ca4f9d346089d530cc149c09e10df
+        commit: fcad0a923c5d7d7483eb993378f7055a1b348241
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-24.2.5 
+        tag: intel-onevpl-24.3.4
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -193,16 +208,15 @@ modules:
         url: https://github.com/acoustid/chromaprint.git
         commit: 5c3be6803856f25b11d1d704bac56e733b4fc997
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: v1.5.1 
+        tag: v1.5.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
 
   - name: libopenmpt
-    buildsystem: simple
-    build-commands:
-      #- ./configure
-      - make -j$FLATPAK_BUILDER_N_JOBS PREFIX=$FLATPAK_DEST install
+    no-autogen: true
+    make-install-args:
+      - PREFIX=${FLATPAK_DEST}
     config-opts:
       - --disable-examples
       - --disable-openmpt123
@@ -213,8 +227,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: 6d49a8e92a78586e44eafd426042c368591bf48e
-        tag: libopenmpt-0.7.9 
+        commit: 217d52beb79b5f17cc77756b0664996ad7ab8d4b
+        tag: libopenmpt-0.7.11
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
@@ -276,8 +290,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/google/shaderc.git
-        commit: 47a9387ef5b3600d30d84c71ec77a59dc7db46fa
-        tag: v2024.1
+        commit: ff84893dd52d28f0b1737d2635733d952013bd9c
+        tag: v2024.3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -341,19 +355,14 @@ modules:
       # Already included as a submodule: glad, jinja, markupsafe
 
   - name: numactl
-    #buildsystem: autotools
-    buildsystem: simple
-    build-commands:
-      - ./autogen.sh
-      - ./configure --prefix $FLATPAK_DEST
-      - make -j$FLATPAK_BUILDER_N_JOBS PREFIX=$FLATPAK_DEST install
+    rm-configure: true
     cleanup:
       - /bin
     sources:
       - type: git
         url: https://github.com/numactl/numactl.git
-        commit: 3871b1c42fc71bceadafd745d2eff5dddfc2d67e
-        tag: v2.0.18
+        commit: 3bc85e37d5a30da6790cb7e8bb488bb8f679170f
+        tag: v2.0.19
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -368,14 +377,15 @@ modules:
       - --disable-swscale
     sources:
       - type: git
-        #url: https://code.videolan.org/videolan/x264.git
-        # NOTE: Unoffical, repo has tags and is therefore better trackable.
-        url: https://github.com/ShiftMediaProject/x264.git
-        commit: 64a4204c3da98c7b02fcafb20bc4bf515dcd3bf8
-        tag: 0.164.r3191
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+).r\d$
+        url: https://code.videolan.org/videolan/x264.git
+        #mirror-urls:
+        #  - https://github.com/jpsdr/x264
+        # NOTE: Unoffical, repo has tags.
+        # - https://github.com/ShiftMediaProject/x264.git
+        commit: da14df5535fd46776fb1c9da3130973295c87aca
+        #tag: 0.164.r3194
+        # Every commit to the master branch is considered a release
+        # https://code.videolan.org/videolan/x264/-/issues/35
 
   - name: x265-8bit
     buildsystem: cmake-ninja
@@ -387,8 +397,8 @@ modules:
           config-opts:
             - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
         aarch64:
-          append-path: /usr/lib/sdk/llvm18/bin
-          prepend-ld-library-path: /usr/lib/sdk/llvm18/lib
+          append-path: /usr/lib/sdk/llvm19/bin
+          prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
           env:
             CC: clang
             CXX: clang++
@@ -407,8 +417,8 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        commit: aa7f602f7592eddb9d87749be7466da005b556ee
-        tag: 3.6
+        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        tag: 4.0
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -424,8 +434,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm18/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm18/lib
+              append-path: /usr/lib/sdk/llvm19/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -444,8 +454,8 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: aa7f602f7592eddb9d87749be7466da005b556ee
-            tag: 3.6
+            commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+            tag: 4.0
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -460,8 +470,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm18/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm18/lib
+              append-path: /usr/lib/sdk/llvm19/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -481,8 +491,8 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: aa7f602f7592eddb9d87749be7466da005b556ee
-            tag: 3.6
+            commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+            tag: 4.0
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -517,8 +527,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        commit: 3785481f51f41a49e28f2b7f6fd5bd9187d24ae1
-        tag: v0.2.42
+        commit: a48ab3a0d72efe9968ebafa34c425c892e4afa50
+        #tag: v0.2.42
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -532,8 +542,10 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/nv-codec-headers.git
-        commit: f8ae7a49bfef2f99d2c931a791dc3863fda67bf3
-        tag: n11.1.5.2 
+        mirror-urls:
+          - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+        tag: n12.2.72.0
+        commit: c69278340ab1d5559c7d7bf0edf615dc33ddbba7
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]+)$
@@ -547,8 +559,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.34.tar.gz
-        sha256: a8f8363ee9b89c7fb93fa8cca521f602d5fd2c083382fc14f05c37d952905cc6
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.35.tar.gz
+        sha256: 5d93101eae5895247bea58cff40bb84424158170ae7f931105666157cc187636
         x-checker-data:
           type: anitya
           project-id: 138182
@@ -571,8 +583,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: c949fe4f14fe288a9b2b47aa3e61335422a83645
-        tag: v2.1.2 
+        commit: 55a01def732bb9e7016d23cc512384f7a88d6e86
+        tag: v2.2.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -586,7 +598,7 @@ modules:
       - type: git
         url: https://github.com/Oblomov/clinfo.git
         commit: 748c3930a9b9cb826e631d77439e2cb8f84f5bcf
-        tag: 3.0.23.01.25 
+        tag: 3.0.23.01.25
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -598,65 +610,61 @@ modules:
       - -DBUILD_ICD=OFF
       - -DCMAKE_BUILD_TYPE=Release
       - -DVULKAN_HEADERS_INSTALL_DIR=/app
-      #- -DVOLK_DIR=/app
+      - -DVOLK_INSTALL_DIR=/app
     sources:
-      - type: archive
-        url: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_1.3.239.0+dfsg1.orig.tar.xz
-        sha256: faef7f477008b0a57bad21ee2bd791cbb08403a64d6b3eaf29d691a32eb8c592
+      - type: git
+        url: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
+        commit: 6cb370453e08b26729606643dd9f5e77091c8bb2
+        tag: debian/1.3.290.0+dfsg1-1
         x-checker-data:
-          type: html
-          url: https://packages.debian.org/source/bookworm/vulkan-tools
-          version-pattern: vulkan-tools \((\d+\.\d+\.\d+\.\d+)
-          url-template: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_$version+dfsg1.orig.tar.xz
-      - type: archive
-        url: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_1.3.239.0+dfsg1-1.debian.tar.xz
-        sha256: c5ca62210adab80ecf0e9df732ecfce7854b6b3c5686d8d1738ffca1f92fb516
-        dest: debs
-        x-checker-data:
-          type: html
-          url: https://packages.debian.org/source/bookworm/vulkan-tools
-          version-pattern: vulkan-tools \(([^\)]+)\)
-          url-template: https://deb.debian.org/debian/pool/main/v/vulkan-tools/vulkan-tools_$version.debian.tar.xz
-      - type: shell
-        commands:
-          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d .; fi; done
+          type: git
+          tag-pattern: ^debian/([\d.]+)+dfsg1-1$
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
         subdir: vulkan-headers
         sources:
-          - type: archive
-            url: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_1.3.239.0.orig.tar.xz
-            sha256: 90ca97151d774ea3f00129ad32be03cdfa310215651ceec0cd9fc2d0d1804d86
+          # NOTE: GitHub does not have the headers, Debian archives versions are different 296 vs 290
+          - type: git
+            url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
+            commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
+            tag: debian/1.3.290.0-1
             x-checker-data:
-              type: html
-              url: https://packages.debian.org/source/bookworm/vulkan-loader
-              version-pattern: vulkan-loader \((\d+\.\d+\.\d+\.\d+)
-              url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.orig.tar.xz
-          - type: archive
-            url: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_1.3.239.0-1.debian.tar.xz
-            sha256: c38c319e1137549ddea481b811cfb39bca015ddc11876a915ad78c664cb7746e
-            dest: debs
+              type: git
+              tag-pattern: ^debian/([\d.]+)-1$
+      - name: volk
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DCMAKE_BUILD_TYPE=Release
+          - -DVOLK_INSTALL=ON
+        sources:
+          - type: git
+            url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
+            commit: eddee6d58cfe758e162d38432a57f6272b0f58f0
+            tag: debian/1.3.290.0-1
             x-checker-data:
-              type: html
-              url: https://packages.debian.org/source/bookworm/vulkan-loader
-              version-pattern: vulkan-loader \(([^\)]+)\)
-              url-template: https://deb.debian.org/debian/pool/main/v/vulkan-loader/vulkan-loader_$version.debian.tar.xz
-          - type: shell
-            commands:
-              - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then
-                patch -Np1 -i "debs/patches/$p" -d .; fi; done
+              type: git
+              tag-pattern: ^debian/([\d.]+)-1$
 
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
-      append-path: /usr/lib/sdk/llvm18/bin
-      prepend-ld-library-path: /usr/lib/sdk/llvm18/lib
+      append-path: /usr/lib/sdk/llvm19/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
       arch:
         x86_64:
           config-opts:
-            - --enable-libmfx # intel-mediasdk
+            # replacement for libmfx?
+            - --enable-libvpl
+            #- --enable-libmfx # intel-mediasdk # decrepated in ffmpeg 7?
+            - --enable-amf
+            - --enable-cuda
+            - --enable-cuda-llvm
+            - --enable-cuvid
+            - --enable-ffnvcodec
+            - --enable-nvdec
+            - --enable-nvenc
+            - --enable-vaapi
     config-opts:
       - --disable-doc
       - --disable-ffplay
@@ -665,12 +673,7 @@ modules:
       - --disable-sdl2
       - --disable-static
       - --disable-xlib
-      - --enable-amf
       - --enable-chromaprint
-      - --enable-cuda
-      - --enable-cuda-llvm
-      - --enable-cuvid
-      - --enable-ffnvcodec
       - --enable-gmp
       - --enable-gnutls
       - --enable-gpl
@@ -682,6 +685,7 @@ modules:
       - --enable-libfontconfig
       - --enable-libfreetype
       - --enable-libfribidi
+      - --enable-libharfbuzz
       - --enable-libmp3lame
       - --enable-libopenmpt
       - --enable-libopus
@@ -694,14 +698,12 @@ modules:
       - --enable-libwebp
       - --enable-libx264
       - --enable-libx265
+      - --enable-libxml2
       - --enable-libzimg
       - --enable-libzvbi
-      - --enable-lto
-      - --enable-nvdec
-      - --enable-nvenc
+      - --enable-lto=auto
       - --enable-opencl
       - --enable-shared
-      - --enable-vaapi
       - --enable-version3
       - --enable-vulkan
       - --extra-libs=-lfftw3f
@@ -710,13 +712,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 02b8f47e4e063920403a52dbf196a83e5957b83a
-        tag: v6.0.1-8
+        commit: 163637663b227c1f65f82f1c8014b4bed3abfddf
+        tag: v7.0.2-7
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
-          #versions:
-          #  <: "6.0"
+          versions:
+            <: "7.0"
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
@@ -725,7 +727,7 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node20/bin
+      append-path: /usr/lib/sdk/node22/bin
     build-commands:
       - npm ci --no-audit --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
       - npm run build:production --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
@@ -735,8 +737,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 6f203b9d1d0010ed16c6185245e612edcc1f863f
-        tag: v10.9.11
+        commit: d69468a95af5aab6e26efe7137c32b5584bf27c8
+        tag: v10.10.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -747,9 +749,10 @@ modules:
     build-options:
       append-ld-library-path: /usr/lib/sdk/dotnet8/lib
       append-path: /usr/lib/sdk/dotnet8/bin
-      append-pkg-config-path: /usr/lib/sdk/dotnet8/lib/pkgconfig
+      #append-pkg-config-path: /usr/lib/sdk/dotnet8/lib/pkgconfig
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
+        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet8/lib/pkgconfig
       arch:
         x86_64:
           env:
@@ -758,22 +761,22 @@ modules:
           env:
             RUNTIME: linux-arm64
     build-commands:
-      - install -D $FLATPAK_ID.sh $FLATPAK_DEST/bin/$FLATPAK_ID.sh
+      - install -D jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
       - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
       - install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
       - mkdir -p $FLATPAK_DEST/bin
       - mkdir -p $FLATPAK_DEST/extensions
       - dotnet publish -c Release --source ./nuget-sources --output="$FLATPAK_DEST/bin"
-        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained
-        true Jellyfin.Server/Jellyfin.Server.csproj
+        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained true
+        Jellyfin.Server/Jellyfin.Server.csproj
     sources:
       - nuget-generated-sources-x64.json
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 7bbdfc0d4943b1823d82cb85795a707a6e3a9b4d
-        tag: v10.9.11
+        commit: be23f4eb0d94217f6e38a45c9a7343fbfd6886cd
+        tag: v10.10.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -784,4 +787,4 @@ modules:
       - type: file
         path: org.jellyfin.JellyfinServer-128.png
       - type: file
-        path: org.jellyfin.JellyfinServer.sh
+        path: jellyfin.sh
