@@ -1,15 +1,12 @@
 MANIFEST=org.jellyfin.JellyfinServer.yml
 APPMETA=org.jellyfin.JellyfinServer.metainfo.xml
-#TAG_JELLYFIN := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin/tags | jq -r .[0].name)
-#TAG_JELLYFIN_WEB := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin-web/tags | jq -r .[0].name)
-TAG_JELLYFIN=v10.9.11
-TAG_JELLYFIN_WEB=v10.9.11
-#VERSION := $(shell cat VERSION)
-VERSION=v10.9.11
+TAG_JELLYFIN := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin/tags | jq -r .[0].name)
+TAG_JELLYFIN_WEB := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin-web/tags | jq -r .[0].name)
+VERSION := $(shell cat VERSION)
 DOT_NET_VER=8
-LLVM_VER=18
-NODE_VER=20
-RUNTIME_VER=23.08
+LLVM_VER=19
+NODE_VER=22
+RUNTIME_VER=24.08
 BUILD_DATE := $(shell date -I)
 GH_ACCOUNT := $(gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
 
