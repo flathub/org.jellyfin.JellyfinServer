@@ -3,7 +3,12 @@
   <id>org.jellyfin.JellyfinServer</id>
 
   <name>Jellyfin Server</name>
-  <summary> The Free Software Media System</summary>
+  <summary>The Free Software Media System</summary>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#333c44</color>
+    <color type="primary" scheme_preference="dark">#172138</color>
+  </branding>
 
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
@@ -11,36 +16,43 @@
   <url type="homepage">https://jellyfin.org/</url>
   <url type="help">https://jellyfin.org/docs/</url>
   <url type="bugtracker">https://github.com/jellyfin/jellyfin/issues</url>
+  <url type="faq">https://github.com/flathub/org.jellyfin.JellyfinServer#FAQ</url>
 
   <description>
     <p>
-      NOTE: 10 seconds after launch the default browser will open with Jellyfin.
+      Jellyfin is the volunteer-built media solution that puts you in control
+      of your media. Stream to any device from your own server, with no
+      strings attached. Your media, your server, your way.
     </p>
+    <p>About this Flatpak:</p>
+    <ul>
+      <li>
+        It includes both the server and a web-based graphical user interface.
+      </li>
+      <li>
+        The web GUI will automatically open in your browser about 10 seconds after you start the app.
+      </li>
+      <li>
+        For more information check the Help and FAQ links below.
+      </li>
+    </ul>
+    <!-- TODO: Move to FAQ -->
     <p>
       NOTE: HDR Tone mapping on Intel extension
     </p>
-    <p>flatpak install flathub org.jellyfin.JellyfinServer.Plugin.IntelComputeRuntime</p>
-    <p>
-      Jellyfin is a Free Software Media System that puts you in control of managing and streaming
-      your media. It is an alternative to the proprietary Emby and Plex, to provide media from a
-      dedicated server to end-user devices via multiple apps. Jellyfin is descended from Emby's
-      3.5.2 release and ported to the .NET Core framework to enable full cross-platform support.
-      There are no strings attached, no premium licenses or features, and no hidden agendas: just a
-      team who want to build something better and work together to achieve it. We welcome anyone who
-      is interested in joining us in our quest!
-    </p>
+    <p><code>flatpak install flathub org.jellyfin.JellyfinServer.Plugin.IntelComputeRuntime</code></p>
     <p>
       Create media folders
     </p>
-    <p>mkdir -p ${HOME}/'Jellyfin Server Media'/{Movies,Music,Shows,Books,Photos}</p>
+    <p><code>mkdir -p "${HOME}/Jellyfin Server Media/"{Movies,Music,Shows,Books,Photos}</code></p>
     <p>
       Open Jellyfin Data
     </p>
-    <p>xdg-open ~/.var/app/org.jellyfin.JellyfinServer</p>
+    <p><code>xdg-open ~/.var/app/org.jellyfin.JellyfinServer</code></p>
     <p>
       Raspberry Pi 4 GPU
     </p>
-    <p>flatpak override --user --device=all org.jellyfin.JellyfinServer</p>
+    <p><code>flatpak override --user --device=all org.jellyfin.JellyfinServer</code></p>
   </description>
 
   <releases>
@@ -52,20 +64,36 @@
     <release version="10.8.10" date="2023-04-23"/>
     <release version="10.8.9" date="2023-01-22"/>
   </releases>
-  <developer_name>Jellyfin</developer_name>
+  <developer id="org.jellyfin">
+    <name>Jellyfin</name>
+  </developer>
   <screenshots>
     <screenshot type="default">
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-home.png</image>
+      <!-- <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_home.png</image> -->
+      <!-- TODO: Add captions for each screenshot -->
+      <caption>A caption</caption>
+    </screenshot>
+    <!--
+    <screenshot>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_movie_overview__indexed.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-details.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_movie_info_page.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-library.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_video_player.png</image>
     </screenshot>
     <screenshot>
-      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-playback.png</image>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_music_album_view.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_music_play_queue.png</image>
+    </screenshot>
+    <screenshot>
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_settings.png</image>
+    </screenshot>
+    -->
   </screenshots>
   <content_rating type="oars-1.1"/>
   <launchable type="desktop-id">org.jellyfin.JellyfinServer.desktop</launchable>
