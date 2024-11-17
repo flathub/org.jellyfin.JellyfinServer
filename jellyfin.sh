@@ -1,18 +1,39 @@
 #!/bin/bash
 
 [[ -z "${JF_PORT}" ]] && JF_PORT=8096
+[[ -z "${JF_PORT_HTTPS}" ]] && JF_PORT_HTTPS=8920
 [[ -z "${JF_URL}" ]] && JF_URL="http://localhost:${JF_PORT}"
 [[ -z "${JF_HEALTHCHECK_URL}" ]] && JF_HEALTHCHECK_URL="${JF_URL}/health"
 [[ -z "${JF_WAIT_COUNTER_MAX}" ]] && JF_WAIT_COUNTER_MAX=$((60 * 4))
-# Start with 1 (250mc) instead of 0, this is usually closer to what is reported
+
+# Use Tailscale Magic DNS with HTTPS when $TS_SELF_DNS_NAME and
+# $TS_USE_MAGIC_DNS have been set by the user.
+[[ -n "${TS_SELF_DNS_NAME}" && "${TS_USE_MAGIC_DNS}" == "true" ]] && JF_URL="https://${TS_SELF_DNS_NAME}:${JF_PORT_HTTPS}"
+
+# Start with 1 (250mc) instead of 0, this is typically closer to what is reported
 # in the log.
 WAIT_COUNTER=1
+TS_CERT_CRT="/var/config/jellyfin/${TS_SELF_DNS_NAME}.crt"
+TS_CERT_KEY="/var/config/jellyfin/${TS_SELF_DNS_NAME}.key"
+TS_CERT_PFX="/var/config/jellyfin/ts-web-certificate.pfx"
 
 check_health() {
   # These curl parameters have been taken from Jellyfin build scripts and
   # turned into their respective long forms to improve readabilility.
   curl --location --insecure --fail --silent "${JF_HEALTHCHECK_URL}"
 }
+
+if [[ -n "${TS_SELF_DNS_NAME}" && -f "${TS_CERT_CRT}" && -f "${TS_CERT_KEY}" ]]; then
+  # TODO: Notify how long certificate is is valid.
+  echo "Found Tailscale certficates."
+  openssl pkcs12 \
+    -export \
+    -out   "${TS_CERT_PFX}" \
+    -inkey "${TS_CERT_KEY}" \
+    -in    "${TS_CERT_CRT}" \
+    -passout pass: && \
+  echo "Converted Tailscale certficates."
+fi
 
 if ! check_health; then
   notify-send 2> /dev/null "Jellyfin" "Server is starting, monitoring health check URL."

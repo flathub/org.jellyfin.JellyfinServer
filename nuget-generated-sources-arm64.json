@@ -85,31 +85,31 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp/7.3.0.2/harfbuzzsharp.7.3.0.2.nupkg",
-        "sha512": "9628aeb042563ce1640a79a2577af8f6e3c0bd0a6b6de89a530a44b21ffa7deacf256c86d368221199811ec7f6f18683383bbfe8ebe07ce4236dbdda229c2572",
+        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp/7.3.0.3/harfbuzzsharp.7.3.0.3.nupkg",
+        "sha512": "bed625c58228c404f860fb3e247fb6ca3209c93fea62da498ba43419500bd40944b2e117f50f587f860101a6c6478ad1d18075f655376d1749d238d74b6a0bd3",
         "dest": "nuget-sources",
-        "dest-filename": "harfbuzzsharp.7.3.0.2.nupkg"
+        "dest-filename": "harfbuzzsharp.7.3.0.3.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.linux/7.3.0.2/harfbuzzsharp.nativeassets.linux.7.3.0.2.nupkg",
-        "sha512": "0ea026b5cc9b52b8bc44139ea22cbb58d2613b660ffc3410bf90c08aff5fd1c32b71db33602892c633e370fc72af85810fb0128d9c1ca81ddad079c98d160c3f",
+        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.linux/7.3.0.3/harfbuzzsharp.nativeassets.linux.7.3.0.3.nupkg",
+        "sha512": "cf94e5693c4c475a702c342163f1ee28d2d9c3a13939a8334bb7133d13ffc5ed95d9dbb6145e7ac004cfd6e626a16280df7f1a4c7e3687569eced58b8890a1b5",
         "dest": "nuget-sources",
-        "dest-filename": "harfbuzzsharp.nativeassets.linux.7.3.0.2.nupkg"
+        "dest-filename": "harfbuzzsharp.nativeassets.linux.7.3.0.3.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.macos/7.3.0.2/harfbuzzsharp.nativeassets.macos.7.3.0.2.nupkg",
-        "sha512": "8a97410cd28f2613f67cea9236d6f2921165e5644fce5a3fcd05ca11b670fc596ba4b422871ad0792cf59572ea6f05ae68028cb10983f1547b4edfe81caecb1a",
+        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.macos/7.3.0.3/harfbuzzsharp.nativeassets.macos.7.3.0.3.nupkg",
+        "sha512": "a6dac2eb2c536f25734e5358aaae9263f568871fa31169e816d8617c5b6e933d78e2956ea9e01ac37e0022bf243e63124956804b46f6a0d00826aa02320ef22b",
         "dest": "nuget-sources",
-        "dest-filename": "harfbuzzsharp.nativeassets.macos.7.3.0.2.nupkg"
+        "dest-filename": "harfbuzzsharp.nativeassets.macos.7.3.0.3.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.win32/7.3.0.2/harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg",
-        "sha512": "88c7980861dfe3dd50e1e4730fa152ba37386def115ed2aee2a859c2bf9f33c9612d750982c093cb9e09893047d0f5bd20168f83914a09c311ebb5c5b37136cd",
+        "url": "https://api.nuget.org/v3-flatcontainer/harfbuzzsharp.nativeassets.win32/7.3.0.3/harfbuzzsharp.nativeassets.win32.7.3.0.3.nupkg",
+        "sha512": "dd940d3b3085996b4e5961a0e42bb1a86daad360e3377602fafd60b0cb4d3d5ed9c3f4293a8551df75f38111b3a9f4dbbea4cb27b3e0632a6d48239b606d13c9",
         "dest": "nuget-sources",
-        "dest-filename": "harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg"
+        "dest-filename": "harfbuzzsharp.nativeassets.win32.7.3.0.3.nupkg"
     },
     {
         "type": "file",
@@ -197,17 +197,17 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.authorization/8.0.10/microsoft.aspnetcore.authorization.8.0.10.nupkg",
-        "sha512": "0394c20ce4acf670f14984c631f7607830eb93e667556f308184d0ebe07ba95eecc08624ae3287df9f4bdff3cfa1d234a3bf17f07849d6ba4f8dfceafd055f88",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.authorization/8.0.11/microsoft.aspnetcore.authorization.8.0.11.nupkg",
+        "sha512": "4f310a03a421ba8100430881ed34fedb75b10e3c6845bcf97cddc6927884e341778399b3bdee4c4fc1b4e5ea91a5f4cbe70da746d7f4efae092a71d41b97dd52",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.aspnetcore.authorization.8.0.10.nupkg"
+        "dest-filename": "microsoft.aspnetcore.authorization.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.metadata/8.0.10/microsoft.aspnetcore.metadata.8.0.10.nupkg",
-        "sha512": "b0a9bb659f6136e3d27567f89da6558038668ed5b1529c2a508d5845df2964211451ffc6a5c8d0dc7ef398014cddc818e0998191c464f2981f5d2f0bc412e914",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.aspnetcore.metadata/8.0.11/microsoft.aspnetcore.metadata.8.0.11.nupkg",
+        "sha512": "d37a9d96f337e62d71c82ea63685553011039d2e940ca2b4f5690a15cabd4e0e84e1c66a59a5b429dfb221efc577937b6421b672a9e4e6ffdc69ea4bef0f9b61",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.aspnetcore.metadata.8.0.10.nupkg"
+        "dest-filename": "microsoft.aspnetcore.metadata.8.0.11.nupkg"
     },
     {
         "type": "file",
@@ -260,73 +260,73 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.data.sqlite/8.0.10/microsoft.data.sqlite.8.0.10.nupkg",
-        "sha512": "2efa889e2cbf12f35fe62c600a1533d29dd5302ae37a680c246aca97da79504dfce10fc048afc57bd27ac0b1d5b99dc08a2b87f6abfc668f6a5c7df5d2d5b353",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.data.sqlite/8.0.11/microsoft.data.sqlite.8.0.11.nupkg",
+        "sha512": "57374540586b0da9b6ae53ae4bea10faa84cc33850653366b4fd115783cadc8e4e999e8df9c54976a47a787dac6d71a44f527ed879a2182539ad80b64b445091",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.data.sqlite.8.0.10.nupkg"
+        "dest-filename": "microsoft.data.sqlite.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.data.sqlite.core/8.0.10/microsoft.data.sqlite.core.8.0.10.nupkg",
-        "sha512": "64a77435f8580f11d8f76d000d0f1b3c9ba2c5c2fe116e07243fcdf3583e3d9e2007e5e81595c528e73bb567acf879137ef53cbcb37ffceabb8331bd94cc454b",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.data.sqlite.core/8.0.11/microsoft.data.sqlite.core.8.0.11.nupkg",
+        "sha512": "81efb4b0feaa97d67502645a4385d8c6a11e3b4e2bb1db3f2211ce2a7e9c703fd9f342126cdd328ff12dcf08be1cbd1478cc134bdf19da5237efc6dff46ab83d",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.data.sqlite.core.8.0.10.nupkg"
+        "dest-filename": "microsoft.data.sqlite.core.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/8.0.10/microsoft.entityframeworkcore.8.0.10.nupkg",
-        "sha512": "cd8cb76f590c2e76e33950264e07600164578c5d7d52d5e60fcc001ca139ba4ac1fdd440bca4491859ce0f1446d4d4ea6a3eb08fa5253b28409184c299d77c29",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore/8.0.11/microsoft.entityframeworkcore.8.0.11.nupkg",
+        "sha512": "cf5d52c7f5d689cace47117d72ff5fef566fd8390006af8001df649bee0a3196ec381b00880db9b83926c5b8a559f7fd397dcb5db15c19e37b7a11bd04b91cd9",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/8.0.10/microsoft.entityframeworkcore.abstractions.8.0.10.nupkg",
-        "sha512": "f5c82b27af40b9d30ed74f30694845d3a6dc467700bce1174a11335956c48492b0e64540ec9e6ebe338eed6cc393a74da4158dbdfbe736c92b5e1f47bf382792",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.abstractions/8.0.11/microsoft.entityframeworkcore.abstractions.8.0.11.nupkg",
+        "sha512": "64080c34faacc6cd5831101c8b2245a58c3403ac0b1b5f6b4319ef3f5213673c606cedf541230c599714c49d19e88aba36bdbd4f6281e4db84d4f2c532d6afb7",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.abstractions.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.abstractions.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/8.0.10/microsoft.entityframeworkcore.analyzers.8.0.10.nupkg",
-        "sha512": "941fe2ae4458fd118a6c6ebe0c8cd7ef3c9a3afee1b95c242a85297a0cced459549394435ff93ecb85365d3424e409b2c24074448bd31302c7f2fd8a18a15cb1",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.analyzers/8.0.11/microsoft.entityframeworkcore.analyzers.8.0.11.nupkg",
+        "sha512": "dfb27bfc753587d6f7c6c518bfc3743ed2ee1e35c048a9e0d2512b916f7f3ccc616248760bc780d7217097e3ee076048c24bb2e488b7722576438adff776a83f",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.analyzers.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.analyzers.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/8.0.10/microsoft.entityframeworkcore.design.8.0.10.nupkg",
-        "sha512": "a08b11da93ae120d651cf9fdc64dfdf6414ee0295d7fa69f49c7c6a1a5f0b0c1252fd89f8ca87ef67c145fc570d6a67ae210ba11d1d8a86f7c096abde32cb136",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.design/8.0.11/microsoft.entityframeworkcore.design.8.0.11.nupkg",
+        "sha512": "2599c8a3081e8936ebdcea6f090c3611deadbbac48da95f84d922a9fd329d5399337752b2a1381240339f1656e43c4032619b70866dc58a2fbf835c2c2e9e255",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.design.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.design.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/8.0.10/microsoft.entityframeworkcore.relational.8.0.10.nupkg",
-        "sha512": "c4b4ac7a1c421a2db6351545f1530e719179c3793d0c1ae239041b6947c280f4c26d2e98284db01a052dc05c98dbfdb90de2491ff8be76fe811b857056cb998e",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.relational/8.0.11/microsoft.entityframeworkcore.relational.8.0.11.nupkg",
+        "sha512": "6bf9071342ba151e8da4a28e9cbca2f4a15391c6d4d8e35e281224dfa7baa5b31bb5af34099d37ed3de92dec2aa98b8c80226b852a0fc794bc482ce106c70b1c",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.relational.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.relational.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.sqlite/8.0.10/microsoft.entityframeworkcore.sqlite.8.0.10.nupkg",
-        "sha512": "0f1a219fac2c3a670fec58ea219860b898a55a1d7dcb68aa657a99866f805de9cee70dbfde0274b768647533244369296cf9e56831be612f010ce15682e98631",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.sqlite/8.0.11/microsoft.entityframeworkcore.sqlite.8.0.11.nupkg",
+        "sha512": "bd6cf8b7574693c262f9fa2c7cfdd59e4cf30999fb5bf6477151934a19dbfb21f94ecb8c9f1b1b9d1a3d3f6e70b541855d37f8c277ff30357edeedaef2dbfb18",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.sqlite.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.sqlite.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.sqlite.core/8.0.10/microsoft.entityframeworkcore.sqlite.core.8.0.10.nupkg",
-        "sha512": "446c95bc494f908a885d7053fcf96d619a2de707aa9fb1b7ba59d094b3e741202a25f1e81d0ca79728330a3cf540dfb2a8af1a0627b54bbeabe26c64698a061a",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.sqlite.core/8.0.11/microsoft.entityframeworkcore.sqlite.core.8.0.11.nupkg",
+        "sha512": "798a06456c660e67bc1e3a2c1049249fe2ce70d3317615ca353562220f7e7e8bff0db2e36b0f392e1e931765084dcd9229c6954c053a04f6b87ae9f2d1f88c75",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.sqlite.core.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.sqlite.core.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.tools/8.0.10/microsoft.entityframeworkcore.tools.8.0.10.nupkg",
-        "sha512": "53a3e9cbb9ed0e75d0402222c8f77d759087e93c17d1bcc8c1949a3303ec84a28d60239f7e873aee7ffe9804381ca4bee42bf54722e518250b733909177a49d4",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.entityframeworkcore.tools/8.0.11/microsoft.entityframeworkcore.tools.8.0.11.nupkg",
+        "sha512": "1ad3b75bed1d444b631b344c9f0bc186d14863ecf8988233e52b53cc7e825e58fd61d5d6e38b2a623b3ee7a307d6f2900fec902a1c6aad0669ba3ea3391d0561",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.entityframeworkcore.tools.8.0.10.nupkg"
+        "dest-filename": "microsoft.entityframeworkcore.tools.8.0.11.nupkg"
     },
     {
         "type": "file",
@@ -512,24 +512,24 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks/8.0.10/microsoft.extensions.diagnostics.healthchecks.8.0.10.nupkg",
-        "sha512": "bfdaf207479ebaf08be7bc28632cddf9e591aac6a38aece56cb66e860b3e5278678900f5971ffdb9949f18ab3be7fde7f9da6d054185ec4230130cd6572a6286",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks/8.0.11/microsoft.extensions.diagnostics.healthchecks.8.0.11.nupkg",
+        "sha512": "b93febd5e681c26766d890feb34d1062ce66d44b84d1103f8c1d4a80ed0964ded8ef2551fd6bcfeab1d95fd8c5922733448954bece46d96c781b9ae984a08ef5",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.8.0.10.nupkg"
+        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks.abstractions/8.0.10/microsoft.extensions.diagnostics.healthchecks.abstractions.8.0.10.nupkg",
-        "sha512": "d8c329235aac6bcccb98cad199313bf8e20c5502a7d637970ccdd11b90315dcee2c287d0df0aae76bd6cb2c99e9828da554f469a3127c9498d58000eed68fe91",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks.abstractions/8.0.11/microsoft.extensions.diagnostics.healthchecks.abstractions.8.0.11.nupkg",
+        "sha512": "0499640470c8390fee1a1fbc7a34efd4ef65f3ac93fe871420b6c844805e7711e6c98a9f3b1e9f1d8f598a247ef6d14e9dcdf3b442f31a65fd64a93ef3f64680",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.abstractions.8.0.10.nupkg"
+        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.abstractions.8.0.11.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/8.0.10/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.8.0.10.nupkg",
-        "sha512": "083f1c4f40e626849ef83eb305c99388b078e757523d28951a6ce4152da9163f1b62e748cada4fc8364a8d847d40e63931006cd455a20e93b7a0cf76cdc1b262",
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore/8.0.11/microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.8.0.11.nupkg",
+        "sha512": "962e83a815dd873648d722b9aa791298a6a6f1e82c11787f369babaa59fe45eef088f9556ec1e99a8ad9a18078339de3892dafbce4ed444d9e7a4d4e85135a7c",
         "dest": "nuget-sources",
-        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.8.0.10.nupkg"
+        "dest-filename": "microsoft.extensions.diagnostics.healthchecks.entityframeworkcore.8.0.11.nupkg"
     },
     {
         "type": "file",
@@ -1184,38 +1184,38 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp/2.88.8/skiasharp.2.88.8.nupkg",
-        "sha512": "52b0661b38146357ee5f92153d9223b03d4e043db8c811773470725a81f4ec0171fc22a644ee70636f8793ac60432222a5395777615ca63b4d44d5095a331b35",
+        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp/2.88.9/skiasharp.2.88.9.nupkg",
+        "sha512": "3a2ffa5e05f45cdb80e6735ee947e91e08ff145fc50c7882e75d44b6ae0c2cd733420d15b6a4274a186b3a79d463a1273e27ff7fd79a51d0937251ebb6ef761d",
         "dest": "nuget-sources",
-        "dest-filename": "skiasharp.2.88.8.nupkg"
+        "dest-filename": "skiasharp.2.88.9.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.harfbuzz/2.88.8/skiasharp.harfbuzz.2.88.8.nupkg",
-        "sha512": "84286faa7cc0eba7ad05b3e8fcf8ecceb9c47ec69e628b586fda269f4c63bc9e5be16f03b693f93e642a8fdba7e2e8ccc093d8a21f5500e092f062695232cd37",
+        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.harfbuzz/2.88.9/skiasharp.harfbuzz.2.88.9.nupkg",
+        "sha512": "7ebc75df46b3d2bfb110324dc0613fb1395667219ce42c757fb98f0ff60b755fc69fe6bb94613a2be854e8feecdebe671ea46cd9e8a0df2e90ff7d461ab123cf",
         "dest": "nuget-sources",
-        "dest-filename": "skiasharp.harfbuzz.2.88.8.nupkg"
+        "dest-filename": "skiasharp.harfbuzz.2.88.9.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.linux/2.88.8/skiasharp.nativeassets.linux.2.88.8.nupkg",
-        "sha512": "c1cee7bb4adfd02c023804d312c59326e37859b012ff00ff245882e77f5da62df79672e0bc82b5576d8fcb23296d69e4309dcb65f44cc4474be5bc2e4be005ce",
+        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.linux/2.88.9/skiasharp.nativeassets.linux.2.88.9.nupkg",
+        "sha512": "5c6a3e93a18e70e6adcd548bd2f76fa311114346ce4d812e520f250d33342d5ad8d05ea285433bd15cb19bbc48d9bbf2ef7d1f1725dd71705accefaba3f46892",
         "dest": "nuget-sources",
-        "dest-filename": "skiasharp.nativeassets.linux.2.88.8.nupkg"
+        "dest-filename": "skiasharp.nativeassets.linux.2.88.9.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.macos/2.88.8/skiasharp.nativeassets.macos.2.88.8.nupkg",
-        "sha512": "eac30f293b6da9cb2260b59abc99ffc4124669be585a26080b333ac3decce150afd490133c595cbea33cb63c34e6565d3bed28c2630c8431aac5ddc3acf1f1df",
+        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.macos/2.88.9/skiasharp.nativeassets.macos.2.88.9.nupkg",
+        "sha512": "74cfb865746f2911935290bfb92469b331e50415d5abeda87598ebdb4049c52af84a5daeda41ebcb0bbaec6a7debb42d83cdc6c9f61cea55d43c720a78c3ebce",
         "dest": "nuget-sources",
-        "dest-filename": "skiasharp.nativeassets.macos.2.88.8.nupkg"
+        "dest-filename": "skiasharp.nativeassets.macos.2.88.9.nupkg"
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.win32/2.88.8/skiasharp.nativeassets.win32.2.88.8.nupkg",
-        "sha512": "cf469d9b57e03bd775035db8da878241c7bfca0917195665fccf8f73de4d8b5bdf95613421c2fc3dc12c88d05163fa7e8f4cc7ca382cb4288302258ccfe88be8",
+        "url": "https://api.nuget.org/v3-flatcontainer/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg",
+        "sha512": "d18bd8194041c7ffb79302d4f1be584e8c024e88b12cb4669a738cae551da3d3e3924087bb0aa42d34a9003cfb35037d73637894e67d02223d100a1b4215eeec",
         "dest": "nuget-sources",
-        "dest-filename": "skiasharp.nativeassets.win32.2.88.8.nupkg"
+        "dest-filename": "skiasharp.nativeassets.win32.2.88.9.nupkg"
     },
     {
         "type": "file",
@@ -1758,10 +1758,10 @@
     },
     {
         "type": "file",
-        "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.6.0/z440.atl.core.6.6.0.nupkg",
-        "sha512": "b085d736647a62aa10742c07b03824aca45790b34ea8d70d2c470b585047afeee4e9ee9165bdf64e92ff905c1eee443eeeb5c827987878bfd05dc03719a7dac4",
+        "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.8.0/z440.atl.core.6.8.0.nupkg",
+        "sha512": "e52cd9acbe0eba1c72c6d2967a314198421e029ca0271e4872f37044549173d3403f33e2d391350356c96772938d1fa95ba9c914b238b3929d3c9293469c3fd5",
         "dest": "nuget-sources",
-        "dest-filename": "z440.atl.core.6.6.0.nupkg"
+        "dest-filename": "z440.atl.core.6.8.0.nupkg"
     },
     {
         "type": "file",
