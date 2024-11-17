@@ -1,0 +1,6 @@
+*.flatpak
+.flatpak-builder/
+flatpak-builder-tools/
+jellyfin-web/
+jellyfin/
+repo/
