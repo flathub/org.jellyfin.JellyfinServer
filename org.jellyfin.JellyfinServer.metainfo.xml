@@ -44,6 +44,9 @@
   </description>
 
   <releases>
+    <release version="10.10.2" date="2024-11-17">
+      <description></description>
+    </release>
     <release version="10.9.11" date="2024-11-17"/>
     <release version="10.9.10" date="2024-08-27"/>
     <release version="10.8.13" date="2023-11-28"/>
