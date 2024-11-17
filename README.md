@@ -145,3 +145,9 @@ flatpak build-bundle \
 ### Remove source clones
 
 `rm -rf {jellyfin,jellyfin-web,flatpak-builder-tools}`
+
+
+## Branding & Icon
+
+* Icon source: https://github.com/jellyfin/jellyfin-ux/blob/master/branding/android/release/app_icon_foreground.svg
+* Used template: https://docs.flathub.org/docs/for-app-authors/metainfo-guidelines/quality-guidelines/
