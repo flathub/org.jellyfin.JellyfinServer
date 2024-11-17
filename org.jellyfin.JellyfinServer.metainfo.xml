@@ -69,12 +69,10 @@
   </developer>
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/10.8-home.png</image>
-      <!-- <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_home.png</image> -->
+      <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_home.png</image>
       <!-- TODO: Add captions for each screenshot -->
       <caption>A caption</caption>
     </screenshot>
-    <!--
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_movie_overview__indexed.png</image>
     </screenshot>
@@ -93,7 +91,6 @@
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_settings.png</image>
     </screenshot>
-    -->
   </screenshots>
   <content_rating type="oars-1.1"/>
   <launchable type="desktop-id">org.jellyfin.JellyfinServer.desktop</launchable>
