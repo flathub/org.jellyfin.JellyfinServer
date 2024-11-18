@@ -1,8 +1,7 @@
 # Unofficial Jellyfin Server Flatpak on Flathub
 
 ![](https://github.com/flathub/org.jellyfin.JellyfinServer/blob/master/branding/org.jellyfin.JellyfinServer.svg)
-
-<a href='https://flathub.org/apps/org.gimp.GIMP'>
+<a href='https://flathub.org/apps/org.jellyfin.JellyfinServer'>
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
 </a>
 
