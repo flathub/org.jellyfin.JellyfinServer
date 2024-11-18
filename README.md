@@ -7,12 +7,12 @@
 > [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
 > |
 > [Wiki](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki)
+> |
+> [Flatpak Development](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/Development:-How-build-the-Flatpak-on-your-workstation%3F)
+> |
+> [Offical Documentation](https://jellyfin.org/docs/)
 
 ---
-
-Generate sources cache with GitHub Actions
-
-https://github.com/istori1/jellyfin-flatpak-cache-sources
 
 ## Backup data
 
@@ -129,33 +129,6 @@ flatpak build-bundle \
   "JellyfinServer-version-TESTING-$(date -I)-arm64.flatpak" \
   "org.jellyfin.JellyfinServer"
 ```
-
-## Generate cache localy (10.8)
-
-### Clone flatpak tools
-
-`git clone --depth 1 https://github.com/flatpak/flatpak-builder-tools.git`
-
-### Generate cache for NuGet
-
-`git clone --depth 1 -b v10.8.10 https://github.com/jellyfin/jellyfin.git`
-
-`./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py --runtime=linux-x64 nuget-generated-sources-x64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj`
-
-`./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py --runtime=linux-arm64 nuget-generated-sources-arm64.json jellyfin/Jellyfin.Server/Jellyfin.Server.csproj`
-
-### Generate cache for npm
-
-`git clone --depth 1 -b v10.8.10 https://github.com/jellyfin/jellyfin-web.git`
-
-`pip install ./flatpak-builder-tools/node`
-
-`.local/bin/flatpak-node-generator -o npm-generated-sources.json npm jellyfin-web/package-lock.json`
-
-### Remove source clones
-
-`rm -rf {jellyfin,jellyfin-web,flatpak-builder-tools}`
-
 
 ## Branding & Icon
 
