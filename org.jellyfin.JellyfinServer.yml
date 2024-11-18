@@ -102,8 +102,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/KhronosGroup/OpenCL-Headers.git
-            commit: 8275634cf9ec31b6484c2e6be756237cb583999d
-            tag: v2024.05.08
+            commit: 4ea6df132107e3b4b9407f903204b5522fdffcd6
+            tag: v2024.10.24
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -172,8 +172,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/libvpl.git
-        commit: 5f6bd8a1e753c8f63a3fd8b36894d6968b808a6d
-        tag: v2.13.0
+        commit: 2274efcd3672b43297ef774f332e1fed6781381c
+        tag: v2023.4.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -188,9 +188,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: fcad0a923c5d7d7483eb993378f7055a1b348241
+        commit: 887147421dd40e6c5bb025a0588694b43c540cde
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-24.3.4
+        tag: intel-onevpl-24.4.2
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -304,7 +304,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -314,7 +314,7 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -324,7 +324,7 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
 
   - name: libplacebo
     buildsystem: meson
@@ -352,8 +352,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Loader.git
-        commit: 40b8e6eeead809a62c708cb48fdd9f8f2eab3f15
-        tag: vulkan-sdk-1.3.290.0
+        commit: 7aeb5e4324957b6f60dac5c8cedb955df4fecbfb
+        tag: vulkan-sdk-1.3.296.0
         dest: tmp/vulkan-loader
         x-checker-data:
           type: git
@@ -533,12 +533,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        commit: a48ab3a0d72efe9968ebafa34c425c892e4afa50
+        commit: 3785481f51f41a49e28f2b7f6fd5bd9187d24ae1
         #tag: v0.2.42
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+        tag: v0.2.42
   - name: nv-codec-headers
     no-autogen: true
     make-install-args:
@@ -634,8 +635,8 @@ modules:
           # NOTE: GitHub does not have the headers, Debian archives versions are different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
-            commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
-            tag: debian/1.3.290.0-1
+            commit: 52e225544a61aa7f1fcbce49c279d6fdfa39b095
+            tag: debian/1.3.296.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -653,7 +654,7 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               versions:
-                <: '1.3.291.0-1'
+                <: 1.3.291.0-1
 
   - name: jellyfin-ffmpeg
     disabled: false
