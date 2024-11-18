@@ -307,7 +307,8 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            <: 1.3.291.0-1
+            # Known newer versions.
+            !=: 1.3.296.0
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -317,7 +318,8 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: 1.3.291.0-1
+            # Known newer versions.
+            !=: 1.3.296.0
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -327,7 +329,8 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: 1.3.291.0-1
+            # Known newer versions.
+            !=: 1.3.296.0
 
   - name: libplacebo
     buildsystem: meson
@@ -362,7 +365,8 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: 1.3.291.0-1
+            # Known newer versions.
+            !=: 1.3.296.0
       # Already included as a submodule: glad, jinja, markupsafe
 
   - name: numactl
@@ -631,12 +635,15 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)+dfsg1-1$
+          versions:
+            # Known newer versions.
+            !=: 1.3.296.0
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
         subdir: vulkan-headers
         sources:
-          # NOTE: GitHub does not have the headers, Debian archives versions are different 296 vs 290
+          # NOTE: GitHub does not have the headers, Debian archives versions were different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
             commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
@@ -644,6 +651,9 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
+              versions:
+                # Known newer versions.
+                !=: 1.3.296.0
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -658,7 +668,8 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               versions:
-                <: 1.3.291.0-1
+                # Known newer versions.
+                !=: 1.3.296.0
 
   - name: jellyfin-ffmpeg
     disabled: false
