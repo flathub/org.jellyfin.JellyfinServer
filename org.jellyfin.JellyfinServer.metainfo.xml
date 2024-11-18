@@ -3,7 +3,7 @@
   <id>org.jellyfin.JellyfinServer</id>
 
   <name>Jellyfin Server</name>
-  <summary>The Free Software Media System</summary>
+  <summary>Free Software Media Streaming System</summary>
 
   <branding>
     <color type="primary" scheme_preference="light">#333c44</color>
@@ -16,7 +16,7 @@
   <url type="homepage">https://jellyfin.org/</url>
   <url type="help">https://jellyfin.org/docs/</url>
   <url type="bugtracker">https://github.com/jellyfin/jellyfin/issues</url>
-  <url type="faq">https://github.com/flathub/org.jellyfin.JellyfinServer#FAQ</url>
+  <url type="faq">https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions</url>
 
   <description>
     <p>
@@ -36,23 +36,6 @@
         For more information check the Help and FAQ links below.
       </li>
     </ul>
-    <!-- TODO: Move to FAQ -->
-    <p>
-      NOTE: HDR Tone mapping on Intel extension
-    </p>
-    <p><code>flatpak install flathub org.jellyfin.JellyfinServer.Plugin.IntelComputeRuntime</code></p>
-    <p>
-      Create media folders
-    </p>
-    <p><code>mkdir -p "${HOME}/Jellyfin Server Media/"{Movies,Music,Shows,Books,Photos}</code></p>
-    <p>
-      Open Jellyfin Data
-    </p>
-    <p><code>xdg-open ~/.var/app/org.jellyfin.JellyfinServer</code></p>
-    <p>
-      Raspberry Pi 4 GPU
-    </p>
-    <p><code>flatpak override --user --device=all org.jellyfin.JellyfinServer</code></p>
   </description>
 
   <releases>
@@ -65,9 +48,9 @@
     <release version="10.9.10" date="2024-08-27"/>
     <release version="10.8.13" date="2023-11-28"/>
     <release version="10.8.12" date="2023-11-05"/>
-    <release version="10.8.11" date="2023-9-23"/>
+    <release version="10.8.11" date="2023-09-23"/>
     <release version="10.8.10" date="2023-04-23"/>
-    <release version="10.8.9" date="2023-01-22"/>
+    <release version="10.8.9"  date="2023-01-22"/>
   </releases>
   <developer id="org.jellyfin">
     <name>Jellyfin</name>
@@ -76,25 +59,31 @@
     <screenshot type="default">
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_home.png</image>
       <!-- TODO: Add captions for each screenshot -->
-      <caption>A caption</caption>
+      <caption>Home screen</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_movie_overview__indexed.png</image>
+      <caption>Movie overview</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_movie_info_page.png</image>
+      <caption>Movie detail page</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_video_player.png</image>
+      <caption>Video player</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_music_album_view.png</image>
+      <caption>Music album view</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_music_play_queue.png</image>
+      <caption>Music play queue</caption>
     </screenshot>
     <screenshot>
       <image>https://github.com/flathub/org.jellyfin.JellyfinServer/raw/master/branding/10.9/10.9_settings.png</image>
+      <caption>Settings dashboard</caption>
     </screenshot>
   </screenshots>
   <content_rating type="oars-1.1"/>

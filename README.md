@@ -1,4 +1,14 @@
-# Jellyfin Server on Flathub
+# Unofficial Jellyfin Server Flatpak on Flathub
+
+![](https://github.com/flathub/org.jellyfin.JellyfinServer/blob/master/branding/org.jellyfin.JellyfinServer.svg)
+
+> [!TIP]
+> Find help here:
+> [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
+> |
+> [Wiki](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki)
+
+---
 
 Generate sources cache with GitHub Actions
 
