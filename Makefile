@@ -129,3 +129,7 @@ nuget-generated-sources-arm64.json:
 	./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
 	  --dotnet $(DOT_NET_VER) --freedesktop $(RUNTIME_VER) --runtime=linux-arm64 \
 	  "nuget-generated-sources-arm64.json" "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
+
+workflow-check:
+	action-updater update .github/workflows/
+	zizmor .github/workflows/
