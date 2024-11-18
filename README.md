@@ -2,15 +2,19 @@
 
 ![](https://github.com/flathub/org.jellyfin.JellyfinServer/blob/master/branding/org.jellyfin.JellyfinServer.svg)
 
+<a href='https://flathub.org/apps/org.gimp.GIMP'>
+    <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+</a>
+
 > [!TIP]
 > Find help here:
 > [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
 > |
 > [Wiki](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki)
 > |
-> [Flatpak Development](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/Development:-How-build-the-Flatpak-on-your-workstation%3F)
-> |
 > [Offical Documentation](https://jellyfin.org/docs/)
+> |
+> [Flatpak Development](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/Development:-How-build-the-Flatpak-on-your-workstation%3F)
 
 ---
 
