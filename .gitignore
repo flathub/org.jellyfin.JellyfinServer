@@ -4,3 +4,5 @@ flatpak-builder-tools/
 jellyfin-web/
 jellyfin/
 repo/
+VERSION
+checksums.txt
