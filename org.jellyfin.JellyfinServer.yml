@@ -102,8 +102,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/KhronosGroup/OpenCL-Headers.git
-            commit: 8275634cf9ec31b6484c2e6be756237cb583999d
-            tag: v2024.05.08
+            commit: 4ea6df132107e3b4b9407f903204b5522fdffcd6
+            tag: v2024.10.24
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -172,8 +172,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/libvpl.git
-        commit: 5f6bd8a1e753c8f63a3fd8b36894d6968b808a6d
-        tag: v2.13.0
+        commit: 2274efcd3672b43297ef774f332e1fed6781381c
+        tag: v2023.4.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -188,9 +188,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: fcad0a923c5d7d7483eb993378f7055a1b348241
+        commit: 887147421dd40e6c5bb025a0588694b43c540cde
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-24.3.4
+        tag: intel-onevpl-24.4.2
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -305,17 +305,17 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
-        commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
+        commit: 2a9b6f951c7d6b04b6c21fe1bf3f475b68b84801
         dest: third_party/spirv-headers
-        tag: vulkan-sdk-1.3.290.0
+        tag: vulkan-sdk-1.3.296.0
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
-        commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
+        commit: 46ef757e048e760b46601e6e77ae0cb72c97bd2f
         dest: third_party/glslang
-        tag: vulkan-sdk-1.3.290.0
+        tag: vulkan-sdk-1.3.296.0
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -346,8 +346,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Loader.git
-        commit: 40b8e6eeead809a62c708cb48fdd9f8f2eab3f15
-        tag: vulkan-sdk-1.3.290.0
+        commit: 7aeb5e4324957b6f60dac5c8cedb955df4fecbfb
+        tag: vulkan-sdk-1.3.296.0
         dest: tmp/vulkan-loader
         x-checker-data:
           type: git
@@ -418,7 +418,7 @@ modules:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
         commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-        tag: 4.0
+        tag: '4.0'
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -455,7 +455,7 @@ modules:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
             commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-            tag: 4.0
+            tag: '4.0'
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -492,7 +492,7 @@ modules:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
             commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-            tag: 4.0
+            tag: '4.0'
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -527,12 +527,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        commit: a48ab3a0d72efe9968ebafa34c425c892e4afa50
+        commit: 3785481f51f41a49e28f2b7f6fd5bd9187d24ae1
         #tag: v0.2.42
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+        tag: v0.2.42
   - name: nv-codec-headers
     no-autogen: true
     make-install-args:
@@ -583,8 +584,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: 55a01def732bb9e7016d23cc512384f7a88d6e86
-        tag: v2.2.1
+        commit: 6e69def4ec283fe0b71195671245c3b768bebdef
+        tag: v2.3.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -597,8 +598,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Oblomov/clinfo.git
-        commit: 748c3930a9b9cb826e631d77439e2cb8f84f5bcf
-        tag: 3.0.23.01.25
+        commit: 43851fd67aa67cdb8bf23969d05ecd1a83572c38
+        tag: '20170207'
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -627,8 +628,8 @@ modules:
           # NOTE: GitHub does not have the headers, Debian archives versions are different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
-            commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
-            tag: debian/1.3.290.0-1
+            commit: 52e225544a61aa7f1fcbce49c279d6fdfa39b095
+            tag: debian/1.3.296.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -712,13 +713,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 163637663b227c1f65f82f1c8014b4bed3abfddf
-        tag: v7.0.2-7
+        commit: 02b8f47e4e063920403a52dbf196a83e5957b83a
+        tag: v6.0.1-8
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
           versions:
-            <: "7.0"
+            <: '7.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
@@ -768,8 +769,8 @@ modules:
       - mkdir -p $FLATPAK_DEST/bin
       - mkdir -p $FLATPAK_DEST/extensions
       - dotnet publish -c Release --source ./nuget-sources --output="$FLATPAK_DEST/bin"
-        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained true
-        Jellyfin.Server/Jellyfin.Server.csproj
+        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained
+        true Jellyfin.Server/Jellyfin.Server.csproj
     sources:
       - nuget-generated-sources-x64.json
       - nuget-generated-sources-arm64.json
