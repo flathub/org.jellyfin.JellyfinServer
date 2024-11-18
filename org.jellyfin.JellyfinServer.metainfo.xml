@@ -3,7 +3,7 @@
   <id>org.jellyfin.JellyfinServer</id>
 
   <name>Jellyfin Server</name>
-  <summary>Free Software Media Streaming System</summary>
+  <summary>Media Streaming System</summary>
 
   <branding>
     <color type="primary" scheme_preference="light">#333c44</color>
