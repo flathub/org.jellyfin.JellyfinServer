@@ -1,19 +1,15 @@
 # Unofficial Jellyfin Server Flatpak on Flathub
 
-![](https://github.com/flathub/org.jellyfin.JellyfinServer/blob/master/branding/org.jellyfin.JellyfinServer.svg)
-<a href='https://flathub.org/apps/org.jellyfin.JellyfinServer'>
-    <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
-</a>
-
- <table>
+<table cellspacing="0" cellpadding="0" >
   <tr>
     <td>
-          <img width='240' alt='Get it on Flathub' src='./branding/org.jellyfin.JellyfinServer.svg'/>
+      <a href='https://flathub.org/apps/org.jellyfin.JellyfinServer'>
+        <img lt='Jellyfin Icon' src='./branding/org.jellyfin.JellyfinServer.svg'/>
+      </a>
     </td>
-    <td>Jellyfin</td>
     <td>
       <a href='https://flathub.org/apps/org.jellyfin.JellyfinServer'>
-          <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+        <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
       </a>
     </td>
   </tr>
