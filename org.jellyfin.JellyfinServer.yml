@@ -303,6 +303,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            <: '1.3.291.0-1'
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -311,6 +313,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
+          versions:
+            <: '1.3.291.0-1'
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -319,6 +323,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
+          versions:
+            <: '1.3.291.0-1'
 
   - name: libplacebo
     buildsystem: meson
@@ -418,7 +424,7 @@ modules:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
         commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-        tag: 4.0
+        tag: '4.0'
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -455,7 +461,7 @@ modules:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
             commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-            tag: 4.0
+            tag: '4.0'
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -492,7 +498,7 @@ modules:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
             commit: 6318f223684118a2c71f67f3f4633a9e35046b00
-            tag: 4.0
+            tag: '4.0'
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -583,8 +589,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: 55a01def732bb9e7016d23cc512384f7a88d6e86
-        tag: v2.2.1
+        commit: 6e69def4ec283fe0b71195671245c3b768bebdef
+        tag: v2.3.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -601,7 +607,8 @@ modules:
         tag: 3.0.23.01.25
         x-checker-data:
           type: git
-          tag-pattern: ^([\d.]+)$
+          #tag-pattern: ^([\d.]+)$
+          tag-pattern: ^([\d]+\.[\d]+\.[\d]+\.[\d]+\.[\d]+)$
 
   - name: vulkan-tools
     buildsystem: cmake-ninja
@@ -645,6 +652,8 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
+              versions:
+                <: '1.3.291.0-1'
 
   - name: jellyfin-ffmpeg
     disabled: false
@@ -718,7 +727,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
           versions:
-            <: "7.0"
+            <: '8.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
@@ -768,8 +777,8 @@ modules:
       - mkdir -p $FLATPAK_DEST/bin
       - mkdir -p $FLATPAK_DEST/extensions
       - dotnet publish -c Release --source ./nuget-sources --output="$FLATPAK_DEST/bin"
-        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained true
-        Jellyfin.Server/Jellyfin.Server.csproj
+        --runtime $RUNTIME -p:DebugSymbols=false -p:DebugType=none --self-contained
+        true Jellyfin.Server/Jellyfin.Server.csproj
     sources:
       - nuget-generated-sources-x64.json
       - nuget-generated-sources-arm64.json
