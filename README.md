@@ -5,6 +5,20 @@
     <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
 </a>
 
+ <table>
+  <tr>
+    <td>
+          <img width='240' alt='Get it on Flathub' src='./branding/org.jellyfin.JellyfinServer.svg'/>
+    </td>
+    <td>Jellyfin</td>
+    <td>
+      <a href='https://flathub.org/apps/org.jellyfin.JellyfinServer'>
+          <img width='240' alt='Get it on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+      </a>
+    </td>
+  </tr>
+</table> 
+
 > [!TIP]
 > Find help here:
 > [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
