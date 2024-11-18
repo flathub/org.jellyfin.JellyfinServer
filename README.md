@@ -16,7 +16,7 @@
 </table> 
 
 > [!TIP]
-> Find help here:
+> Get help here:
 > [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
 > |
 > [Wiki](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki)

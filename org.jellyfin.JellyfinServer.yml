@@ -177,6 +177,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          # Version scheme changed from v2023.4.0 to v2.13.0, the latter is smaller but newer.
+          versions:
+            <: 2000.0.0
 
   - name: onevpl-intel-gpu
     only-arches:
@@ -304,7 +307,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -314,7 +317,7 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -324,7 +327,7 @@ modules:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           versions:
-            <: '1.3.291.0-1'
+            <: 1.3.291.0-1
 
   - name: libplacebo
     buildsystem: meson
@@ -358,6 +361,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
+          versions:
+            <: 1.3.291.0-1
       # Already included as a submodule: glad, jinja, markupsafe
 
   - name: numactl
@@ -518,8 +523,6 @@ modules:
           tag-pattern: ^release-([\d.]+)$
 
   - name: zvbi
-    # NOTE: Looks like this was for handling a sub-folder that contained the source code.
-    #subdir: zvbi-0.2.41
     config-opts:
       - --enable-shared
       - --disable-static
@@ -534,10 +537,12 @@ modules:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
         commit: a48ab3a0d72efe9968ebafa34c425c892e4afa50
+        # NOTE: Disabled on 2024-11-18, above commit was the latest, the latest tagged version failed to build.
+        # TODO: This needs to be checked manually for now.
         #tag: v0.2.42
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+        #x-checker-data:
+        #  type: git
+        #  tag-pattern: ^v([\d.]+)$
 
   - name: nv-codec-headers
     no-autogen: true
@@ -653,7 +658,7 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               versions:
-                <: '1.3.291.0-1'
+                <: 1.3.291.0-1
 
   - name: jellyfin-ffmpeg
     disabled: false
