@@ -430,6 +430,11 @@ modules:
           type: git
           tag-pattern: ^([\d.]+)$
     modules:
+      # NOTE: 2024-11-19 -- CMake will emit the warnng below. Configuraton
+      # parameters have been checked and compared with 8bit and 12bit without
+      # any conclusion how to remove this warning.
+      # CMake Warning:
+      # Manually-specified variables were not used by the project: CMAKE_INSTALL_LIBDIR
       - name: x265-10bit
         buildsystem: cmake-ninja
         builddir: true

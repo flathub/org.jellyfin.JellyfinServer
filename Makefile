@@ -3,7 +3,9 @@ MANIFEST=$(FLATPAK_ID).yml
 APPMETA=$(FLATPAK_ID).metainfo.xml
 TAG_JELLYFIN := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin/tags | jq -r .[0].name)
 TAG_JELLYFIN_WEB := $(shell curl -s https://api.github.com/repos/jellyfin/jellyfin-web/tags | jq -r .[0].name)
-VERSION := $(shell cat VERSION)
+VERSION := $(TAG_JELLYFIN)
+# TODO: Needs to be reworked.
+#VERSION := $(shell cat VERSION)
 DOT_NET_VER=8
 LLVM_VER=19
 NODE_VER=22
@@ -11,17 +13,21 @@ RUNTIME_VER=24.08
 BUILD_DATE := $(shell date -I)
 GH_ACCOUNT := $(gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
 
-.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta release sources
+.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta release generate-sources refresh-sources workflow-check
 
-all: setup-sdk prepare sources pkg-x64 bundle
+all: setup-sdk prepare refresh-sources pkg-x64 bundle
 
 clean:
 	rm -rf build-dir_x86_64 build-dir_aarch64 .flatpak-builder repo
 
+refresh-sources: remove-sources generate-sources
+
 remove-sources:
 	rm -fv npm-generated-sources.json nuget-generated-sources-x64.json nuget-generated-sources-arm64.json
 
-# Rmoves everything.
+generate-sources: npm-generated-sources.json nuget-generated-sources-x64.json nuget-generated-sources-arm64.json
+
+# Removes everything.
 reset: clean remove-sources
 	rm -rf jellyfin/ jellyfin-web/
 	rm -rf flatpak-builder-tools/
@@ -42,12 +48,14 @@ setup-sdk:
 
 prepare:
 	$(info Jellyfin: $(TAG_JELLYFIN), Jellyfin Web: $(TAG_JELLYFIN_WEB))
+#	In case this repository was cloned without initializing sub modules.
+	git submodule update --init --recursive
 #	ifeq ($(TAG_JELLYFIN),$(TAG_JELLYFIN_WEB))
 #	$(info This is version $(TAG_JELLYFIN))
 	git -c advice.detachedHead=false clone --depth 1 -b "$(TAG_JELLYFIN)" https://github.com/jellyfin/jellyfin.git
 	git -c advice.detachedHead=false clone --depth 1 -b "$(TAG_JELLYFIN_WEB)" https://github.com/jellyfin/jellyfin-web.git
 
-	echo "$(TAG_JELLYFIN)" > VERSION
+#	echo "$(TAG_JELLYFIN)" > VERSION
 
 	git -c advice.detachedHead=false clone --depth 1 https://github.com/flatpak/flatpak-builder-tools.git
 	pipx install "./flatpak-builder-tools/node/"
@@ -114,8 +122,6 @@ lint:
 
 check-meta:
 	flatpak run --command=appstream-util org.flatpak.Builder validate $(APPMETA)
-
-sources: npm-generated-sources.json nuget-generated-sources-x64.json nuget-generated-sources-arm64.json
 
 npm-generated-sources.json:
 	flatpak-node-generator -o "npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
