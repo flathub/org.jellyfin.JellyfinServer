@@ -11,7 +11,7 @@ LLVM_VER=19
 NODE_VER=22
 RUNTIME_VER=24.08
 BUILD_DATE := $(shell date -I)
-GH_ACCOUNT := $(gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
+GH_ACCOUNT := $(shell gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
 
 .PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta release generate-sources refresh-sources workflow-check
 
