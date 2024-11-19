@@ -5,7 +5,15 @@ repos:
     rev: v5.0.0
     hooks:
       - id: trailing-whitespace
+      # NOTE: Leave these artifacts as they are, it will only create trouble
+      # with GA commits where these tools are not installed.
       - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+              npm-generated-sources\.json|
+              nuget-generated-sources-arm64\.json|
+              nuget-generated-sources-x64\.json
+          )$
       # NOTE: Disabled because it fails at:
       # could not determine a constructor for the tag '!=:'
       #- id: check-yaml
@@ -21,6 +29,7 @@ repos:
       - id: check-xml
       - id: detect-private-key
       - id: mixed-line-ending
+      # NOTE: Disabled, there is curently no use for this.
       #- id: pretty-format-json
       #  args: ["--autofix"]
   - repo: https://github.com/koalaman/shellcheck-precommit
@@ -29,10 +38,6 @@ repos:
       - id: shellcheck
         args: ["--color=always", "--external-sources"]
         types: ["file", "shell", "text"]
-        exclude: |
-          (?x)^(
-              path/to/file\.py
-          )$
   - repo: https://github.com/scop/pre-commit-shfmt
     rev: v3.10.0-1
     hooks:
