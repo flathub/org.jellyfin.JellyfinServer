@@ -786,10 +786,15 @@ modules:
           env:
             RUNTIME: linux-arm64
     build-commands:
-      - install -D jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
+      #- install -D jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
+      - install -D data/jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
+      # TODO
+      - install -D data/jf-backup.sh $FLATPAK_DEST/bin/jf-backup.sh
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
-      - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
-      - install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
+      #- install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
+      - install -D data/$FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
+      #- install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
+      - install -D branding/$FLATPAK_ID.svg $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.svg
       - mkdir -p $FLATPAK_DEST/bin
       - mkdir -p $FLATPAK_DEST/extensions
       - dotnet publish -c Release --source ./nuget-sources --output="$FLATPAK_DEST/bin"
@@ -807,9 +812,18 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: file
         path: org.jellyfin.JellyfinServer.metainfo.xml
+      #- type: file
+      #  path: org.jellyfin.JellyfinServer.desktop
       - type: file
-        path: org.jellyfin.JellyfinServer.desktop
+        path: data/org.jellyfin.JellyfinServer.desktop
+      #- type: file
+      #  path: org.jellyfin.JellyfinServer-128.png
       - type: file
-        path: org.jellyfin.JellyfinServer-128.png
+        path: branding/org.jellyfin.JellyfinServer.svg
+      #- type: file
+      #  path: jellyfin.sh
       - type: file
-        path: jellyfin.sh
+        path: data/jellyfin.sh
+      # TODO
+      - type: file
+        path: data/jf-backup.sh

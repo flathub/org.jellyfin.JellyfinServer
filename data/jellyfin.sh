@@ -23,16 +23,21 @@ check_health() {
   curl --location --insecure --fail --silent "${JF_HEALTHCHECK_URL}"
 }
 
+[[ "$1" == "backup" ]] && {
+  "jf-backup.sh"
+  exit
+}
+
 if [[ -n "${TS_SELF_DNS_NAME}" && -f "${TS_CERT_CRT}" && -f "${TS_CERT_KEY}" ]]; then
-  # TODO: Notify how long certificate is is valid.
+  # TODO: Notify how long certificate is valid.
   echo "Found Tailscale certficates."
   openssl pkcs12 \
     -export \
-    -out   "${TS_CERT_PFX}" \
+    -out "${TS_CERT_PFX}" \
     -inkey "${TS_CERT_KEY}" \
-    -in    "${TS_CERT_CRT}" \
-    -passout pass: && \
-  echo "Converted Tailscale certficates."
+    -in "${TS_CERT_CRT}" \
+    -passout pass: \
+    && echo "Converted Tailscale certficates."
 fi
 
 if ! check_health; then
