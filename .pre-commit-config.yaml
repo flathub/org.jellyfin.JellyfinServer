@@ -29,7 +29,7 @@ repos:
       - id: check-xml
       - id: detect-private-key
       - id: mixed-line-ending
-      # NOTE: Disabled, there is curently no use for this.
+      # NOTE: Disabled, there is currently no use for this.
       #- id: pretty-format-json
       #  args: ["--autofix"]
   - repo: https://github.com/koalaman/shellcheck-precommit
