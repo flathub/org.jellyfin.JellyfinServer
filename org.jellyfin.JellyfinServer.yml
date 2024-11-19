@@ -780,8 +780,8 @@ modules:
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
       - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
       # Required, otherwise fails the build with: "non-png-icon-in-hicolor-size-folder"
-      - install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
-      - install -D $FLATPAK_ID.svg $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.svg
+      #- install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
+      - install -D $FLATPAK_ID.svg $FLATPAK_DEST/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
       - mkdir -p $FLATPAK_DEST/bin
       - mkdir -p $FLATPAK_DEST/extensions
       - dotnet publish -c Release --source ./nuget-sources --output="$FLATPAK_DEST/bin"
@@ -801,8 +801,8 @@ modules:
         path: org.jellyfin.JellyfinServer.metainfo.xml
       - type: file
         path: data/org.jellyfin.JellyfinServer.desktop
-      - type: file
-        path: branding/org.jellyfin.JellyfinServer-128.png
+      #- type: file
+      #  path: branding/org.jellyfin.JellyfinServer-128.png
       - type: file
         path: branding/org.jellyfin.JellyfinServer.svg
       - type: file
