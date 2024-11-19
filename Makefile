@@ -16,7 +16,7 @@ GH_ACCOUNT := $(gh auth status --active | grep "Logged in to github.com account"
 all: setup-sdk prepare sources pkg-x64 bundle
 
 clean:
-	rm -rf build-dir_x86_64 build-dir_aarch64 .flatpak-builder repo 
+	rm -rf build-dir_x86_64 build-dir_aarch64 .flatpak-builder repo
 
 remove-sources:
 	rm -fv npm-generated-sources.json nuget-generated-sources-x64.json nuget-generated-sources-arm64.json
@@ -131,5 +131,6 @@ nuget-generated-sources-arm64.json:
 	  "nuget-generated-sources-arm64.json" "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
 
 workflow-check:
-	action-updater update .github/workflows/
+	action-updater update --quiet .github/workflows/
 	zizmor .github/workflows/
+	pre-commit autoupdate
