@@ -15,7 +15,7 @@
 * [lwbt](https://github.com/lwbt) (active)
 * [istori1](https://github.com/istori1) (inactive) - Initial creator of the Flatpak version
 
-New co-maintainers are welcome, check the development section in Wiki if you are interested.
+New co-maintainers are welcome, check the development section in the Wiki if you are interested.
 
 ## Installation
 
