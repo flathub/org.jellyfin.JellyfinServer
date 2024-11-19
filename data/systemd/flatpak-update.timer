@@ -1,0 +1,14 @@
+[Unit]
+Description=Daily flatpak update activities
+Requires=flatpak-update.service
+
+[Timer]
+OnBootSec=5m
+#OnUnitActiveSec=6h
+OnCalendar=*-*-* 6/12:00
+#RandomizedDelaySec=30m
+RandomizedDelaySec=5m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

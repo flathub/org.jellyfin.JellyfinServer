@@ -1,0 +1,12 @@
+# NOTE: This service does not run inside the Flatpak.
+[Unit]
+Description=Daily flatpak update activities
+Documentation=man:flatpak(1)
+#ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStartPre=/usr/bin/notify-send 'Flatpak' 'Flatpak daily update started'
+ExecStart=/usr/bin/flatpak update --noninteractive --assumeyes
+ExecStartPost=/usr/bin/flatpak remove --unused --noninteractive --assumeyes
+ExecStopPost=/usr/bin/notify-send 'Flatpak' 'Flatpak daily update started'
