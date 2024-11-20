@@ -128,30 +128,53 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - -DBUILD_SAMPLES=OFF
+      - -DBUILD_TESTS=OFF
       - -DBUILD_TUTORIALS=OFF
+      - -DCMAKE_BUILD_TYPE=Release
       - -DENABLE_X11=OFF
     sources:
-      - type: archive
-        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4.orig.tar.gz
-        sha256: 0eb04409a226da6e752576d60c46a3ec969ddfe03042897088367392207c7ab3
+      - type: git
+        url: https://github.com/Intel-Media-SDK/MediaSDK.git
+        commit: 73c6ca577f83b1c451e28517e6bd41045c2f9097
+        tag: intel-mediasdk-22.6.5
         x-checker-data:
-          type: html
-          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
-          version-pattern: intel-mediasdk \((\d+\.\d+\.\d+)
-          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version.orig.tar.gz
-      - type: archive
-        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4-1ubuntu1.debian.tar.xz
-        sha256: 3f414418cc382efd6b2e5304f60ee91b7a9d45c3e98f0fb3d56fb9801ce2e054
-        dest: debs
-        x-checker-data:
-          type: html
-          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
-          version-pattern: intel-mediasdk \(([^\)]+)\)
-          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version-1ubuntu1.debian.tar.xz
-      - type: shell
-        commands:
-          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-            -Np1 -i "debs/patches/$p" -d .; fi; done
+          type: git
+          tag-pattern: ^intel-mediasdk-([\d.]+)$
+          # Version from https://github.com/flathub/fr.handbrake.ghb.Plugin.IntelMediaSDK
+          versions:
+            =: 22.6.5
+      - type: patch
+        path: data/intel-mediasdk-gcc13.patch
+#  - name: intel-mediasdk
+#    only-arches:
+#      - x86_64
+#    buildsystem: cmake-ninja
+#    config-opts:
+#      - -DBUILD_SAMPLES=OFF
+#      - -DBUILD_TUTORIALS=OFF
+#      - -DENABLE_X11=OFF
+#    sources:
+#      - type: archive
+#        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4.orig.tar.gz
+#        sha256: 0eb04409a226da6e752576d60c46a3ec969ddfe03042897088367392207c7ab3
+#        x-checker-data:
+#          type: html
+#          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
+#          version-pattern: intel-mediasdk \((\d+\.\d+\.\d+)
+#          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version.orig.tar.gz
+#      - type: archive
+#        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4-1ubuntu1.debian.tar.xz
+#        sha256: 3f414418cc382efd6b2e5304f60ee91b7a9d45c3e98f0fb3d56fb9801ce2e054
+#        dest: debs
+#        x-checker-data:
+#          type: html
+#          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
+#          version-pattern: intel-mediasdk \(([^\)]+)\)
+#          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version-1ubuntu1.debian.tar.xz
+#      - type: shell
+#        commands:
+#          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
+#            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: onevpl
     only-arches:

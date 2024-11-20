@@ -10,6 +10,7 @@ repos:
       - id: end-of-file-fixer
         exclude: |
           (?x)^(
+              data/intel-mediasdk-gcc13\.patch|
               npm-generated-sources\.json|
               nuget-generated-sources-arm64\.json|
               nuget-generated-sources-x64\.json
