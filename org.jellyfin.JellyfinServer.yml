@@ -805,6 +805,11 @@ modules:
     build-commands:
       - install -D jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
       - install -D jf-backup.sh $FLATPAK_DEST/bin/jf-backup.sh
+      - install -D jf-updater.sh $FLATPAK_DEST/bin/jf-updater.sh
+      - install -D -m 644 flatpak-update.service $FLATPAK_DEST/share/templates/flatpak-update.service
+      - install -D -m 644 flatpak-update.service $FLATPAK_DEST/share/templates/flatpak-update-onactive.service
+      - install -D -m 644 flatpak-update.timer $FLATPAK_DEST/share/templates/flatpak-update.timer
+      - install -D -m 644 flatpak-update-onactive.timer $FLATPAK_DEST/share/templates/flatpak-update-onactive.timer
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
       - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
       # Required, otherwise fails the build with: "non-png-icon-in-hicolor-size-folder"
@@ -837,3 +842,11 @@ modules:
         path: data/jellyfin.sh
       - type: file
         path: data/jf-backup.sh
+      - type: file
+        path: data/jf-updater.sh
+      - type: file
+        path: data/systemd/flatpak-update.service
+      - type: file
+        path: data/systemd/flatpak-update.timer
+      - type: file
+        path: data/systemd/flatpak-update-onactive.timer

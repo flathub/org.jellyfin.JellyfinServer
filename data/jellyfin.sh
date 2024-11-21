@@ -27,6 +27,10 @@ check_health() {
   "jf-backup.sh"
   exit
 }
+[[ "$1" == "updater" ]] && {
+  "jf-updater.sh"
+  exit
+}
 
 if [[ -n "${TS_SELF_DNS_NAME}" && -f "${TS_CERT_CRT}" && -f "${TS_CERT_KEY}" ]]; then
   # TODO: Notify how long certificate is valid.

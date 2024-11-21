@@ -5,7 +5,7 @@ cat << 'EOF'
 # The command below cannot be executed by the app itself from within the sandbox.
 # Please run the command to backup your data before a release upgrade.
 # Remove the data when you are confident that the migration was successful to free up storage space.
-# ---\n"
+# ---
 
 cp -a \
   "${HOME}/.var/app/org.jellyfin.JellyfinServer/" \

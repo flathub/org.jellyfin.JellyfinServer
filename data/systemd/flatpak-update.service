@@ -10,3 +10,6 @@ ExecStartPre=/usr/bin/notify-send 'Flatpak' 'Flatpak daily update started'
 ExecStart=/usr/bin/flatpak update --noninteractive --assumeyes
 ExecStartPost=/usr/bin/flatpak remove --unused --noninteractive --assumeyes
 ExecStopPost=/usr/bin/notify-send 'Flatpak' 'Flatpak daily update started'
+
+[Install]
+WantedBy=default.target
