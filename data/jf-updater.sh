@@ -14,6 +14,11 @@ unit_selection=(
   flatpak-update-onactive.timer
 )
 
+# https://wiki.archlinux.org/title/Systemd/User#Automatic_start-up_of_systemd_user_instances
+loginctl list-users
+loginctl enable-linger $USER
+loginctl list-users
+
 for unit in "${unit_selection[@]}"; do
   cp -v "$(flatpak info --show-location org.jellyfin.JellyfinServer)/files/share/templates/${unit}" \
     "${HOME}/.local/share/systemd/user/${unit}"

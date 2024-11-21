@@ -10,7 +10,7 @@
 # $TS_USE_MAGIC_DNS have been set by the user.
 [[ -n "${TS_SELF_DNS_NAME}" && "${TS_USE_MAGIC_DNS}" == "true" ]] && JF_URL="https://${TS_SELF_DNS_NAME}:${JF_PORT_HTTPS}"
 
-# Start with 1 (250mc) instead of 0, this is typically closer to what is reported
+# Start with 1 (250ms) instead of 0, this is typically closer to what is reported
 # in the log.
 WAIT_COUNTER=1
 TS_CERT_CRT="/var/config/jellyfin/${TS_SELF_DNS_NAME}.crt"
@@ -19,29 +19,26 @@ TS_CERT_PFX="/var/config/jellyfin/ts-web-certificate.pfx"
 
 check_health() {
   # These curl parameters have been taken from Jellyfin build scripts and
-  # turned into their respective long forms to improve readabilility.
+  # turned into their respective long forms to improve readability.
   curl --location --insecure --fail --silent "${JF_HEALTHCHECK_URL}"
 }
 
-[[ "$1" == "backup" ]] && {
-  "jf-backup.sh"
-  exit
-}
-[[ "$1" == "updater" ]] && {
-  "jf-updater.sh"
+# A few shortcuts.
+[[ "$1" =~ ^("backup"|"updater"|"service-setup")$ ]] && {
+  "jf-${1}.sh"
   exit
 }
 
 if [[ -n "${TS_SELF_DNS_NAME}" && -f "${TS_CERT_CRT}" && -f "${TS_CERT_KEY}" ]]; then
   # TODO: Notify how long certificate is valid.
-  echo "Found Tailscale certficates."
+  echo "Found Tailscale certificates."
   openssl pkcs12 \
     -export \
     -out "${TS_CERT_PFX}" \
     -inkey "${TS_CERT_KEY}" \
     -in "${TS_CERT_CRT}" \
     -passout pass: \
-    && echo "Converted Tailscale certficates."
+    && echo "Converted Tailscale certificates."
 fi
 
 if ! check_health; then
@@ -75,7 +72,7 @@ if ! check_health; then
     [[ ! "$*" =~ ("--service") ]] && xdg-open "${JF_URL}"
   fi
 else
-  notify-send 2> /dev/null "Jellyfin" "Another instance is already runnng."
+  notify-send 2> /dev/null "Jellyfin" "Another instance is already running."
 
   # Attempt to open the dashboard with direct access to restart and shutdown
   # options.

@@ -67,28 +67,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-    #sources:
-    #  - type: archive
-    #    url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1.orig.tar.gz
-    #    sha256: a32b67c2d52ffbaf490be9fc18b46428ab807ab11eff7664d7ff75e06cfafd6d
-    #    x-checker-data:
-    #      type: html
-    #      url: https://packages.debian.org/source/bookworm/ocl-icd
-    #      version-pattern: ocl-icd \((\d+\.\d+\.\d+)
-    #      url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.orig.tar.gz
-    #  - type: archive
-    #    url: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_2.3.1-1.debian.tar.xz
-    #    sha256: eed9c271ebf0c7045a00f4d11f960529cd3c4860300daf5fb806a7af3c228ee7
-    #    dest: debs
-    #    x-checker-data:
-    #      type: html
-    #      url: https://packages.debian.org/source/bookworm/ocl-icd
-    #      version-pattern: ocl-icd \(([^\)]+)\)
-    #      url-template: https://deb.debian.org/debian/pool/main/o/ocl-icd/ocl-icd_$version.debian.tar.xz
-    #  - type: shell
-    #    commands:
-    #      - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-    #        -Np1 -i "debs/patches/$p" -d .; fi; done
     modules:
       - name: khronos-opencl-headers
         buildsystem: cmake-ninja
@@ -100,27 +78,6 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
-          #- type: archive
-          #  url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06.orig.tar.gz
-          #  sha256: 464d1b04a5e185739065b2d86e4cebf02c154c416d63e6067a5060d7c053c79a
-          #  x-checker-data:
-          #    type: html
-          #    url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
-          #    version-pattern: khronos-opencl-headers \((\d+\.\d+~\d+\.\d+\.\d+)
-          #    url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.orig.tar.gz
-          #- type: archive
-          #  url: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_3.0~2023.02.06-1.debian.tar.xz
-          #  sha256: 3b935732ae4e17ac27512d97a1be287ba245b3ba0840d6a1a66e2ba4a7b2532c
-          #  dest: debs
-          #  x-checker-data:
-          #    type: html
-          #    url: https://packages.debian.org/source/bookworm/khronos-opencl-headers
-          #    version-pattern: khronos-opencl-headers \(([^\)]+)\)
-          #    url-template: https://deb.debian.org/debian/pool/main/k/khronos-opencl-headers/khronos-opencl-headers_$version.debian.tar.xz
-          #- type: shell
-          #  commands:
-          #    - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-          #      -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: intel-mediasdk
     only-arches:
@@ -145,36 +102,6 @@ modules:
             =: 22.6.5
       - type: patch
         path: data/intel-mediasdk-gcc13.patch
-#  - name: intel-mediasdk
-#    only-arches:
-#      - x86_64
-#    buildsystem: cmake-ninja
-#    config-opts:
-#      - -DBUILD_SAMPLES=OFF
-#      - -DBUILD_TUTORIALS=OFF
-#      - -DENABLE_X11=OFF
-#    sources:
-#      - type: archive
-#        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4.orig.tar.gz
-#        sha256: 0eb04409a226da6e752576d60c46a3ec969ddfe03042897088367392207c7ab3
-#        x-checker-data:
-#          type: html
-#          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
-#          version-pattern: intel-mediasdk \((\d+\.\d+\.\d+)
-#          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version.orig.tar.gz
-#      - type: archive
-#        url: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/22.5.4-1ubuntu1/intel-mediasdk_22.5.4-1ubuntu1.debian.tar.xz
-#        sha256: 3f414418cc382efd6b2e5304f60ee91b7a9d45c3e98f0fb3d56fb9801ce2e054
-#        dest: debs
-#        x-checker-data:
-#          type: html
-#          url: https://launchpad.net/ubuntu/+source/intel-mediasdk
-#          version-pattern: intel-mediasdk \(([^\)]+)\)
-#          url-template: https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/intel-mediasdk/$version-1ubuntu1/intel-mediasdk_$version-1ubuntu1.debian.tar.xz
-#      - type: shell
-#        commands:
-#          - for p in $(cat debs/patches/series); do if [[ $p != "#"* ]]; then patch
-#            -Np1 -i "debs/patches/$p" -d .; fi; done
 
   - name: onevpl
     only-arches:
@@ -806,10 +733,12 @@ modules:
       - install -D jellyfin.sh $FLATPAK_DEST/bin/jellyfin.sh
       - install -D jf-backup.sh $FLATPAK_DEST/bin/jf-backup.sh
       - install -D jf-updater.sh $FLATPAK_DEST/bin/jf-updater.sh
+      - install -D jf-service-setup.sh $FLATPAK_DEST/bin/jf-service-setup.sh
       - install -D -m 644 flatpak-update.service $FLATPAK_DEST/share/templates/flatpak-update.service
       - install -D -m 644 flatpak-update.service $FLATPAK_DEST/share/templates/flatpak-update-onactive.service
       - install -D -m 644 flatpak-update.timer $FLATPAK_DEST/share/templates/flatpak-update.timer
       - install -D -m 644 flatpak-update-onactive.timer $FLATPAK_DEST/share/templates/flatpak-update-onactive.timer
+      - install -D -m 644 jellyfin.service $FLATPAK_DEST/share/templates/jellyfin.service
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
       - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
       # Required, otherwise fails the build with: "non-png-icon-in-hicolor-size-folder"
@@ -850,3 +779,7 @@ modules:
         path: data/systemd/flatpak-update.timer
       - type: file
         path: data/systemd/flatpak-update-onactive.timer
+      - type: file
+        path: data/jf-service-setup.sh
+      - type: file
+        path: data/systemd/jellyfin.service
