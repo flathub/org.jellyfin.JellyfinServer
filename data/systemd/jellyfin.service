@@ -1,0 +1,19 @@
+[Unit]
+Description=Jellyfin Media Server (Flatpak)
+Documentation=https://github.com/flathub/org.jellyfin.JellyfinServer/wiki
+# This target does not exist in user scope?
+#After = network-online.target
+
+[Service]
+Type=simple
+Environment=FLATPAK_SCOPE=--system
+ExecStart=/usr/bin/flatpak run $FLATPAK_SCOPE --command=jellyfin org.jellyfin.JellyfinServer --service
+ExecStop=/usr/bin/flatpak kill org.jellyfin.JellyfinServer
+Restart=on-failure
+TimeoutSec=15
+SuccessExitStatus=0 143
+
+[Install]
+# Modified for user scope.
+#WantedBy = multi-user.target
+WantedBy=default.target
