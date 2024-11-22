@@ -92,14 +92,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/Intel-Media-SDK/MediaSDK.git
-        commit: 73c6ca577f83b1c451e28517e6bd41045c2f9097
-        tag: intel-mediasdk-22.6.5
+        commit: 869b60a6c3d7b5e9f7c3b3b914986322dca4bbae
+        tag: intel-mediasdk-23.2.2
         x-checker-data:
           type: git
           tag-pattern: ^intel-mediasdk-([\d.]+)$
           # Version from https://github.com/flathub/fr.handbrake.ghb.Plugin.IntelMediaSDK
-          versions:
-            =: 22.6.5
+          #versions:
+            #=: 22.6.5
       - type: patch
         path: data/intel-mediasdk-gcc13.patch
 
