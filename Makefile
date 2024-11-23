@@ -125,7 +125,7 @@ check-meta:
 
 check-versions:
 	sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
-	flatpak --user run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
 
 npm-generated-sources.json:
 	flatpak-node-generator -o "npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
