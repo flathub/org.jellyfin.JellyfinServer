@@ -281,10 +281,11 @@ modules:
       - --buildtype=release
       - --default-library=shared
       - -Dvulkan=enabled
-      # TODO: From upstream, test.
+      # NOTE: It seems this option was disabled before 10.10.
+      # - -Dvk-proc-addr=disabled
       - -Dvk-proc-addr=enabled
       - -Dvulkan-registry=${FLATPAK_DEST}/share/vulkan/registry/vk.xml
-      # - -Dvk-proc-addr=disabled
+      #
       - -Dshaderc=enabled
       - -Dglslang=disabled
       - -Ddemos=false
@@ -313,6 +314,37 @@ modules:
           # Known newer versions.
           versions: !=: 1.3.296.0
       # Already included as a submodule: glad, jinja, markupsafe
+
+  - name: rkmpp
+    only-arches:
+      - arm64
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DBUILD_TEST=OFF
+    sources:
+      - type: git
+        url: https://github.com/nyanmisaka/mpp.git
+        #commit: 110d2660a18855656205cdda8f40527c8a9cc3c1
+        branch: jellyfin-mpp
+
+  - name: rkrga
+    only-arches:
+      - arm64
+    buildsystem: meson
+    config-opts:
+      - --libdir=lib
+      - --buildtype=release
+      - --default-library=shared
+      - -Dcpp_args=-fpermissive
+      - -Dlibdrm=false
+      - -Dlibrga_demo=false
+    sources:
+      - type: git
+        url: https://github.com/nyanmisaka/rk-mirrors.git
+        #commit: e97e327662d1c0867d4cbcc01d5caf15250fc4e7
+        branch: jellyfin-rga
 
   - name: numactl
     rm-configure: true
@@ -688,6 +720,13 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
+          # NOTE: Bump this to an appropriate version number when:
+          # - A new version of jellyfin-ffmpeg gets pushed which is not inteded
+          #   for use with the current release of Jellyfin. The release notes of
+          #   jellyfin-ffmpeg will tell you if this is the case.
+          # - A new release of Jellyfin gets released alongside a new version
+          #   of jellyfin-ffmpeg which has reached the version number below, thus
+          #   effectively breaking the Flatpak build.
           versions:
             <: '8.0'
       - type: shell
