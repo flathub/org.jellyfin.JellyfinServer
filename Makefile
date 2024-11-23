@@ -13,7 +13,7 @@ RUNTIME_VER=24.08
 BUILD_DATE := $(shell date -I)
 GH_ACCOUNT := $(shell gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
 
-.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta release generate-sources refresh-sources workflow-check
+.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta check-versions release generate-sources refresh-sources workflow-check
 
 all: setup-sdk prepare refresh-sources pkg-x64 bundle
 
@@ -122,6 +122,10 @@ lint:
 
 check-meta:
 	flatpak run --command=appstream-util org.flatpak.Builder validate $(APPMETA)
+
+check-versions:
+	sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
 
 npm-generated-sources.json:
 	flatpak-node-generator -o "npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
