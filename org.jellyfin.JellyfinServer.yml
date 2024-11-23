@@ -99,7 +99,7 @@ modules:
           tag-pattern: ^intel-mediasdk-([\d.]+)$
           # Version from https://github.com/flathub/fr.handbrake.ghb.Plugin.IntelMediaSDK
           #versions:
-            #=: 22.6.5
+          #  =: 22.6.5
       - type: patch
         path: data/intel-mediasdk-gcc13.patch
 
@@ -281,6 +281,9 @@ modules:
       - --buildtype=release
       - --default-library=shared
       - -Dvulkan=enabled
+      # TODO: From upstream, test.
+      - -Dvk-proc-addr=enabled
+      - -Dvulkan-registry=${FLATPAK_DEST}/share/vulkan/registry/vk.xml
       # - -Dvk-proc-addr=disabled
       - -Dshaderc=enabled
       - -Dglslang=disabled
@@ -563,7 +566,6 @@ modules:
         tag: 3.0.23.01.25
         x-checker-data:
           type: git
-          #tag-pattern: ^([\d.]+)$
           tag-pattern: ^([\d]+\.[\d]+\.[\d]+\.[\d]+\.[\d]+)$
 
   - name: vulkan-tools
@@ -623,7 +625,7 @@ modules:
       arch:
         x86_64:
           config-opts:
-            # replacement for libmfx?
+            # Replacement for libmfx?
             - --enable-libvpl
             #- --enable-libmfx # intel-mediasdk # decrepated in ffmpeg 7?
             - --enable-amf
@@ -718,7 +720,11 @@ modules:
     build-options:
       append-ld-library-path: /usr/lib/sdk/dotnet8/lib
       append-path: /usr/lib/sdk/dotnet8/bin
-      #append-pkg-config-path: /usr/lib/sdk/dotnet8/lib/pkgconfig
+      # TODO: Identify if this line is necessary or not. Overlaps with
+      # PKG_CONFIG_PATH. Most other projects in Flathub include it.
+      # com.spacestation14.Launcher and com.github.PintaProject.Pinta do not?
+      #
+      # append-pkg-config-path: /usr/lib/sdk/dotnet8/lib/pkgconfig
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
         PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet8/lib/pkgconfig
@@ -741,7 +747,6 @@ modules:
       - install -D -m 644 jellyfin.service $FLATPAK_DEST/share/templates/jellyfin.service
       - install -D $FLATPAK_ID.metainfo.xml $FLATPAK_DEST/share/metainfo/$FLATPAK_ID.metainfo.xml
       - install -D $FLATPAK_ID.desktop $FLATPAK_DEST/share/applications/$FLATPAK_ID.desktop
-      # Required, otherwise fails the build with: "non-png-icon-in-hicolor-size-folder"
       #- install -D $FLATPAK_ID-128.png $FLATPAK_DEST/share/icons/hicolor/128x128/apps/$FLATPAK_ID.png
       - install -D $FLATPAK_ID.svg $FLATPAK_DEST/share/icons/hicolor/scalable/apps/$FLATPAK_ID.svg
       - mkdir -p $FLATPAK_DEST/bin
