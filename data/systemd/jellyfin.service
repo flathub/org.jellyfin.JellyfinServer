@@ -1,8 +1,7 @@
 [Unit]
 Description=Jellyfin Media Server (Flatpak)
 Documentation=https://github.com/flathub/org.jellyfin.JellyfinServer/wiki
-# This target does not exist in user scope?
-#After = network-online.target
+After = network-online.target
 
 [Service]
 Type=simple

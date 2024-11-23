@@ -55,3 +55,14 @@ repos:
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
+  # This takes a few seconds longer, but it is so wasteful and embarrassing when a builder fails with a linter error.
+  - repo: local
+    hooks:
+      - id: flatpak-builder-lint
+        name: Flatpak Builder Lint
+        entry: flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest
+        language: system
+        #types: [manifest]
+        types: ["file", "non-executable", "text", "yaml"]
+        files: org.jellyfin.JellyfinServer.yml
+        require_serial: true
