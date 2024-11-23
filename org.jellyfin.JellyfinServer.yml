@@ -720,6 +720,7 @@ modules:
         commit: 163637663b227c1f65f82f1c8014b4bed3abfddf
         tag: v7.0.2-7
         x-checker-data:
+          is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)-\d$
           # NOTE: Bump this to an appropriate version number when:
@@ -752,6 +753,7 @@ modules:
         commit: b95dad4ba2c54c2fd3a0f654d35b5f5a144d357f
         tag: v10.10.3
         x-checker-data:
+          is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
 
@@ -803,6 +805,7 @@ modules:
         commit: b3e563385c1ae8e07caff508ae59ab2518682989
         tag: v10.10.3
         x-checker-data:
+          is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
       - type: file
