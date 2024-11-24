@@ -46,10 +46,10 @@ jobs:
         restore-keys: |
           flatpak
 
-    - name: Install flatpak package
+    - name: Install flatpak and pipx package
       run: |
         sudo apt-get update -y
-        sudo apt-get install flatpak -y --no-install-recommends
+        sudo apt-get install flatpak pipx -y --no-install-recommends
 
     - name: Install yq binary
       run: |
@@ -87,6 +87,10 @@ jobs:
         repository: flatpak/flatpak-builder-tools
         path: flatpak-builder-tools
 
+    - name: Generate sources for NuGet x64 used by jellyfin
+      run: |
+        pipx install "./flatpak-builder-tools/node/"
+
     - name: Checkout jellyfin
       uses: actions/checkout@v4
       with:
@@ -117,7 +121,8 @@ jobs:
 
     - name: Generate sources for Node used by jellyfin-web 
       run: |
-        ./flatpak-builder-tools/node/flatpak-node-generator \
+        #./flatpak-builder-tools/node/flatpak-node-generator \
+        flatpak-node-generator \
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
 
     - name: Create Pull Request
