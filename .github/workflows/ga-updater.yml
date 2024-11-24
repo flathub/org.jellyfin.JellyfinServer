@@ -1,0 +1,48 @@
+name: Update GitHub Actions Workflows
+on:
+  schedule:
+  - cron: 15 9 * * SAT
+  workflow_dispatch:
+env:
+  PR_BRANCH: update-ga
+
+jobs:
+  ga-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+        path: main
+
+    # TODO: Is there a better way to handle this?
+    - name: Check if branch used for Pull Request exists
+      working-directory: main
+      run: |
+        if [[ -n "$(git ls-remote --heads origin ${PR_BRANCH})" ]]; then
+          echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
+          exit 1
+        else
+          echo "OK: Branch not found."
+        fi
+      env:
+        PR_BRANCH: ${{ env.PR_BRANCH }}
+
+    - name: action-updater
+      uses: vsoch/action-updater@0.0.16
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
+      with:
+        path: main
+        title: Update GitHub Actions Workflows
+        commit-message: Update GitHub Actions Workflows
+        branch: ${{ env.PR_BRANCH }}
+        delete-branch: true
+      #env:
+      #  PR_BRANCH: ${{ env.PR_BRANCH }}

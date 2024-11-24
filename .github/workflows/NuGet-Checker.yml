@@ -1,4 +1,4 @@
-name: NuGet Checker
+name: NuGet Checker (obsolete)
 
 on:
   #schedule:

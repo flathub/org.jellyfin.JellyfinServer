@@ -20,6 +20,7 @@ on:
   workflow_dispatch:
 env:
   MANIFEST: "main/org.jellyfin.JellyfinServer.yml"
+  PR_BRANCH: update-nuget-node
 
 jobs:
   Regenerate-NuGet-Node-Sources:
@@ -38,12 +39,14 @@ jobs:
     - name: Check if branch used for Pull Request exists
       working-directory: main
       run: |
-        if [[ -n "$(git ls-remote --heads origin update-nuget)" ]]; then
-          echo "Warning: Branch 'update-nuget' exists. Merge the Pull Request or delete the branch."
+        if [[ -n "$(git ls-remote --heads origin ${PR_BRANCH})" ]]; then
+          echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
           exit 1
         else
           echo "OK: Branch not found."
         fi
+      env:
+        PR_BRANCH: ${{ env.PR_BRANCH }}
 
     # Restores the path below contains most of the data of installed apps and runtimes.
     # This can save about 1GB of downloads.
@@ -145,7 +148,7 @@ jobs:
         DOT_NET_VER: ${{ env.DOT_NET_VER }}
         YQ_RUNTIME_VERSION: ${{ env.YQ_RUNTIME_VERSION }}
 
-    - name: Generate sources for Node used by jellyfin-web 
+    - name: Generate sources for Node used by jellyfin-web
       run: |
         flatpak-node-generator \
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
@@ -154,7 +157,7 @@ jobs:
       uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
       with:
         path: main
-        title: Update NuGet Cache
-        commit-message: Update NuGet Cache
-        branch: update-nuget
+        title: Regenerate NuGet and Node Sources
+        commit-message: Regenerate NuGet and Node Sources
+        branch: ${{ env.PR_BRANCH }}
         delete-branch: true

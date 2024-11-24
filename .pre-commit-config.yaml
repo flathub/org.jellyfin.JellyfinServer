@@ -55,6 +55,11 @@ repos:
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
+  - repo: https://github.com/woodruffw/zizmor
+    rev: v0.5.0
+    hooks:
+    - id: zizmor
+      files: ^\.github/workflows/.*\.yml$
   # This takes a few seconds longer, but it is so wasteful and embarrassing when a builder fails with a linter error.
   - repo: local
     hooks:
