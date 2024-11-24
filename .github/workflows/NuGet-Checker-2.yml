@@ -52,23 +52,30 @@ jobs:
 
     - name: Set ENV Variables
       run: |
-        # TEST
-        #"$GITHUB_ENV" <<< "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})"
         # Freedesktop SDK runtime rersion, example: 24.08
         echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})"
-        echo "YQ_DOTNETSDK=${YQ_DOTNETSDK}" >> "$GITHUB_ENV"
-        #echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        # Jellyfin tag
+        # Jellyfin tag, example: 10.10
         echo "YQ_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        #"$GITHUB_ENV" <<< "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}"
+        # DotNet SDK, example: org.freedesktop.Sdk.Extension.dotnet8
+        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        # DotNet version, example: 8
+        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})"
         echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
+        # Node SDK, example: org.freedesktop.Sdk.Extension.node22
+        echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
 
     - name: Checkout Jellyfin
       uses: actions/checkout@v4
       with:
         repository: jellyfin/jellyfin
         path: jellyfin
+        ref: ${{ env.YQ_TAG }}
+
+    - name: Checkout Jellyfin Web
+      uses: actions/checkout@v4
+      with:
+        repository: jellyfin/jellyfin-web
+        path: jellyfin-web
         ref: ${{ env.YQ_TAG }}
 
     - name: Checkout Flatpak Builder Tools
@@ -80,10 +87,11 @@ jobs:
     - name: Install Freedesktop SDK and DotNet Runtime
       run: |
         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak update --noninteractive -y
+        flatpak update --user --noninteractive -y
         flatpak install --user flathub org.flatpak.Builder --noninteractive -y
         flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
+        flatpak install --user flathub {{ env.YQ_NODESDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         
     - name: Generate cache for NuGet x64
       run: |
@@ -98,6 +106,11 @@ jobs:
           --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.RUNTIME_VER }} --runtime=linux-arm64 \
           main/nuget-generated-sources-arm64.json \
           jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
+
+    - name: Generate cache for Node
+      run: |
+        ./flatpak-builder-tools/node/flatpak-node-generator \
+        -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
