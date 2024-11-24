@@ -1,50 +1,64 @@
 name: Update GitHub Actions Workflows
 on:
-  # Disabled because:
+  # NOTE:
   # vsoch/action-updater@0.0.16 is not allowed to be used in flathub/org.jellyfin.JellyfinServer.
   # Actions in this workflow must be: within a repository owned by flathub, created by GitHub, or matching the following:
   # docker/*, docker://ghcr.io/flathub/*, flathub/*, peter-evans/create-pull-request@*.
-  # schedule:
-  # - cron: 15 9 * * SAT
+  schedule:
+  - cron: 15 9 * * SAT
   workflow_dispatch:
-env:
-  PR_BRANCH: update-ga
+#env:
+#  PR_BRANCH: update-ga
 
 jobs:
   ga-update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
+#    permissions:
+#      contents: write
+#      pull-requests: write
+#      #actions: write
 
     steps:
     - name: Checkout this repository
       uses: actions/checkout@v4
       with:
         persist-credentials: false
-        path: main
 
-    # TODO: Is there a better way to handle this?
-    - name: Check if branch used for Pull Request exists
-      working-directory: main
+#    # TODO: Is there a better way to handle this?
+#    - name: Check if branch used for Pull Request exists
+#      working-directory: main
+#      run: |
+#        if [[ -n "$(git ls-remote --heads origin "${PR_BRANCH}")" ]]; then
+#          echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
+#          exit 1
+#        else
+#          echo "OK: Branch not found."
+#        fi
+#      env:
+#        PR_BRANCH: ${{ env.PR_BRANCH }}
+
+#    # This only checks for updates, despite of what the documentation says
+#    - name: Check for updates
+#      uses: vsoch/action-updater@0.0.16
+
+    - name: Install pipx package
       run: |
-        if [[ -n "$(git ls-remote --heads origin "${PR_BRANCH}")" ]]; then
-          echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
-          exit 1
-        else
-          echo "OK: Branch not found."
-        fi
-      env:
-        PR_BRANCH: ${{ env.PR_BRANCH }}
+        sudo apt-get update -y
+        sudo apt-get install pipx -y --no-install-recommends
 
-    - name: action-updater
-      uses: vsoch/action-updater@0.0.16
+    - name: Install action-updater wit pipx
+      run: |
+        pipx install action-updater
 
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
-      with:
-        path: main
-        title: Update GitHub Actions Workflows
-        commit-message: Update GitHub Actions Workflows
-        branch: ${{ env.PR_BRANCH }}
-        delete-branch: true
+    - name: Check for updates
+      run: |
+        action-updater detect .github/workflows/
+        #action-updater update .github/workflows/
+
+#    - name: Create Pull Request
+#      uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
+#      with:
+#        title: Update GitHub Actions Workflows
+#        commit-message: Update GitHub Actions Workflows
+#        branch: ${{ env.PR_BRANCH }}
+#        delete-branch: true
