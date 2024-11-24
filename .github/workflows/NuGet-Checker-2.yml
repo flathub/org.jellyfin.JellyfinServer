@@ -15,7 +15,8 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
       with:
         path: main
 
@@ -38,25 +39,26 @@ jobs:
 
     - name: Setup Dependencies Flatpak
       run: |
-        sudo apt update -y
-        sudo apt install flatpak -y
+        sudo apt-get update -y
+        sudo apt-get install flatpak -y --no-install-recommends
 
     - name: Setup Dependencies yq
       run: |
         mkdir -pv ~/.local/bin
-        wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq
+        wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq
         chmod -v +x ~/.local/bin/yq
 
     - name: Set ENV Variables
       run: |
         # TEST
-        "$GITHUB_ENV" <<< "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})"
+        #"$GITHUB_ENV" <<< "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})"
         # Freedesktop SDK runtime rersion, example: 24.08
         echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         # Jellyfin tag
         echo "YQ_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        "$GITHUB_ENV" <<< "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}"
+        #"$GITHUB_ENV" <<< "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}"
+        echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
 
     - name: Checkout Jellyfin
       uses: actions/checkout@v4
