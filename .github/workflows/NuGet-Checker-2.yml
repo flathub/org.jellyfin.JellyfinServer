@@ -91,7 +91,7 @@ jobs:
         flatpak install --user flathub org.flatpak.Builder --noninteractive -y
         flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
-        flatpak install --user flathub {{ env.YQ_NODESDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
+        flatpak install --user flathub ${{ env.YQ_NODESDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         
     - name: Generate cache for NuGet x64
       run: |
