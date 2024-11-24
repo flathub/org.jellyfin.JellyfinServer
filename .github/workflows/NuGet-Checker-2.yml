@@ -1,4 +1,4 @@
-name: NuGet Checker
+name: NuGet Checker 2024
 
 on:
   #schedule:
@@ -26,6 +26,8 @@ jobs:
         if [[ -n "$(git ls-remote --heads origin update-nuget)" ]]; then
           echo "Warning: Branch 'update-nuget' exists. Merge the PR or delete the branch."
           exit 1
+        else
+          echo "OK: Branch not found."
         fi
 
     - name: Restore Flatpak Cache
@@ -54,7 +56,9 @@ jobs:
         #"$GITHUB_ENV" <<< "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})"
         # Freedesktop SDK runtime rersion, example: 24.08
         echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})"
+        echo "YQ_DOTNETSDK=${YQ_DOTNETSDK}" >> "$GITHUB_ENV"
+        #echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         # Jellyfin tag
         echo "YQ_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         #"$GITHUB_ENV" <<< "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}"
@@ -76,10 +80,10 @@ jobs:
     - name: Install Freedesktop SDK and DotNet Runtime
       run: |
         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak update -y
-        flatpak install --user flathub org.flatpak.Builder -y
-        flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} -y
-        flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} -y
+        flatpak update --noninteractive -y
+        flatpak install --user flathub org.flatpak.Builder --noninteractive -y
+        flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
+        flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         
     - name: Generate cache for NuGet x64
       run: |
