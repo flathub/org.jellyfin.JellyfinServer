@@ -39,7 +39,7 @@ jobs:
     - name: Check if branch used for Pull Request exists
       working-directory: main
       run: |
-        if [[ -n "$(git ls-remote --heads origin ${PR_BRANCH})" ]]; then
+        if [[ -n "$(git ls-remote --heads origin "${PR_BRANCH}")" ]]; then
           echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
           exit 1
         else
