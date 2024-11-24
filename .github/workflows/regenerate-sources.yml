@@ -3,9 +3,18 @@
 # - Regenerate NuGet sources for ARM64 and x86_64 used to build jellyfin. (Previously also confusingly called cache.)
 # - Regenerate Node sources used to build jellyfin-web. (Previously not included in this workflow.)
 # - Create a Pull Request if data has changed.
+#
+# NOTE:
+# - Why so many env blocks? https://woodruffw.github.io/zizmor/audits/#template-injection
+#
 name: Regenerate NuGet and Node Sources
-
 on:
+  # Running this workflow on a schedule with the current tooling will only
+  # create noise and waste resources. The order of the dependencies can change
+  # while versions and hashes remain the same. Since this workflow now exists
+  # and is considered complete, a maintainer should be able to run this
+  # workflow on demand from the GitHub app on a mobile device when the bot
+  # detects a new release of Jellyfin.
   #schedule:
   #- cron: 0 0/12 * * *
   workflow_dispatch:
@@ -23,6 +32,7 @@ jobs:
     - name: Checkout this repository
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         path: main
 
     - name: Check if branch used for Pull Request exists
@@ -61,39 +71,48 @@ jobs:
     - name: Extract environment variables from manifest
       run: |
         # Freedesktop SDK runtime rersion, example: 24.08
-        echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${MANIFEST})" >> "$GITHUB_ENV"
         # Jellyfin tag, example: 10.10.3
-        echo "YQ_JF_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        echo "YQ_JF_TAG=$(yq '.modules[-1].sources[2].tag' ${MANIFEST})" >> "$GITHUB_ENV"
         # DotNet SDK, example: org.freedesktop.Sdk.Extension.dotnet8
-        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${MANIFEST})" >> "$GITHUB_ENV"
         # DotNet version, example: 8
-        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})"
+        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${MANIFEST})"
         echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
         # Node SDK, example: org.freedesktop.Sdk.Extension.node22
-        echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' ${MANIFEST})" >> "$GITHUB_ENV"
+      env:
+        MANIFEST: ${{ env.MANIFEST }}
 
     - name: Install Flatpak Builder, Freedesktop SDK, DotNet and Node
       run: |
         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak update --user --noninteractive -y
         flatpak install --user flathub org.flatpak.Builder --noninteractive -y
-        flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
-        flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
-        flatpak install --user flathub ${{ env.YQ_NODESDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
+        flatpak install --user flathub org.freedesktop.Sdk//${YQ_RUNTIME_VERSION} --noninteractive -y
+        flatpak install --user flathub ${YQ_DOTNETSDK}//${YQ_RUNTIME_VERSION} --noninteractive -y
+        flatpak install --user flathub ${YQ_NODESDK}//${YQ_RUNTIME_VERSION} --noninteractive -y
+      env:
+        DOT_NET_VER: ${{ env.DOT_NET_VER }}
+        YQ_DOTNETSDK: ${{ env.YQ_DOTNETSDK }}
+        YQ_NODESDK: ${{ env.YQ_NODESDK }}
+        YQ_RUNTIME_VERSION: ${{ env.YQ_RUNTIME_VERSION }}
 
     - name: Checkout Flatpak Builder Tools
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         repository: flatpak/flatpak-builder-tools
         path: flatpak-builder-tools
 
-    - name: Generate sources for NuGet x64 used by jellyfin
+    - name: Install flatpak-node-generator wit pipx
       run: |
         pipx install "./flatpak-builder-tools/node/"
 
     - name: Checkout jellyfin
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         repository: jellyfin/jellyfin
         path: jellyfin
         ref: ${{ env.YQ_JF_TAG }}
@@ -101,6 +120,7 @@ jobs:
     - name: Checkout jellyfin-web
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         repository: jellyfin/jellyfin-web
         path: jellyfin-web
         ref: ${{ env.YQ_JF_TAG }}
@@ -108,20 +128,25 @@ jobs:
     - name: Generate sources for NuGet x64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.YQ_RUNTIME_VERSION }} --runtime=linux-x64 \
-          main/nuget-generated-sources-x64.json \
-          jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
+          --dotnet ${DOT_NET_VER} --freedesktop ${YQ_RUNTIME_VERSION} --runtime=linux-x64 \
+          "main/nuget-generated-sources-x64.json" \
+          "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
+      env:
+        DOT_NET_VER: ${{ env.DOT_NET_VER }}
+        YQ_RUNTIME_VERSION: ${{ env.YQ_RUNTIME_VERSION }}
 
     - name: Generate sources for NuGet arm64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.YQ_RUNTIME_VERSION }} --runtime=linux-arm64 \
-          main/nuget-generated-sources-arm64.json \
-          jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
+          --dotnet ${DOT_NET_VER} --freedesktop ${YQ_RUNTIME_VERSION} --runtime=linux-arm64 \
+          "main/nuget-generated-sources-arm64.json" \
+          "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
+      env:
+        DOT_NET_VER: ${{ env.DOT_NET_VER }}
+        YQ_RUNTIME_VERSION: ${{ env.YQ_RUNTIME_VERSION }}
 
     - name: Generate sources for Node used by jellyfin-web 
       run: |
-        #./flatpak-builder-tools/node/flatpak-node-generator \
         flatpak-node-generator \
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
 
