@@ -1,4 +1,9 @@
-name: NuGet Checker 2024
+# This workflow does 4 things:
+# - Restore data from GitHub Actions cache from previous runs of this workflow.
+# - Regenerate NuGet sources for ARM64 and x86_64 used to build jellyfin. (Previously also confusingly called cache.)
+# - Regenerate Node sources used to build jellyfin-web. (Previously not included in this workflow.)
+# - Create a Pull Request if data has changed.
+name: Regenerate NuGet and Node Sources
 
 on:
   #schedule:
@@ -8,29 +13,31 @@ env:
   MANIFEST: "main/org.jellyfin.JellyfinServer.yml"
 
 jobs:
-  NuGet-Checker:
+  Regenerate-NuGet-Node-Sources:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-    - name: Checkout repository
+    - name: Checkout this repository
       uses: actions/checkout@v4
       with:
         path: main
 
-    - name: Check if branch exists
+    - name: Check if branch used for Pull Request exists
       working-directory: main
       run: |
         if [[ -n "$(git ls-remote --heads origin update-nuget)" ]]; then
-          echo "Warning: Branch 'update-nuget' exists. Merge the PR or delete the branch."
+          echo "Warning: Branch 'update-nuget' exists. Merge the Pull Request or delete the branch."
           exit 1
         else
           echo "OK: Branch not found."
         fi
 
-    - name: Restore Flatpak Cache
+    # Restores the path below contains most of the data of installed apps and runtimes.
+    # This can save about 1GB of downloads.
+    - name: Restore Flatpak apps from cache
       uses: actions/cache@v4
       with:
         path: |
@@ -39,23 +46,24 @@ jobs:
         restore-keys: |
           flatpak
 
-    - name: Setup Dependencies Flatpak
+    - name: Install flatpak package
       run: |
         sudo apt-get update -y
         sudo apt-get install flatpak -y --no-install-recommends
 
-    - name: Setup Dependencies yq
+    - name: Install yq binary
       run: |
         mkdir -pv ~/.local/bin
-        wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O ~/.local/bin/yq
+        wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+          -O ~/.local/bin/yq
         chmod -v +x ~/.local/bin/yq
 
-    - name: Set ENV Variables
+    - name: Extract environment variables from manifest
       run: |
         # Freedesktop SDK runtime rersion, example: 24.08
         echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
-        # Jellyfin tag, example: 10.10
-        echo "YQ_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
+        # Jellyfin tag, example: 10.10.3
+        echo "YQ_JF_TAG=$(yq '.modules[-1].sources[2].tag' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         # DotNet SDK, example: org.freedesktop.Sdk.Extension.dotnet8
         echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
         # DotNet version, example: 8
@@ -64,27 +72,7 @@ jobs:
         # Node SDK, example: org.freedesktop.Sdk.Extension.node22
         echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' ${{ env.MANIFEST }})" >> "$GITHUB_ENV"
 
-    - name: Checkout Jellyfin
-      uses: actions/checkout@v4
-      with:
-        repository: jellyfin/jellyfin
-        path: jellyfin
-        ref: ${{ env.YQ_TAG }}
-
-    - name: Checkout Jellyfin Web
-      uses: actions/checkout@v4
-      with:
-        repository: jellyfin/jellyfin-web
-        path: jellyfin-web
-        ref: ${{ env.YQ_TAG }}
-
-    - name: Checkout Flatpak Builder Tools
-      uses: actions/checkout@v4
-      with:
-        repository: flatpak/flatpak-builder-tools
-        path: flatpak-builder-tools
-
-    - name: Install Freedesktop SDK and DotNet Runtime
+    - name: Install Flatpak Builder, Freedesktop SDK, DotNet and Node
       run: |
         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak update --user --noninteractive -y
@@ -92,22 +80,42 @@ jobs:
         flatpak install --user flathub org.freedesktop.Sdk//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         flatpak install --user flathub ${{ env.YQ_DOTNETSDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
         flatpak install --user flathub ${{ env.YQ_NODESDK }}//${{ env.YQ_RUNTIME_VERSION }} --noninteractive -y
-        
-    - name: Generate cache for NuGet x64
+
+    - name: Checkout Flatpak Builder Tools
+      uses: actions/checkout@v4
+      with:
+        repository: flatpak/flatpak-builder-tools
+        path: flatpak-builder-tools
+
+    - name: Checkout jellyfin
+      uses: actions/checkout@v4
+      with:
+        repository: jellyfin/jellyfin
+        path: jellyfin
+        ref: ${{ env.YQ_JF_TAG }}
+
+    - name: Checkout jellyfin-web
+      uses: actions/checkout@v4
+      with:
+        repository: jellyfin/jellyfin-web
+        path: jellyfin-web
+        ref: ${{ env.YQ_JF_TAG }}
+
+    - name: Generate sources for NuGet x64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.RUNTIME_VER }} --runtime=linux-x64 \
+          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.YQ_RUNTIME_VERSION }} --runtime=linux-x64 \
           main/nuget-generated-sources-x64.json \
           jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
 
-    - name: Generate cache for NuGet arm64
+    - name: Generate sources for NuGet arm64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.RUNTIME_VER }} --runtime=linux-arm64 \
+          --dotnet ${{ env.DOT_NET_VER }} --freedesktop ${{ env.YQ_RUNTIME_VERSION }} --runtime=linux-arm64 \
           main/nuget-generated-sources-arm64.json \
           jellyfin/Jellyfin.Server/Jellyfin.Server.csproj
 
-    - name: Generate cache for Node
+    - name: Generate sources for Node used by jellyfin-web 
       run: |
         ./flatpak-builder-tools/node/flatpak-node-generator \
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
