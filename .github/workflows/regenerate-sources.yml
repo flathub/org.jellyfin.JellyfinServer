@@ -64,26 +64,28 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install flatpak pipx -y --no-install-recommends
 
-    - name: Install yq binary
-      run: |
-        mkdir -pv ~/.local/bin
-        wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
-          -O ~/.local/bin/yq
-        chmod -v +x ~/.local/bin/yq
+    # NOTE: Seems to be already on the latest runner.
+    #- name: Install yq binary
+    #  run: |
+    #    mkdir -pv ~/.local/bin
+    #    wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+    #      -O ~/.local/bin/yq
+    #    chmod -v +x ~/.local/bin/yq
 
     - name: Extract environment variables from manifest
       run: |
+        # shellcheck disable=SC2129
         # Freedesktop SDK runtime rersion, example: 24.08
-        echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' ${MANIFEST})" >> "$GITHUB_ENV"
+        echo "YQ_RUNTIME_VERSION=$(yq '.runtime-version' "${MANIFEST}")" >> "$GITHUB_ENV"
         # Jellyfin tag, example: 10.10.3
-        echo "YQ_JF_TAG=$(yq '.modules[-1].sources[2].tag' ${MANIFEST})" >> "$GITHUB_ENV"
+        echo "YQ_JF_TAG=$(yq '.modules[-1].sources[2].tag' "${MANIFEST}")" >> "$GITHUB_ENV"
         # DotNet SDK, example: org.freedesktop.Sdk.Extension.dotnet8
-        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' ${MANIFEST})" >> "$GITHUB_ENV"
+        echo "YQ_DOTNETSDK=$(yq '.sdk-extensions[0]' "${MANIFEST}")" >> "$GITHUB_ENV"
         # DotNet version, example: 8
-        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' ${MANIFEST})"
+        YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' "${MANIFEST}")"
         echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
         # Node SDK, example: org.freedesktop.Sdk.Extension.node22
-        echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' ${MANIFEST})" >> "$GITHUB_ENV"
+        echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' "${MANIFEST}")" >> "$GITHUB_ENV"
       env:
         MANIFEST: ${{ env.MANIFEST }}
 
@@ -91,10 +93,10 @@ jobs:
       run: |
         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak update --user --noninteractive -y
-        flatpak install --user flathub org.flatpak.Builder --noninteractive -y
-        flatpak install --user flathub org.freedesktop.Sdk//${YQ_RUNTIME_VERSION} --noninteractive -y
-        flatpak install --user flathub ${YQ_DOTNETSDK}//${YQ_RUNTIME_VERSION} --noninteractive -y
-        flatpak install --user flathub ${YQ_NODESDK}//${YQ_RUNTIME_VERSION} --noninteractive -y
+        flatpak install --user flathub "org.flatpak.Builder" --noninteractive -y
+        flatpak install --user flathub "org.freedesktop.Sdk//${YQ_RUNTIME_VERSION}" --noninteractive -y
+        flatpak install --user flathub "${YQ_DOTNETSDK}//${YQ_RUNTIME_VERSION}" --noninteractive -y
+        flatpak install --user flathub "${YQ_NODESDK}//${YQ_RUNTIME_VERSION}" --noninteractive -y
       env:
         DOT_NET_VER: ${{ env.DOT_NET_VER }}
         YQ_DOTNETSDK: ${{ env.YQ_DOTNETSDK }}
@@ -108,7 +110,7 @@ jobs:
         repository: flatpak/flatpak-builder-tools
         path: flatpak-builder-tools
 
-    - name: Install flatpak-node-generator wit pipx
+    - name: Install flatpak-node-generator with pipx
       run: |
         pipx install "./flatpak-builder-tools/node/"
 
@@ -131,7 +133,7 @@ jobs:
     - name: Generate sources for NuGet x64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${DOT_NET_VER} --freedesktop ${YQ_RUNTIME_VERSION} --runtime=linux-x64 \
+          --dotnet "${DOT_NET_VER}" --freedesktop "${YQ_RUNTIME_VERSION}" --runtime=linux-x64 \
           "main/nuget-generated-sources-x64.json" \
           "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
       env:
@@ -141,7 +143,7 @@ jobs:
     - name: Generate sources for NuGet arm64 used by jellyfin
       run: |
         ./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
-          --dotnet ${DOT_NET_VER} --freedesktop ${YQ_RUNTIME_VERSION} --runtime=linux-arm64 \
+          --dotnet "${DOT_NET_VER}" --freedesktop "${YQ_RUNTIME_VERSION}" --runtime=linux-arm64 \
           "main/nuget-generated-sources-arm64.json" \
           "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
       env:
@@ -152,6 +154,18 @@ jobs:
       run: |
         flatpak-node-generator \
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
+
+    - name: Install Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: latest
+
+    - name: Install Prettier
+      run: |
+        npm install -g prettier
+
+    - name: Reformat JSON files
+      run: npx prettier --write "main/"*".json"
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5

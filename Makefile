@@ -13,7 +13,7 @@ RUNTIME_VER=24.08
 BUILD_DATE := $(shell date -I)
 GH_ACCOUNT := $(shell gh auth status --active | grep "Logged in to github.com account" | cut -d " " -f 9)
 
-.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta check-versions release generate-sources refresh-sources workflow-check
+.PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta check-versions release generate-sources refresh-sources workflow-check workflow-gau-schedule-disable workflow-gau-schedule-enable
 
 all: setup-sdk prepare refresh-sources pkg-x64 bundle
 
@@ -129,18 +129,33 @@ check-versions:
 
 npm-generated-sources.json:
 	flatpak-node-generator -o "npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
+	npx prettier --write "npm-generated-sources.json"
 
 nuget-generated-sources-x64.json:
 	./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
 	  --dotnet $(DOT_NET_VER) --freedesktop $(RUNTIME_VER) --runtime=linux-x64 \
 	  "nuget-generated-sources-x64.json" "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
+	npx prettier --write "nuget-generated-sources-x64.json"
 
 nuget-generated-sources-arm64.json:
 	./flatpak-builder-tools/dotnet/flatpak-dotnet-generator.py \
 	  --dotnet $(DOT_NET_VER) --freedesktop $(RUNTIME_VER) --runtime=linux-arm64 \
 	  "nuget-generated-sources-arm64.json" "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
+	npx prettier --write "nuget-generated-sources-arm64.json"
 
 workflow-check:
-	action-updater update --quiet .github/workflows/
-	zizmor .github/workflows/
+# Causes problems with code style and in some cases even breaks workflows.
+# TODO: Replace soon.
+#	action-updater update --quiet .github/workflows/
+# Already included in pre-commit.
+#	zizmor .github/workflows/
 	pre-commit autoupdate
+
+# Before pushing to Flathub.
+workflow-gau-schedule-disable:
+	sed -i 's/ \(schedule:\)/ #\1/' .github/workflows/ga-updater.yml
+	sed -i 's/ \(- cron:\)/ #\1/' .github/workflows/ga-updater.yml
+# After syncing with Flathub.
+workflow-gau-schedule-enable:
+	sed -i 's/ #\(schedule:\)/ \1/' .github/workflows/ga-updater.yml
+	sed -i 's/ #\(- cron:\)/ \1/' .github/workflows/ga-updater.yml

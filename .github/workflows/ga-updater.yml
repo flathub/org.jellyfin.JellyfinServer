@@ -4,8 +4,8 @@ on:
   # vsoch/action-updater@0.0.16 is not allowed to be used in flathub/org.jellyfin.JellyfinServer.
   # Actions in this workflow must be: within a repository owned by flathub, created by GitHub, or matching the following:
   # docker/*, docker://ghcr.io/flathub/*, flathub/*, peter-evans/create-pull-request@*.
-  schedule:
-  - cron: 15 9 * * SAT
+  #schedule:
+  #- cron: 15 9 * * SAT
   workflow_dispatch:
 #env:
 #  PR_BRANCH: update-ga
