@@ -55,11 +55,15 @@ repos:
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.6.27
+    hooks:
+      - id: actionlint
   - repo: https://github.com/woodruffw/zizmor
     rev: v0.5.0
     hooks:
     - id: zizmor
-      files: ^\.github/workflows/.*\.yml$
+      files: ^\.github/workflows/.*\.ya?ml$
   # This takes a few seconds longer, but it is so wasteful and embarrassing when a builder fails with a linter error.
   - repo: local
     hooks:
