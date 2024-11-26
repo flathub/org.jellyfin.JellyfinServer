@@ -9,18 +9,23 @@
 #
 name: Regenerate NuGet and Node Sources
 on:
+  # TODO: Remove, seems to be fixed.
   # Running this workflow on a schedule with the current tooling will only
   # create noise and waste resources. The order of the dependencies can change
   # while versions and hashes remain the same. Since this workflow now exists
   # and is considered complete, a maintainer should be able to run this
   # workflow on demand from the GitHub app on a mobile device when the bot
   # detects a new release of Jellyfin.
-  #schedule:
-  #- cron: 0 0/12 * * *
+  schedule:
+  # Past releases usually happened late on Ssturday
+  - cron: 15 6 * * SUN
   workflow_dispatch:
 env:
   MANIFEST: "main/org.jellyfin.JellyfinServer.yml"
   PR_BRANCH: update-nuget-node
+  REPO_BACKEND: "jellyfin/jellyfin"
+  REPO_FRONTEND: "jellyfin/jellyfin-web"
+  SOFTWARE_NAME: "Jellyfin"
 
 jobs:
   Regenerate-NuGet-Node-Sources:
@@ -64,13 +69,36 @@ jobs:
         sudo apt-get update -y
         sudo apt-get install flatpak pipx -y --no-install-recommends
 
-    # NOTE: Seems to be already on the latest runner.
-    #- name: Install yq binary
-    #  run: |
-    #    mkdir -pv ~/.local/bin
-    #    wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
-    #      -O ~/.local/bin/yq
-    #    chmod -v +x ~/.local/bin/yq
+    - name: Install yq binary, if necessary
+      run: |
+        if ! command -v "yq" > /dev/null 2>&1; then
+          mkdir -pv ~/.local/bin
+          wget --quiet https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+            -O ~/.local/bin/yq
+          chmod -v +x ~/.local/bin/yq
+        fi
+
+    - name: Get latest ${{ env.SOFTWARE_NAME }} frontend tag
+      id: jq_tag_jf_fe
+      run: |
+        latest_tag=$(
+          curl -s "https://api.github.com/repos/${REPO_FRONTEND}/releases/latest" \
+            | jq -r '.tag_name'
+        )
+        echo "JQ_TAG_JF_FE=$latest_tag" >> "$GITHUB_OUTPUT"
+      env:
+        REPO_FRONTEND: ${{ env.REPO_FRONTEND }}
+
+    - name: Get latest ${{ env.SOFTWARE_NAME }} backend tag
+      id: jq_tag_jf_be
+      run: |
+        latest_tag=$(
+          curl -s "https://api.github.com/repos/${REPO_BACKEND}/releases/latest" \
+            | jq -r '.tag_name'
+        )
+        echo "JQ_TAG_JF_BE=$latest_tag" >> "$GITHUB_OUTPUT"
+      env:
+        REPO_BACKEND: ${{ env.REPO_BACKEND }}
 
     - name: Extract environment variables from manifest
       run: |
@@ -86,7 +114,20 @@ jobs:
         echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
         # Node SDK, example: org.freedesktop.Sdk.Extension.node22
         echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' "${MANIFEST}")" >> "$GITHUB_ENV"
+        # If frontend and backend tags are equal, and backend tag is not empty,
+        # and backend tag does not match the manifest, then there must be a new
+        # release.
+        # shellcheck disable=SC2153
+        if [[ "${JQ_TAG_JF_FE}" == "${JQ_TAG_JF_BE}" && -n "${JQ_TAG_JF_BE}" && "${JQ_TAG_JF_BE}" != "${YQ_JF_TAG}" ]]; then
+          echo "JF_TAG=${JQ_TAG_JF_BE}" >> "$GITHUB_ENV"
+          echo "NEW_RELEASE_DETECTED=true" >> "$GITHUB_ENV"
+        else
+          echo "JF_TAG=${YQ_JF_TAG}" >> "$GITHUB_ENV"
+          echo "NEW_RELEASE_DETECTED=false" >> "$GITHUB_ENV"
+        fi
       env:
+        JQ_TAG_JF_FE: ${{ env.JQ_TAG_JF_FE }}
+        JQ_TAG_JF_BE: ${{ env.JQ_TAG_JF_BE }}
         MANIFEST: ${{ env.MANIFEST }}
 
     - name: Install Flatpak Builder, Freedesktop SDK, DotNet and Node
@@ -120,7 +161,7 @@ jobs:
         persist-credentials: false
         repository: jellyfin/jellyfin
         path: jellyfin
-        ref: ${{ env.YQ_JF_TAG }}
+        ref: ${{ env.JF_TAG }}
 
     - name: Checkout jellyfin-web
       uses: actions/checkout@v4
@@ -128,7 +169,7 @@ jobs:
         persist-credentials: false
         repository: jellyfin/jellyfin-web
         path: jellyfin-web
-        ref: ${{ env.YQ_JF_TAG }}
+        ref: ${{ env.JF_TAG }}
 
     - name: Generate sources for NuGet x64 used by jellyfin
       run: |
@@ -171,7 +212,7 @@ jobs:
       uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
       with:
         path: main
-        title: Regenerate NuGet and Node Sources
-        commit-message: Regenerate NuGet and Node Sources
+        title: Regenerate NuGet and Node Sources ${{ env.JF_TAG }}
+        commit-message: Regenerate NuGet and Node Sources ${{ env.JF_TAG }}
         branch: ${{ env.PR_BRANCH }}
         delete-branch: true
