@@ -85,7 +85,7 @@ jobs:
           curl -s "https://api.github.com/repos/${REPO_FRONTEND}/releases/latest" \
             | jq -r '.tag_name'
         )
-        echo "JQ_TAG_JF_FE=$latest_tag" >> "$GITHUB_OUTPUT"
+        echo "JQ_TAG_JF_FE=$latest_tag" >> "$GITHUB_ENV"
       env:
         REPO_FRONTEND: ${{ env.REPO_FRONTEND }}
 
@@ -96,7 +96,7 @@ jobs:
           curl -s "https://api.github.com/repos/${REPO_BACKEND}/releases/latest" \
             | jq -r '.tag_name'
         )
-        echo "JQ_TAG_JF_BE=$latest_tag" >> "$GITHUB_OUTPUT"
+        echo "JQ_TAG_JF_BE=$latest_tag" >> "$GITHUB_ENV"
       env:
         REPO_BACKEND: ${{ env.REPO_BACKEND }}
 
