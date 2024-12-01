@@ -174,8 +174,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: 217d52beb79b5f17cc77756b0664996ad7ab8d4b
-        tag: libopenmpt-0.7.11
+        commit: f92f991b3290758468df5ab3435113f5d5476fe9
+        tag: libopenmpt-0.7.12
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
@@ -255,7 +255,7 @@ modules:
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': '1.3.296.0'
+            '!=': 1.3.296.0
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -266,7 +266,7 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': '1.3.296.0'
+            '!=': 1.3.296.0
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -277,7 +277,7 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': '1.3.296.0'
+            '!=': 1.3.296.0
 
   - name: libplacebo
     buildsystem: meson
@@ -317,7 +317,7 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': '1.3.296.0'
+            '!=': 1.3.296.0
       # Already included as a submodule: glad, jinja, markupsafe
 
   - name: rkmpp
@@ -626,7 +626,7 @@ modules:
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
           # Known newer versions.
           versions:
-            '!=': '1.3.296.0'
+            '!=': 1.3.296.0
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
@@ -642,7 +642,7 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': '1.3.296.0'
+                '!=': 1.3.296.0
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -658,7 +658,7 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': '1.3.296.0'
+                '!=': 1.3.296.0
 
   - name: jellyfin-ffmpeg
     disabled: false
