@@ -64,6 +64,8 @@ repos:
     hooks:
     - id: zizmor
       files: ^\.github/workflows/.*\.ya?ml$
+  # NOTE: It looks like community maintainers have given up on maintaining the
+  # prettier pre-commit hook. Therefore we integrate it in the makefile.
   # This takes a few seconds longer, but it is so wasteful and embarrassing when a builder fails with a linter error.
   - repo: local
     hooks:

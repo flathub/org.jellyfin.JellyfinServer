@@ -2,6 +2,7 @@ id: org.jellyfin.JellyfinServer
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
+# NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet8
   - org.freedesktop.Sdk.Extension.node22
@@ -811,6 +812,7 @@ modules:
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
         commit: b3e563385c1ae8e07caff508ae59ab2518682989
+        # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
         tag: v10.10.3
         x-checker-data:
           is-main-source: true
