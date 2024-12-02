@@ -322,7 +322,7 @@ modules:
 
   - name: rkmpp
     only-arches:
-      - arm64
+      - aarch64
     buildsystem: cmake-ninja
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
@@ -337,7 +337,7 @@ modules:
 
   - name: rkrga
     only-arches:
-      - arm64
+      - aarch64
     buildsystem: meson
     config-opts:
       - --libdir=lib
@@ -676,9 +676,17 @@ modules:
             - --enable-cuda-llvm
             - --enable-cuvid
             - --enable-ffnvcodec
+            - --enable-libplacebo
+            - --enable-libshaderc
             - --enable-nvdec
             - --enable-nvenc
             - --enable-vaapi
+            - --enable-vulkan
+        aarch64:
+          config-opts:
+            - --toolchain=hardened
+            - --enable-rkmpp
+            - --enable-rkrga
     config-opts:
       - --disable-doc
       - --disable-ffplay
@@ -703,8 +711,6 @@ modules:
       - --enable-libmp3lame
       - --enable-libopenmpt
       - --enable-libopus
-      - --enable-libplacebo
-      - --enable-libshaderc
       - --enable-libsvtav1
       - --enable-libtheora
       - --enable-libvorbis
@@ -719,7 +725,6 @@ modules:
       - --enable-opencl
       - --enable-shared
       - --enable-version3
-      - --enable-vulkan
       - --extra-libs=-lfftw3f
       - --extra-version=Jellyfin
       - --target-os=linux
