@@ -245,6 +245,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          # Known newer versions.
+          versions:
+            '!=': v2024.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
@@ -253,9 +256,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          # Known newer versions.
-          versions:
-            '!=': 1.3.296.0
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
