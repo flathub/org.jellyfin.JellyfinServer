@@ -39,6 +39,9 @@
   </description>
 
   <releases>
+    <release version="7.0.2" date="2024-12-14">
+      <description></description>
+    </release>
     <release version="10.10.3" date="2024-11-19">
       <description>
         <p>Upgraded: Jellyfin and Jellyfin Web to 10.10.3.</p>
