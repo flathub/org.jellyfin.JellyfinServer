@@ -39,8 +39,8 @@
   </description>
 
   <releases>
-    <release version="7.0.2" date="2024-12-14">
-      <description></description>
+    <release version="10.10.3" date="2024-12-14">
+      <description>Bump Jellyfin FFmpeg to 7.0.2</description>
     </release>
     <release version="10.10.3" date="2024-11-19">
       <description>
