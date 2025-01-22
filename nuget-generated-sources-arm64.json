@@ -778,10 +778,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/nebml/0.11.0/nebml.0.11.0.nupkg",
-    "sha512": "07dc3630b81d5e4a29be8df8178d6fba6f7bf20396bb5217af2941b741d88764e0a91e8d524249a9a94dbe8dfd5f128e4d8556e71404d63b521a493a8ccd9965",
+    "url": "https://api.nuget.org/v3-flatcontainer/nebml/0.12.0/nebml.0.12.0.nupkg",
+    "sha512": "de005bf5b4ac4841bdbbd46dbf42d8a51918421ea9530284e482f1910f4871c6418831babf94ed370733d04ffcbb8a6aa1ee243d76a310b8556a59335af9c60f",
     "dest": "nuget-sources",
-    "dest-filename": "nebml.0.11.0.nupkg"
+    "dest-filename": "nebml.0.12.0.nupkg"
   },
   {
     "type": "file",
@@ -1758,10 +1758,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.8.0/z440.atl.core.6.8.0.nupkg",
-    "sha512": "e52cd9acbe0eba1c72c6d2967a314198421e029ca0271e4872f37044549173d3403f33e2d391350356c96772938d1fa95ba9c914b238b3929d3c9293469c3fd5",
+    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.11.0/z440.atl.core.6.11.0.nupkg",
+    "sha512": "47921cec543e1560d122ca60b459a78e7dc501a2e1c4c7d97929accfbb2aea4b2e0fe91699982d706940b0605e7ee6b960f2bdd28de57f5ed08d536f65fee37f",
     "dest": "nuget-sources",
-    "dest-filename": "z440.atl.core.6.8.0.nupkg"
+    "dest-filename": "z440.atl.core.6.11.0.nupkg"
   },
   {
     "type": "file",
