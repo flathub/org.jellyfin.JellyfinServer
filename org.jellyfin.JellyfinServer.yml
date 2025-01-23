@@ -266,8 +266,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.3.296.0
-            '!=': 1.4.304.0
+            - '!=': 1.3.296.0
+            - '!=': 1.4.304.0
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
@@ -278,8 +278,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.3.296.0
-            '!=': 1.4.304.0
+            - '!=': 1.3.296.0
+            - '!=': 1.4.304.0
 
   - name: libplacebo
     buildsystem: meson
@@ -319,8 +319,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.3.296.0
-            '!=': 1.4.304.0
+            - '!=': 1.3.296.0
+            - '!=': 1.4.304.0
       # Already included as a submodule: glad, jinja, markupsafe
 
   - name: rkmpp
