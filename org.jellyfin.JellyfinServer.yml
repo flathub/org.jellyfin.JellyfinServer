@@ -638,14 +638,15 @@ modules:
           # NOTE: GitHub does not have the headers, Debian archives versions were different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
-            commit: 739e60d2dd15202b5a210c005377c23d09c36c25
-            tag: debian/1.4.304.0-1
+            commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
+            tag: debian/1.3.290.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': 1.3.296.0
+                - '!=': 1.3.296.0
+                - '!=': 1.4.304.0
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -654,14 +655,15 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: 8c2fd240184f1ee8ea00267d77640992bc227350
-            tag: debian/1.4.304.0-1
+            commit: eddee6d58cfe758e162d38432a57f6272b0f58f0
+            tag: debian/1.3.290.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': 1.3.296.0
+                - '!=': 1.3.296.0
+                - '!=': 1.4.304.0
 
   - name: jellyfin-ffmpeg
     disabled: false
