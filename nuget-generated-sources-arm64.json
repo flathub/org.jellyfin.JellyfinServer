@@ -15,17 +15,17 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/blurhashsharp/1.3.3/blurhashsharp.1.3.3.nupkg",
-    "sha512": "7a49ff313da159a1aefc91279c77eb7265a52c50118e4b91d2174a225edfaec13051cc49023fdc4c08ce52635bd68d88e1de9c5968d885fc0d5e53934ea96c17",
+    "url": "https://api.nuget.org/v3-flatcontainer/blurhashsharp/1.3.4/blurhashsharp.1.3.4.nupkg",
+    "sha512": "79e3187bc21586244e65611088793ae21d0f92b7087f240e9b0b652b3fee0812062a63612c0142df9f57ecf83b6f21909e5d6b8e17176e52d99191d5f34b2496",
     "dest": "nuget-sources",
-    "dest-filename": "blurhashsharp.1.3.3.nupkg"
+    "dest-filename": "blurhashsharp.1.3.4.nupkg"
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/blurhashsharp.skiasharp/1.3.3/blurhashsharp.skiasharp.1.3.3.nupkg",
-    "sha512": "f17106411b69a58580e0854a662d44623445e96866d6cf8834865ff978dd1f08ab5646632f35799ed53f56d13d5624efa0e44f60bf10b116c0459c41bc9b2fad",
+    "url": "https://api.nuget.org/v3-flatcontainer/blurhashsharp.skiasharp/1.3.4/blurhashsharp.skiasharp.1.3.4.nupkg",
+    "sha512": "7a38c3a9a0f9b1ea6061f50c16e6c93d6b2019936cca2a1d0d07b41e0f8a669421406a69b7b8ee7d96d92e7edab3f81bd7540bbe3dad98f7e0de9cec632b91bf",
     "dest": "nuget-sources",
-    "dest-filename": "blurhashsharp.skiasharp.1.3.3.nupkg"
+    "dest-filename": "blurhashsharp.skiasharp.1.3.4.nupkg"
   },
   {
     "type": "file",
