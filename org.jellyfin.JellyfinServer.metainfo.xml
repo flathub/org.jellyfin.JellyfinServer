@@ -39,6 +39,9 @@
   </description>
 
   <releases>
+    <release version="10.10.4" date="2024-01-25">
+      <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.5</description>
+    </release>
     <release version="10.10.4" date="2024-01-22">
       <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.4, Jellyfin FFmpeg to 7.0.2-9</description>
     </release>
