@@ -567,8 +567,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.35.tar.gz
-        sha256: 5d93101eae5895247bea58cff40bb84424158170ae7f931105666157cc187636
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.36.tar.gz
+        sha256: 501617a2667ce417703be068a8855b1a64b7a6586ea03d93eb44dfa645090fbe
         x-checker-data:
           type: anitya
           project-id: 138182
