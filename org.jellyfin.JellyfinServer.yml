@@ -352,7 +352,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/nyanmisaka/rk-mirrors.git
-        commit: e97e327662d1c0867d4cbcc01d5caf15250fc4e7
+        commit: c30fdd20ed8bfae438d2b1ea9b8d1dd64c9481bc
         # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
         #branch: jellyfin-rga
 
