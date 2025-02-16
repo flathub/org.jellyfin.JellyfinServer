@@ -14,6 +14,7 @@
 
 * [lwbt](https://github.com/lwbt) (active)
 * [istori1](https://github.com/istori1) (inactive) - Initial creator of the Flatpak version
+* [joshuaboniface](https://github.com/joshuaboniface) (shadow) - Jellyfin Project leader; not active maintainer but providing checks and balances for verification
 
 New co-maintainers are welcome, check the development section in the Wiki if you are interested.
 
