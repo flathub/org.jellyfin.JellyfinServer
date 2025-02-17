@@ -1751,10 +1751,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.11.0/z440.atl.core.6.11.0.nupkg",
-    "sha512": "47921cec543e1560d122ca60b459a78e7dc501a2e1c4c7d97929accfbb2aea4b2e0fe91699982d706940b0605e7ee6b960f2bdd28de57f5ed08d536f65fee37f",
+    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.16.0/z440.atl.core.6.16.0.nupkg",
+    "sha512": "54e84fda6a57473c7ae22675c9cf53debf5c479fd8c673b8113e37e208298b2dd6980ca2f9a3426eb3b5568066c739a8d72ea370cebd51c89a09e309731e5dcb",
     "dest": "nuget-sources",
-    "dest-filename": "z440.atl.core.6.11.0.nupkg"
+    "dest-filename": "z440.atl.core.6.16.0.nupkg"
   },
   {
     "type": "file",
