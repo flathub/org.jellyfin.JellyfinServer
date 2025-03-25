@@ -135,9 +135,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 07e64a0b241a06f93bb5d54901325c53860c09b4
+        commit: 516e2a526a452c0af0177407202d996b516dac62
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.1.2
+        tag: intel-onevpl-25.1.3
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -567,8 +567,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.36.tar.gz
-        sha256: 501617a2667ce417703be068a8855b1a64b7a6586ea03d93eb44dfa645090fbe
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.36.0.tar.gz
+        sha256: 4abdf1ffecbffc78bfd74a9376595d14aecfa1a419147bcaa6113cf24bb28060
         x-checker-data:
           type: anitya
           project-id: 138182
@@ -591,8 +591,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: 6e69def4ec283fe0b71195671245c3b768bebdef
-        tag: v2.3.0
+        commit: 442fc31a1cc12be618a9e112d3b41deb8fb398ab
+        tag: v3.0.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
