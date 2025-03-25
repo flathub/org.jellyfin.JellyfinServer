@@ -596,6 +596,11 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            # FTBBS
+            - '!=': v3.0.0
+            - '!=': v3.0.1
+            - '!=': v3.0.2
 
   - name: clinfo
     buildsystem: simple
