@@ -40,7 +40,7 @@ repos:
         args: ["--color=always", "--external-sources"]
         types: ["file", "shell", "text"]
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.10.0-1
+    rev: v3.11.0-1
     hooks:
       - id: shfmt
         args: ["--diff", "--indent", "2", "--binary-next-line", "--space-redirects", "--case-indent"]
@@ -51,12 +51,12 @@ repos:
               path/to/file\.py
           )$
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.21.2
+    rev: v8.24.2
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.6.27
+    rev: v1.7.7
     hooks:
       - id: actionlint
   - repo: https://github.com/woodruffw/zizmor

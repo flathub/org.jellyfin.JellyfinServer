@@ -162,10 +162,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/lrcparser/2024.728.2/lrcparser.2024.728.2.nupkg",
-    "sha512": "d1b27a7e33788e6b29f39a374962eb0ad9276524333cc526528bd53ffd35f14a95071667f6721925a12788b85c1bc458246f2ca76470af2bcd1811a0e4dc0c34",
+    "url": "https://api.nuget.org/v3-flatcontainer/lrcparser/2025.228.1/lrcparser.2025.228.1.nupkg",
+    "sha512": "7167dcedb0d5425d1f61c365519698d5f10f939aea2bac55196e7dae3573a82fa5ce8b5d9456a58378be2ccc8f3a20ba546f51206e9763aa44cd0e5b075eb641",
     "dest": "nuget-sources",
-    "dest-filename": "lrcparser.2024.728.2.nupkg"
+    "dest-filename": "lrcparser.2025.228.1.nupkg"
   },
   {
     "type": "file",
@@ -1751,10 +1751,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.16.0/z440.atl.core.6.16.0.nupkg",
-    "sha512": "54e84fda6a57473c7ae22675c9cf53debf5c479fd8c673b8113e37e208298b2dd6980ca2f9a3426eb3b5568066c739a8d72ea370cebd51c89a09e309731e5dcb",
+    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/6.20.0/z440.atl.core.6.20.0.nupkg",
+    "sha512": "12638c9be2f82aa3fc767f6d4f91ab7ecf9e80d66b8f2c57b7976c6b0fbee9df21501c028eaa45d1c0009900de8ab0bdb72a973539f547db2219313656ad206b",
     "dest": "nuget-sources",
-    "dest-filename": "z440.atl.core.6.16.0.nupkg"
+    "dest-filename": "z440.atl.core.6.20.0.nupkg"
   },
   {
     "type": "file",
