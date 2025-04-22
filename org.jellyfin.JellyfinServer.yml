@@ -135,9 +135,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: b7740fbc90aada9ed00b5461b08bd4c622ed6841
+        commit: d53c1badcecf89a52e6fa51b472aa173612e0461
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.2.0
+        tag: intel-onevpl-25.2.1
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -250,9 +250,9 @@ modules:
             '!=': v2024.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
-        commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
+        commit: f289d047f49fb60488301ec62bafab85573668cc
         dest: third_party/spirv-tools
-        tag: v2024.3
+        tag: v2025.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
