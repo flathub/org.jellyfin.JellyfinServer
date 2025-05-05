@@ -250,9 +250,9 @@ modules:
             '!=': v2024.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
-        commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
+        commit: f289d047f49fb60488301ec62bafab85573668cc
         dest: third_party/spirv-tools
-        tag: v2024.3
+        tag: v2025.1
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -742,8 +742,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 9e7002e5dcf7d0760bbf97bf1628106f949e18d0
-        tag: v7.1.1-1
+        commit: 4439c7649f0e73aa1812c5beefb2d577fa485966
+        tag: v7.1.1-2
         x-checker-data:
           is-main-source: true
           type: git
