@@ -250,12 +250,15 @@ modules:
             '!=': v2024.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
-        commit: f289d047f49fb60488301ec62bafab85573668cc
+        commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
         dest: third_party/spirv-tools
-        tag: v2025.1
+        tag: v2024.3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          # Known newer versions.
+          versions:
+            '!=': v2025.1
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -567,13 +570,18 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.36.tar.gz
-        sha256: ec07ee21b820a73f5bae224e92fd3c492f52732d4885f0637f48189afdd87564
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.35.tar.gz
+        sha256: 5d93101eae5895247bea58cff40bb84424158170ae7f931105666157cc187636
         x-checker-data:
           type: anitya
           project-id: 138182
           stable-only: true
           url-template: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v$version.tar.gz
+          versions:
+            # The artifact seems to have been renamed a few days after release.
+            # I'm reverting this now, I'm currently to busy to take care of
+            # this crap.
+            - '!=': 1.4.36
 
   - name: svt-av1
     buildsystem: cmake-ninja
@@ -742,8 +750,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 4439c7649f0e73aa1812c5beefb2d577fa485966
-        tag: v7.1.1-2
+        commit: 9ba6e9a7c905f06c4a895ffe9ef5d19e61f001c2
+        tag: v7.0.2-9
         x-checker-data:
           is-main-source: true
           type: git
@@ -756,7 +764,10 @@ modules:
           #   of jellyfin-ffmpeg which has reached the version number below, thus
           #   effectively breaking the Flatpak build.
           versions:
-            <: '8.0'
+            - <: '8.0'
+            # Reverted to older version after FTBS issues from AMF
+            - '!=': 'v7.1.1-1'
+            - '!=': 'v7.1.1-2'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .

@@ -40,7 +40,7 @@
 
   <releases>
     <release version="10.10.7" date="2025-05-06">
-      <description></description>
+      <description>Downgraded: Jellyfin FFmpeg to 7.0.2</description>
     </release>
     <release version="10.10.7" date="2025-04-19">
       <description>Upgraded: Jellyfin FFmpeg to 7.1.1-1</description>
