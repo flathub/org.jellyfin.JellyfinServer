@@ -135,9 +135,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: d53c1badcecf89a52e6fa51b472aa173612e0461
+        commit: 3a78d4965c5be42685312598ede1ce90c9227ab5
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.2.1
+        tag: intel-onevpl-25.2.2
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -766,8 +766,8 @@ modules:
           versions:
             - <: '8.0'
             # Reverted to older version after FTBS issues from AMF
-            - '!=': 'v7.1.1-1'
-            - '!=': 'v7.1.1-2'
+            - '!=': v7.1.1-1
+            - '!=': v7.1.1-2
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
