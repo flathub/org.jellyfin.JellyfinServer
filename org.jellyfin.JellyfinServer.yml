@@ -174,8 +174,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: a41c449f453853657e4899be04dbdbbe001ebd2b
-        tag: libopenmpt-0.7.13
+        commit: 373691f3e71cb3c6ea36c98d37957ed2d3eb6766
+        tag: libopenmpt-0.8.0
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
