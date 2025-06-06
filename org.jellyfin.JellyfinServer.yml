@@ -135,9 +135,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: d4d2395bad8260c63d82ff2ca99a88eb7826bc96
+        commit: d3cad8aec95b9639c23e153688435c740a658984
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.2.3
+        tag: intel-onevpl-25.2.4
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
