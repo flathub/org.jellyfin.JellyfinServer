@@ -40,25 +40,39 @@
 
   <releases>
     <release version="10.10.7" date="2025-05-06">
-      <description>Downgraded: Jellyfin FFmpeg to 7.0.2</description>
+      <description>
+        <p>Downgraded: Jellyfin FFmpeg to 7.0.2</p>
+      </description>
     </release>
     <release version="10.10.7" date="2025-04-19">
-      <description>Upgraded: Jellyfin FFmpeg to 7.1.1-1</description>
+      <description>
+        <p>Upgraded: Jellyfin FFmpeg to 7.1.1-1</p>
+      </description>
     </release>
     <release version="10.10.7" date="2024-04-06">
-      <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.7</description>
+      <description>
+        <p>Upgraded: Jellyfin and Jellyfin Web to 10.10.7</p>
+      </description>
     </release>
     <release version="10.10.6" date="2024-02-17">
-      <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.6</description>
+      <description>
+        <p>Upgraded: Jellyfin and Jellyfin Web to 10.10.6</p>
+      </description>
     </release>
     <release version="10.10.5" date="2024-01-25">
-      <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.5</description>
+      <description>
+        <p>Upgraded: Jellyfin and Jellyfin Web to 10.10.5</p>
+      </description>
     </release>
     <release version="10.10.4" date="2024-01-22">
-      <description>Upgraded: Jellyfin and Jellyfin Web to 10.10.4, Jellyfin FFmpeg to 7.0.2-9</description>
+      <description>
+        <p>Upgraded: Jellyfin and Jellyfin Web to 10.10.4, Jellyfin FFmpeg to 7.0.2-9</p>
+      </description>
     </release>
     <release version="10.10.3" date="2024-12-14">
-      <description>Bump Jellyfin FFmpeg to 7.0.2</description>
+      <description>
+        <p>Bump Jellyfin FFmpeg to 7.0.2</p>
+      </description>
     </release>
     <release version="10.10.3" date="2024-11-19">
       <description>
