@@ -516,8 +516,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/sekrit-twc/zimg.git
-        commit: e5b0de6bebbcbc66732ed5afaafef6b2c7dfef87
-        tag: release-3.0.5
+        commit: f819b14e8f39d1282400b0d9543e8ef73c1b2bbd
+        tag: release-3.0.6
         x-checker-data:
           type: git
           tag-pattern: ^release-([\d.]+)$
