@@ -135,9 +135,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 377371757fbba39c66b7e748f5b57ecf7ab52a70
+        commit: ce04de308a38914c506adcdcab32f54ae2240283
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.3.2
+        tag: intel-onevpl-25.3.3
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -153,9 +153,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/acoustid/chromaprint.git
-        commit: 5c3be6803856f25b11d1d704bac56e733b4fc997
+        commit: 655c26f0db4d54014c367e3e714a62e3714792ce
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: v1.5.1
+        tag: v1.6.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -174,8 +174,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: 12497cc053c283bbaabece99aee3d33c256d0510
-        tag: libopenmpt-0.8.2
+        commit: 246f9b1a50fd1abf90651ce60d8c13eca36999dd
+        tag: libopenmpt-0.8.3
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
@@ -214,6 +214,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+          versions:
+            <: 1.4.0
 
   - name: shaderc
     buildsystem: cmake-ninja
