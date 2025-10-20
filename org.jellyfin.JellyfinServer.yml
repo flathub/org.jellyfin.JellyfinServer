@@ -242,25 +242,27 @@ modules:
     sources:
       - type: git
         url: https://github.com/google/shaderc.git
-        commit: 73743588fe9c39f2f1c780a087d94afac691a189
-        tag: v2025.4
+        commit: ff84893dd52d28f0b1737d2635733d952013bd9c
+        tag: v2024.3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': v2024.4
+            - '!=': v2024.4
+            - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
-        commit: 7f2d9ee926f98fc77a3ed1e1e0f113b8c9c49458
+        commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
         dest: third_party/spirv-tools
-        tag: v2025.4
+        tag: v2024.3
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': v2025.1
+            - '!=': v2025.1
+            - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
