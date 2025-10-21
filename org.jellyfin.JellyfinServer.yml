@@ -249,7 +249,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': v2024.4
+            - '!=': v2024.4
+            - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         commit: 7f2d9ee926f98fc77a3ed1e1e0f113b8c9c49458
@@ -260,7 +261,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': v2025.1
+            - '!=': v2025.1
+            - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
@@ -328,38 +330,38 @@ modules:
             - '!=': 1.4.304.0
       # Already included as a submodule: glad, jinja, markupsafe
 
-  - name: rkmpp
-    only-arches:
-      - aarch64
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_SHARED_LIBS=ON
-      - -DBUILD_TEST=OFF
-    sources:
-      - type: git
-        url: https://github.com/nyanmisaka/mpp.git
-        commit: 110d2660a18855656205cdda8f40527c8a9cc3c1
-        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
-        #branch: jellyfin-mpp
+#  - name: rkmpp
+#    only-arches:
+#      - aarch64
+#    buildsystem: cmake-ninja
+#    config-opts:
+#      - -DCMAKE_BUILD_TYPE=Release
+#      - -DBUILD_SHARED_LIBS=ON
+#      - -DBUILD_TEST=OFF
+#    sources:
+#      - type: git
+#        url: https://github.com/nyanmisaka/mpp.git
+#        commit: 110d2660a18855656205cdda8f40527c8a9cc3c1
+#        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
+#        #branch: jellyfin-mpp
 
-  - name: rkrga
-    only-arches:
-      - aarch64
-    buildsystem: meson
-    config-opts:
-      - --libdir=lib
-      - --buildtype=release
-      - --default-library=shared
-      - -Dcpp_args=-fpermissive
-      - -Dlibdrm=false
-      - -Dlibrga_demo=false
-    sources:
-      - type: git
-        url: https://github.com/nyanmisaka/rk-mirrors.git
-        commit: c30fdd20ed8bfae438d2b1ea9b8d1dd64c9481bc
-        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
-        #branch: jellyfin-rga
+#  - name: rkrga
+#    only-arches:
+#      - aarch64
+#    buildsystem: meson
+#    config-opts:
+#      - --libdir=lib
+#      - --buildtype=release
+#      - --default-library=shared
+#      - -Dcpp_args=-fpermissive
+#      - -Dlibdrm=false
+#      - -Dlibrga_demo=false
+#    sources:
+#      - type: git
+#        url: https://github.com/nyanmisaka/rk-mirrors.git
+#        commit: c30fdd20ed8bfae438d2b1ea9b8d1dd64c9481bc
+#        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
+#        #branch: jellyfin-rga
 
   - name: numactl
     rm-configure: true
@@ -707,8 +709,8 @@ modules:
         aarch64:
           config-opts:
             - --toolchain=hardened
-            - --enable-rkmpp
-            - --enable-rkrga
+            # - --enable-rkmpp
+            # - --enable-rkrga
     config-opts:
       - --disable-doc
       - --disable-ffplay
@@ -795,6 +797,8 @@ modules:
           is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            <: v10.11.0
 
   - name: jellyfin
     disabled: false
@@ -848,6 +852,8 @@ modules:
           is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
+          versions:
+            <: v10.11.0
       - type: file
         path: org.jellyfin.JellyfinServer.metainfo.xml
       - type: file
