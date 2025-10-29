@@ -6,7 +6,7 @@ TAG_JELLYFIN_WEB := $(shell curl -s https://api.github.com/repos/jellyfin/jellyf
 VERSION := $(TAG_JELLYFIN)
 # TODO: Needs to be reworked.
 #VERSION := $(shell cat VERSION)
-DOT_NET_VER=8
+DOT_NET_VER=9
 LLVM_VER=19
 NODE_VER=22
 RUNTIME_VER=24.08
