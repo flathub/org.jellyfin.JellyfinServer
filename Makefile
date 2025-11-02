@@ -177,9 +177,9 @@ workflow-check:
 # Causes problems with code style and in some cases even breaks workflows.
 # TODO: Replace soon.
 #	action-updater update --quiet .github/workflows/
-# Already included in pre-commit.
+# Already included in pre-commit / prek.
 #	zizmor .github/workflows/
-	pre-commit autoupdate
+	prek autoupdate
 
 # Before pushing to Flathub.
 .PHONY: workflow-gau-schedule-disable
