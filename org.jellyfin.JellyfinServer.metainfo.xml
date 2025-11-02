@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>org.jellyfin.JellyfinServer</id>
-
   <name>Jellyfin Server</name>
   <summary>Media Streaming System</summary>
-
   <branding>
     <color type="primary" scheme_preference="light">#333c44</color>
     <color type="primary" scheme_preference="dark">#172138</color>
   </branding>
-
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0-or-later</project_license>
-
   <url type="homepage">https://jellyfin.org/</url>
   <url type="help">https://jellyfin.org/docs/</url>
   <url type="bugtracker">https://github.com/jellyfin/jellyfin/issues</url>
   <url type="faq">https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions</url>
-
   <description>
     <p>
       Jellyfin is the volunteer-built media solution that puts you in control
@@ -37,8 +32,12 @@
       </li>
     </ul>
   </description>
-
   <releases>
+    <release version="10.11.1" date="2025-11-02">
+      <description>
+        <p>Updated Jellyfin and Jellyfin Web to 10.11.1</p>
+      </description>
+    </release>
     <release version="10.10.7" date="2025-05-06">
       <description>
         <p>Downgraded: Jellyfin FFmpeg to 7.0.2</p>
