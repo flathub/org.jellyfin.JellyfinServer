@@ -8,7 +8,7 @@ RUNTIME_VER := $(shell yq .runtime-version $(MANIFEST))
 BUILD_DATE := $(shell date -I)
 
 .PHONY: all
-all: setup-sdk prepare refresh-sources add-new-release-to-meta check-meta pkg-x64 bundle
+all: setup-sdk prepare refresh-sources add-new-release-to-meta check-meta pkg-x64 lint bundle
 
 .PHONY: clean
 clean:
@@ -143,9 +143,9 @@ lint:
 check-manifest-versions:
 	sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
 	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
-	grep --line-number -E "dotnet[0-9]{1,2}" "$(MANIFEST)"
-	grep --line-number -E "llvm[0-9]{2}" "$(MANIFEST)"
-	grep --line-number -E "node[0-9]{2}" "$(MANIFEST)"
+	grep --line-number --color=always -E "dotnet[0-9]{1,2}" "$(MANIFEST)"
+	grep --line-number --color=always -E "llvm[0-9]{2}" "$(MANIFEST)"
+	grep --line-number --color=always -E "node[0-9]{2}" "$(MANIFEST)"
 
 .PHONY: check-meta
 check-meta:
