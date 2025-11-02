@@ -1,4 +1,5 @@
 id: org.jellyfin.JellyfinServer
+# See https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/releases
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
@@ -6,7 +7,7 @@ sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet9
   - org.freedesktop.Sdk.Extension.node22
-  - org.freedesktop.Sdk.Extension.llvm19
+  - org.freedesktop.Sdk.Extension.llvm20
 separate-locales: false
 command: jellyfin.sh
 
@@ -214,6 +215,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
+          # TODO:
+          # Error: module libbluray: Can't find autogen, autogen.sh or bootstrap
           versions:
             <: 1.4.0
 
@@ -242,8 +245,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/google/shaderc.git
-        commit: ff84893dd52d28f0b1737d2635733d952013bd9c
-        tag: v2024.3
+        commit: 73743588fe9c39f2f1c780a087d94afac691a189
+        tag: v2025.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -253,9 +256,9 @@ modules:
             - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
-        commit: 0cfe9e7219148716dfd30b37f4d21753f098707a
         dest: third_party/spirv-tools
-        tag: v2024.3
+        commit: 7f2d9ee926f98fc77a3ed1e1e0f113b8c9c49458
+        tag: v2025.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -265,9 +268,9 @@ modules:
             - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
-        commit: 2acb319af38d43be3ea76bfabf3998e5281d8d12
         dest: third_party/spirv-headers
-        tag: vulkan-sdk-1.3.290.0
+        commit: 01e0577914a75a2569c846778c2f93aa8e6feddd
+        tag: vulkan-sdk-1.4.328.1
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -277,9 +280,9 @@ modules:
             - '!=': 1.4.304.0
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
-        commit: fa9c3deb49e035a8abcabe366f26aac010f6cbfb
         dest: third_party/glslang
-        tag: vulkan-sdk-1.3.290.0
+        commit: a57276bf558f5cf94d3a9854ebdf5a2236849a5a
+        tag: vulkan-sdk-1.4.328.1
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -318,8 +321,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Loader.git
-        commit: 40b8e6eeead809a62c708cb48fdd9f8f2eab3f15
-        tag: vulkan-sdk-1.3.290.0
+        commit: 0a278cc725089cb67bf6027076e5d72f97c04d86
+        tag: vulkan-sdk-1.4.328.1
         dest: tmp/vulkan-loader
         x-checker-data:
           type: git
@@ -391,7 +394,7 @@ modules:
         #  - https://github.com/jpsdr/x264
         # NOTE: Unoffical, repo has tags.
         # - https://github.com/ShiftMediaProject/x264.git
-        commit: da14df5535fd46776fb1c9da3130973295c87aca
+        commit: 0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee
         #branch: master
         #tag: 0.164.r3194
         # Every commit to the master branch is considered a release
@@ -407,8 +410,8 @@ modules:
           config-opts:
             - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
         aarch64:
-          append-path: /usr/lib/sdk/llvm19/bin
-          prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
+          append-path: /usr/lib/sdk/llvm20/bin
+          prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
           env:
             CC: clang
             CXX: clang++
@@ -449,8 +452,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm19/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
+              append-path: /usr/lib/sdk/llvm20/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -485,8 +488,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm19/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
+              append-path: /usr/lib/sdk/llvm20/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -540,7 +543,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        commit: a48ab3a0d72efe9968ebafa34c425c892e4afa50
+        tag: v0.2.44
+        commit: 5169a428d51c3ae8ff7b0897e8a687d8e05e37b5
         #branch: main
         # NOTE: Disabled on 2024-11-18, above commit was the latest, the latest tagged version failed to build.
         #tag: v0.2.42
@@ -575,18 +579,15 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.4.35.tar.gz
-        sha256: 5d93101eae5895247bea58cff40bb84424158170ae7f931105666157cc187636
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.0.tar.gz
+        sha256: bf80ee4a77a731c5a2351b4dd74f524a18806a70099ba66a8058d91aac1150b5
         x-checker-data:
           type: anitya
           project-id: 138182
           stable-only: true
           url-template: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v$version.tar.gz
-          versions:
-            # The artifact seems to have been renamed a few days after release.
-            # I'm reverting this now, I'm currently to busy to take care of
-            # this crap.
-            - '!=': 1.4.36
+          #versions:
+          #  - '!=': 1.4.36
 
   - name: svt-av1
     buildsystem: cmake-ninja
@@ -604,8 +605,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: 6e69def4ec283fe0b71195671245c3b768bebdef
-        tag: v2.3.0
+        commit: b33dcc56cc64fcb3b3569094af8ab1d0d81ab4c1
+        tag: v3.1.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -640,8 +641,8 @@ modules:
     sources:
       - type: git
         url: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
-        commit: 6cb370453e08b26729606643dd9f5e77091c8bb2
-        tag: debian/1.3.290.0+dfsg1-1
+        commit: 63d88fe021f57764000e10c41d44f8897b80dc84
+        tag: debian/1.4.321.0+dfsg1-1
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
@@ -657,8 +658,8 @@ modules:
           # NOTE: GitHub does not have the headers, Debian archives versions were different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
-            commit: ac524affc5523f24cf5c0b0b806a9c55a828de27
-            tag: debian/1.3.290.0-1
+            commit: 828b265fdd30fb49826e4ee1fecd3cd64ee2ba9f
+            tag: debian/1.4.321.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -674,8 +675,8 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: eddee6d58cfe758e162d38432a57f6272b0f58f0
-            tag: debian/1.3.290.0-1
+            commit: e90930bafb22032ae19a6d20f3c7480d3866b2d5
+            tag: debian/1.4.321.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -687,8 +688,8 @@ modules:
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
-      append-path: /usr/lib/sdk/llvm19/bin
-      prepend-ld-library-path: /usr/lib/sdk/llvm19/lib
+      append-path: /usr/lib/sdk/llvm20/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
       arch:
         x86_64:
           config-opts:
@@ -755,8 +756,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 9ba6e9a7c905f06c4a895ffe9ef5d19e61f001c2
-        tag: v7.0.2-9
+        commit: 51b006f4bac63780710c15b6d893231f34d26517
+        tag: v7.1.2-3
         x-checker-data:
           is-main-source: true
           type: git
