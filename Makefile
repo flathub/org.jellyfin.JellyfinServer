@@ -15,7 +15,7 @@ GH_ACCOUNT := $(shell gh auth status --active | grep "Logged in to github.com ac
 
 .PHONY: all clean remove-sources reset setup-sdk prepare pkg pkg-x64 pkg-arm64 run bundle bundle-x64 bundle-arm64 lint check-meta check-versions release generate-sources refresh-sources workflow-check workflow-gau-schedule-disable workflow-gau-schedule-enable
 
-all: setup-sdk prepare refresh-sources pkg-x64 bundle
+all: setup-sdk prepare refresh-sources add-new-release-to-meta pkg-x64 bundle
 
 clean:
 	rm -rf build-dir_x86_64 build-dir_aarch64 .flatpak-builder repo
@@ -122,6 +122,11 @@ lint:
 
 check-meta:
 	flatpak run --command=appstream-util org.flatpak.Builder validate $(APPMETA)
+
+.PHONY: add-new-release-to-meta
+add-new-release-to-meta:
+	helper-scripts/add-new-release-to-meta.sh
+	git diff "$(APPMETA)"
 
 check-versions:
 	sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
