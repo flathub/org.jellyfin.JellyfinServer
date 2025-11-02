@@ -44,6 +44,8 @@ setup-sdk:
 	flatpak --user install -y org.freedesktop.Sdk.Extension.dotnet$(DOT_NET_VER)/aarch64/$(RUNTIME_VER)
 	flatpak --user install -y org.freedesktop.Sdk.Extension.llvm$(LLVM_VER)/aarch64/$(RUNTIME_VER)
 	flatpak --user install -y org.freedesktop.Sdk.Extension.node$(NODE_VER)/aarch64/$(RUNTIME_VER)
+	flatpak --user install -y org.flathub.flatpak-external-data-checker
+
 VERSION_TAG_JELLYFIN.txt:
 	curl -s https://api.github.com/repos/jellyfin/jellyfin/tags \
 	| jq -r .[0].name > VERSION_TAG_JELLYFIN.txt
