@@ -2,7 +2,7 @@
 # See https://pre-commit.com for more information
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
       # NOTE: Leave these artifacts as they are, it will only create trouble
@@ -34,13 +34,13 @@ repos:
       #- id: pretty-format-json
       #  args: ["--autofix"]
   - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.10.0
+    rev: v0.11.0
     hooks:
       - id: shellcheck
         args: ["--color=always", "--external-sources"]
         types: ["file", "shell", "text"]
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.11.0-1
+    rev: v3.12.0-2
     hooks:
       - id: shfmt
         args: ["--diff", "--indent", "2", "--binary-next-line", "--space-redirects", "--case-indent"]
@@ -51,16 +51,16 @@ repos:
               path/to/file\.py
           )$
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.7
+    rev: v1.7.8
     hooks:
       - id: actionlint
-  - repo: https://github.com/woodruffw/zizmor
-    rev: v0.5.0
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.16.2
     hooks:
     - id: zizmor
       files: ^\.github/workflows/.*\.ya?ml$
