@@ -5,6 +5,8 @@ jellyfin-web/
 jellyfin/
 repo/
 VERSION
+VERSION_TAG_JELLYFIN.txt
+VERSION_TAG_JELLYFIN_WEB.txt
 checksums.txt
 
 # Swap
