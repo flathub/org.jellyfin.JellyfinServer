@@ -758,8 +758,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: b9fdc61b6d838b0b5042664428e96d8885cefcb5
-        tag: v10.11.1
+        commit: 933e1b255bcd734ce1f14f0dc12c47d470d4da42
+        tag: v10.11.2
         x-checker-data:
           is-main-source: true
           type: git
@@ -811,9 +811,9 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 40a33da2a5354df0060eb18e89ceb348c9775e30
+        commit: 4187c6f620f9af84dad49c00e3880b4568ab8f48
         # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
-        tag: v10.11.1
+        tag: v10.11.2
         x-checker-data:
           is-main-source: true
           type: git
