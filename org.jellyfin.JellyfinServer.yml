@@ -644,8 +644,8 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
-              #versions:
-              #  - '!=': 1.4.304.0
+              versions:
+                - '!=': 1.4.328.1-1
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
