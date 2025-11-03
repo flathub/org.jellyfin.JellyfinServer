@@ -103,7 +103,7 @@ run:
 	flatpak run $(FLATPAK_ID)
 
 .PHONY: bundle
-bundle: bundle-x64 bundle-amd64
+bundle: bundle-x64 bundle-arm64
 
 .PHONY: bundle-x64
 bundle-x64:
