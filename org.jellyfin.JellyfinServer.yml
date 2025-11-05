@@ -24,6 +24,18 @@ cleanup:
   - /share/man
   - /share/pkgconfig
   - /share/vpl/examples
+  # Remove Ruby from final image (Ruby is build-time only)
+  - /bin/bundle
+  - /bin/bundler
+  - /bin/erb
+  - /bin/gem
+  - /bin/irb
+  - /bin/rdoc
+  - /bin/ri
+  - /bin/ruby
+  - /lib/ruby
+  - /lib/libruby*.so*
+  - /share/ri
 finish-args:
   - --device=dri
   - --filesystem=home/Jellyfin Server Media:create
@@ -44,6 +56,26 @@ add-extensions:
     autodelete: true
 modules:
   - shared-modules/linux-audio/fftw3f.json
+  # Inline Ruby for build-time usage as Ruby was removed from 25.08 SDK.
+  # Provides `ruby`, `gem`, etc. which are cleaned up prior to packaging.
+  # YJIT is disabled to avoid Rust dependency.
+  - name: ruby
+    buildsystem: simple
+    builddir: true
+    config-opts: []
+    build-commands:
+      - ./configure --prefix=/app --disable-install-doc --disable-yjit
+      - make -j${FLATPAK_BUILDER_N_JOBS}
+      - make install
+    sources:
+      - type: archive
+        url: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-3.4.7.tar.xz
+        sha256: db425a86f6e07546957578f4946cc700a91e7fd51115a86c56e096f30e0530c7
+        x-checker-data:
+          type: html
+          url: https://cache.ruby-lang.org/pub/ruby/
+          version-pattern: ruby-(3\.4\.[\d]+)\.tar\.xz
+          url-template: https://cache.ruby-lang.org/pub/ruby/3.4/ruby-$version.tar.xz
   - name: ocl-icd
     build-options:
       arch:
