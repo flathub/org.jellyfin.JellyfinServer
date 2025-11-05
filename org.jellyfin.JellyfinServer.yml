@@ -440,6 +440,8 @@ modules:
             CXX: clang++
           config-opts:
             - -DENABLE_ASSEMBLY=OFF
+      # TODO: Drop once x265 releases proper GCC 15 support.
+      cxxflags: -include cstdint
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DENABLE_CLI=OFF
@@ -453,8 +455,9 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        commit: 1d117bed4747758b51bd2c124d738527e30392cb
-        tag: '4.1'
+        # TODO: Replace with tagged version once one > v4.1 is available.
+        # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+        commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -482,6 +485,8 @@ modules:
                 CXX: clang++
               config-opts:
                 - -DENABLE_ASSEMBLY=OFF
+          # TODO: Drop once x265 releases proper GCC 15 support.
+          cxxflags: -include cstdint
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -495,8 +500,9 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            tag: '4.1'
+            # TODO: Replace with tagged version once one > v4.1 is available.
+            # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -518,6 +524,8 @@ modules:
                 CXX: clang++
               config-opts:
                 - -DENABLE_ASSEMBLY=OFF
+          # TODO: Drop once x265 releases proper GCC 15 support.
+          cxxflags: -include cstdint
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -532,8 +540,9 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            tag: '4.1'
+            # TODO: Replace with tagged version once one > v4.1 is available.
+            # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
