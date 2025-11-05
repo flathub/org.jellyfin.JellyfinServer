@@ -202,6 +202,21 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
+  - name: fdk-aac
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DCMAKE_INSTALL_LIBDIR=lib
+    sources:
+      - type: git
+        url: https://github.com/mstorsjo/fdk-aac.git
+        commit: cac04476081a23c870fed05c36228cd02c5e7c3d
+        tag: v2.0.3
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
   - name: libass
     config-opts:
       - --enable-shared
