@@ -128,9 +128,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 7212068a6ef9278f33359e36f877471a453a9ee2
+        commit: 844e57076f7cc0ca1aaa82e9f21c3798296fbb4d
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.4.2
+        tag: intel-onevpl-25.4.3
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -638,8 +638,8 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: e90930bafb22032ae19a6d20f3c7480d3866b2d5
-            tag: debian/1.4.321.0-1
+            commit: 7ff2672ace9defb7cc2b271c02d729f0afd52238
+            tag: debian/1.4.328.1-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -737,10 +737,7 @@ modules:
           #   of jellyfin-ffmpeg which has reached the version number below, thus
           #   effectively breaking the Flatpak build.
           versions:
-            - <: '8.0'
-            # Reverted to older version after FTBS issues from AMF
-            - '!=': v7.1.1-1
-            - '!=': v7.1.1-2
+            <: '8.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
