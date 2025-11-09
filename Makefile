@@ -141,7 +141,7 @@ lint:
 
 .PHONY: check-manifest-versions
 check-manifest-versions:
-	sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
+	@#sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
 	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
 	grep --line-number --color=always -E "dotnet[0-9]{1,2}" "$(MANIFEST)"
 	grep --line-number --color=always -E "llvm[0-9]{2}" "$(MANIFEST)"
