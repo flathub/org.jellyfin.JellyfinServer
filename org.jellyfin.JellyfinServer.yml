@@ -737,10 +737,7 @@ modules:
           #   of jellyfin-ffmpeg which has reached the version number below, thus
           #   effectively breaking the Flatpak build.
           versions:
-            - <: '8.0'
-            # Reverted to older version after FTBS issues from AMF
-            - '!=': v7.1.1-1
-            - '!=': v7.1.1-2
+            <: '8.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
