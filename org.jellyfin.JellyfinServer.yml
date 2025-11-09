@@ -93,9 +93,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^intel-mediasdk-([\d.]+)$
-          # Version from https://github.com/flathub/fr.handbrake.ghb.Plugin.IntelMediaSDK
-          #versions:
-          #  =: 22.6.5
       - type: patch
         path: data/intel-mediasdk-gcc13.patch
   - name: onevpl
@@ -237,9 +234,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          # Known newer versions.
-          #versions:
-          #  - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         dest: third_party/spirv-tools
@@ -248,9 +242,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          # Known newer versions.
-          #versions:
-          #  - '!=': v2025.4
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         dest: third_party/spirv-headers
@@ -259,9 +250,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
-          # Known newer versions.
-          #versions:
-          #  - '!=': 1.4.304.0
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -270,20 +258,14 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
-          # Known newer versions.
-          #versions:
-          #  - '!=': 1.4.304.0
   - name: libplacebo
     buildsystem: meson
     config-opts:
       - --buildtype=release
       - --default-library=shared
       - -Dvulkan=enabled
-      # NOTE: It seems this option was disabled before 10.10.
-      # - -Dvk-proc-addr=disabled
       - -Dvk-proc-addr=enabled
       - -Dvulkan-registry=${FLATPAK_DEST}/share/vulkan/registry/vk.xml
-      #
       - -Dshaderc=enabled
       - -Dglslang=disabled
       - -Ddemos=false
@@ -309,9 +291,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
-          # Known newer versions.
-          #versions:
-          #  - '!=': 1.4.304.0
       # Already included as a submodule: glad, jinja, markupsafe
   - name: rkmpp
     only-arches:
@@ -367,10 +346,6 @@ modules:
     sources:
       - type: git
         url: https://code.videolan.org/videolan/x264.git
-        #mirror-urls:
-        #  - https://github.com/jpsdr/x264
-        # NOTE: Unoffical, repo has tags.
-        # - https://github.com/ShiftMediaProject/x264.git
         commit: 0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee
         #branch: master
         #tag: 0.164.r3194
@@ -532,9 +507,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/nv-codec-headers.git
-        ## Deprecated property since 2025 June
-        #mirror-urls:
-        #  - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
         tag: n13.0.19.0
         commit: e844e5b26f46bb77479f063029595293aa8f812d
         x-checker-data:
@@ -611,9 +583,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
-          # Known newer versions.
-          #versions:
-          #  - '!=': 1.4.304.0
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
@@ -627,9 +596,6 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
-              # Known newer versions.
-              #versions:
-              #  - '!=': 1.4.304.0
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -643,9 +609,6 @@ modules:
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
-              # Known newer versions.
-              #versions:
-              #  - '!=': 1.4.304.0
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
