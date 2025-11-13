@@ -606,8 +606,8 @@ modules:
     sources:
       - type: git
         url: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
-        commit: 63d88fe021f57764000e10c41d44f8897b80dc84
-        tag: debian/1.4.321.0+dfsg1-1
+        commit: 6fb1fbf727f5a65fa038537ec5617e165eef98b2
+        tag: debian/1.4.328.1+dfsg1-1
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
@@ -723,8 +723,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 51b006f4bac63780710c15b6d893231f34d26517
-        tag: v7.1.2-3
+        commit: 5d201ab0640f4ceda5c9ddcb029e020fee2b4f3c
+        tag: v7.1.2-4
         x-checker-data:
           is-main-source: true
           type: git
