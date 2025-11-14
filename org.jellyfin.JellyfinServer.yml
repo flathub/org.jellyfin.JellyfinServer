@@ -606,14 +606,14 @@ modules:
     sources:
       - type: git
         url: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
-        commit: 6fb1fbf727f5a65fa038537ec5617e165eef98b2
-        tag: debian/1.4.328.1+dfsg1-1
+        commit: 63d88fe021f57764000e10c41d44f8897b80dc84
+        tag: debian/1.4.321.0+dfsg1-1
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
           # Known newer versions.
-          #versions:
-          #  - '!=': 1.4.304.0
+          versions:
+            '!=': 1.4.328.1
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
