@@ -128,9 +128,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 844e57076f7cc0ca1aaa82e9f21c3798296fbb4d
+        commit: 3213814efbc050cb9ab1935fb96a0af0580495f5
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-25.4.3
+        tag: intel-onevpl-25.4.4
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -755,8 +755,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 933e1b255bcd734ce1f14f0dc12c47d470d4da42
-        tag: v10.11.2
+        commit: 8cc49df6257e495bab40ff53fc07f89ae13b082a
+        tag: v10.11.3
         x-checker-data:
           is-main-source: true
           type: git
@@ -808,9 +808,9 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 4187c6f620f9af84dad49c00e3880b4568ab8f48
+        commit: 921d7d336483c5fdee3dec3803eec1d5d7e6c705
         # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
-        tag: v10.11.2
+        tag: v10.11.3
         x-checker-data:
           is-main-source: true
           type: git
