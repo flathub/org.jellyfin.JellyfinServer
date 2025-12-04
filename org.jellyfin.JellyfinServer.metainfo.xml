@@ -33,6 +33,9 @@
     </ul>
   </description>
   <releases>
+    <release version="7.1.3" date="2025-12-04">
+      <description></description>
+    </release>
     <release version="10.11.2" date="2025-11-14">
       <description>
         <p>Updated Jellyfin FFmpeg to 7.1.2-4</p>
