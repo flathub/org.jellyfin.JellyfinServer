@@ -613,7 +613,6 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
   - name: jellyfin-ffmpeg
-    disabled: false
     build-options:
       append-path: /usr/lib/sdk/llvm20/bin
       prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
@@ -708,7 +707,6 @@ modules:
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
   - name: jellyfin-web
-    disabled: false
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/node22/bin
@@ -730,7 +728,6 @@ modules:
           versions:
             <: v10.12.0
   - name: jellyfin
-    disabled: false
     buildsystem: simple
     build-options:
       append-ld-library-path: /usr/lib/sdk/dotnet9/lib
