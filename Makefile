@@ -1,3 +1,5 @@
+include MAKEFILES/Makefile-repo.mk
+
 FLATPAK_ID=org.jellyfin.JellyfinServer
 MANIFEST=$(FLATPAK_ID).yml
 APPMETA=$(FLATPAK_ID).metainfo.xml
@@ -9,6 +11,9 @@ BUILD_DATE := $(shell date -I)
 
 .PHONY: all
 all: setup-sdk prepare refresh-sources add-new-release-to-meta check-meta pkg-x64 lint bundle
+
+.PHONY: maintenance
+maintenance: prepare setup-sdk-light refresh-sources add-new-release-to-meta check-meta lint
 
 .PHONY: clean
 clean:
@@ -44,6 +49,13 @@ setup-sdk:
 	flatpak --user install -y org.freedesktop.Sdk.Extension.dotnet$(DOT_NET_VER)/aarch64/$(RUNTIME_VER)
 	flatpak --user install -y org.freedesktop.Sdk.Extension.llvm$(LLVM_VER)/aarch64/$(RUNTIME_VER)
 	flatpak --user install -y org.freedesktop.Sdk.Extension.node$(NODE_VER)/aarch64/$(RUNTIME_VER)
+	flatpak --user install -y org.flathub.flatpak-external-data-checker
+
+.PHONY: setup-sdk-light
+setup-sdk-light:
+	flatpak --user install -y flathub org.flatpak.Builder
+	flatpak --user install -y org.freedesktop.Sdk/x86_64/$(RUNTIME_VER)
+	flatpak --user install -y org.freedesktop.Sdk.Extension.dotnet$(DOT_NET_VER)/x86_64/$(RUNTIME_VER)
 	flatpak --user install -y org.flathub.flatpak-external-data-checker
 
 VERSION_TAG_JELLYFIN.txt:
@@ -142,18 +154,21 @@ lint:
 .PHONY: check-manifest-versions
 check-manifest-versions:
 	@#sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
-	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type extra-data 2>&1 | grep -v "^INFO"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type file 2>&1 | grep -v "^INFO"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type archive 2>&1 | grep -v "^INFO"
+	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type git 2>&1 | grep -v "^INFO"
 	grep --line-number --color=always -E "dotnet[0-9]{1,2}" "$(MANIFEST)"
 	grep --line-number --color=always -E "llvm[0-9]{2}" "$(MANIFEST)"
 	grep --line-number --color=always -E "node[0-9]{2}" "$(MANIFEST)"
 
 .PHONY: check-meta
 check-meta:
-	flatpak run --command=appstream-util org.flatpak.Builder validate $(APPMETA)
+	flatpak run --command=appstreamcli org.flatpak.Builder validate $(APPMETA)
 
 .PHONY: add-new-release-to-meta
 add-new-release-to-meta:
-	helper-scripts/add-new-release-to-meta.sh
+	MAKEFILES/add-new-release-to-meta.sh
 	git diff "$(APPMETA)"
 
 npm-generated-sources.json:
@@ -171,23 +186,3 @@ nuget-generated-sources-arm64.json:
 	  --dotnet $(DOT_NET_VER) --freedesktop $(RUNTIME_VER) --runtime=linux-arm64 \
 	  "nuget-generated-sources-arm64.json" "jellyfin/Jellyfin.Server/Jellyfin.Server.csproj"
 	npx prettier --write "nuget-generated-sources-arm64.json"
-
-.PHONY: workflow-check
-workflow-check:
-# Causes problems with code style and in some cases even breaks workflows.
-# TODO: Replace soon.
-#	action-updater update --quiet .github/workflows/
-# Already included in pre-commit / prek.
-#	zizmor .github/workflows/
-	prek autoupdate
-
-# Before pushing to Flathub.
-.PHONY: workflow-gau-schedule-disable
-workflow-gau-schedule-disable:
-	sed -i 's/ \(schedule:\)/ #\1/' .github/workflows/ga-updater.yml
-	sed -i 's/ \(- cron:\)/ #\1/' .github/workflows/ga-updater.yml
-# After syncing with Flathub.
-.PHONY: workflow-gau-schedule-enable
-workflow-gau-schedule-enable:
-	sed -i 's/ #\(schedule:\)/ \1/' .github/workflows/ga-updater.yml
-	sed -i 's/ #\(- cron:\)/ \1/' .github/workflows/ga-updater.yml
