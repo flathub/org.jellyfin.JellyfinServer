@@ -51,16 +51,16 @@ repos:
               path/to/file\.py
           )$
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.8
+    rev: v1.7.9
     hooks:
       - id: actionlint
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.16.2
+    rev: v1.18.0
     hooks:
     - id: zizmor
       files: ^\.github/workflows/.*\.ya?ml$
