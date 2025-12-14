@@ -165,8 +165,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: 246f9b1a50fd1abf90651ce60d8c13eca36999dd
-        tag: libopenmpt-0.8.3
+        commit: 327204eaa2c27bd1acbb571babe68f279c85238b
+        tag: libopenmpt-0.8.4
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
@@ -254,8 +254,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         dest: third_party/spirv-headers
-        commit: 01e0577914a75a2569c846778c2f93aa8e6feddd
-        tag: vulkan-sdk-1.4.328.1
+        commit: b824a462d4256d720bebb40e78b9eb8f78bbb305
+        tag: vulkan-sdk-1.4.335.0
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -265,8 +265,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
-        commit: a57276bf558f5cf94d3a9854ebdf5a2236849a5a
-        tag: vulkan-sdk-1.4.328.1
+        commit: b5782e52ee2f7b3e40bb9c80d15b47016e008bc9
+        tag: vulkan-sdk-1.4.335.0
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -303,8 +303,8 @@ modules:
           tag-pattern: ^v([\d.]+)$
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Loader.git
-        commit: 0a278cc725089cb67bf6027076e5d72f97c04d86
-        tag: vulkan-sdk-1.4.328.1
+        commit: 057ca1e5f2b61bbb3942e3a7464d488d5bde4a3c
+        tag: vulkan-sdk-1.4.335.0
         dest: tmp/vulkan-loader
         x-checker-data:
           type: git
