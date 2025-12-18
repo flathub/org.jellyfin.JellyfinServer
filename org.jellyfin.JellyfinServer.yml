@@ -110,8 +110,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/libvpl.git
-        commit: c45b5d786bf7cdabbe49ff1bab78693ad78feb78
-        tag: v2.15.0
+        commit: 778a66d6c6537f08eabb91955dbbf1bce3812894
+        tag: v2.16.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
