@@ -638,8 +638,8 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: 7ff2672ace9defb7cc2b271c02d729f0afd52238
-            tag: debian/1.4.328.1-1
+            commit: 9491579d48fb8b43a2f07b4f6bcc961e93c700a7
+            tag: debian/1.4.335.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
