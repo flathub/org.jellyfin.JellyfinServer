@@ -13,6 +13,7 @@
   <url type="help">https://jellyfin.org/docs/</url>
   <url type="bugtracker">https://github.com/jellyfin/jellyfin/issues</url>
   <url type="faq">https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions</url>
+  <url type="vcs-browser">https://github.com/flathub/org.jellyfin.JellyfinServer</url>
   <description>
     <p>
       Jellyfin is the volunteer-built media solution that puts you in control
