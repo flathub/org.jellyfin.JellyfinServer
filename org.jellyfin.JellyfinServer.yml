@@ -313,37 +313,6 @@ modules:
           #versions:
           #  - '!=': 1.4.304.0
       # Already included as a submodule: glad, jinja, markupsafe
-  - name: rkmpp
-    only-arches:
-      - aarch64
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DCMAKE_BUILD_TYPE=Release
-      - -DBUILD_SHARED_LIBS=ON
-      - -DBUILD_TEST=OFF
-    sources:
-      - type: git
-        url: https://github.com/nyanmisaka/mpp.git
-        commit: efab9bc8131d840cf8785f2bb477ae1107ea9e65
-        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
-        #branch: jellyfin-mpp
-  - name: rkrga
-    only-arches:
-      - aarch64
-    buildsystem: meson
-    config-opts:
-      - --libdir=lib
-      - --buildtype=release
-      - --default-library=shared
-      - -Dcpp_args=-fpermissive
-      - -Dlibdrm=false
-      - -Dlibrga_demo=false
-    sources:
-      - type: git
-        url: https://github.com/nyanmisaka/rk-mirrors.git
-        commit: 1d330cc28551943bed3380261a5a9c6fbd58ff53
-        # NOTE: Not allowed: https://docs.flathub.org/docs/for-app-authors/linter/#module-module_name-source-git-branch
-        #branch: jellyfin-rga
   - name: numactl
     rm-configure: true
     cleanup:
@@ -671,8 +640,6 @@ modules:
         aarch64:
           config-opts:
             - --toolchain=hardened
-            - --enable-rkmpp
-            - --enable-rkrga
             - --enable-ffnvcodec
             - --enable-cuda
             - --enable-cuda-llvm
