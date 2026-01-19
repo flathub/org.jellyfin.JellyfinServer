@@ -56,11 +56,11 @@ repos:
       - id: gitleaks
         args: ["--no-banner"]
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.9
+    rev: v1.7.10
     hooks:
       - id: actionlint
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.18.0
+    rev: v1.22.0
     hooks:
     - id: zizmor
       files: ^\.github/workflows/.*\.ya?ml$
