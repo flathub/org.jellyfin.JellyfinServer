@@ -548,9 +548,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          #versions:
-          #  # FTBBS
-          #  - '!=': v3.0.0
+          versions:
+            # FTBFS
+            - '!=': v4.0.0
   - name: clinfo
     buildsystem: simple
     build-commands:
