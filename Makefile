@@ -146,26 +146,6 @@ release:
 	  JellyfinServer-$(shell cat VERSION_TAG_JELLYFIN.txt)-TESTING-$(BUILD_DATE)-*.flatpak checksums.txt
 #	  --draft \
 
-.PHONY: lint
-lint:
-	flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest $(MANIFEST)
-	flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
-
-.PHONY: check-manifest-versions
-check-manifest-versions:
-	@#sed -i -e 's/#\(branch:\)/\1/g' "$(MANIFEST)"
-	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type extra-data 2>&1 | grep -v "^INFO"
-	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type file 2>&1 | grep -v "^INFO"
-	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type archive 2>&1 | grep -v "^INFO"
-	flatpak run org.flathub.flatpak-external-data-checker "$(MANIFEST)" --filter-type git 2>&1 | grep -v "^INFO"
-	grep --line-number --color=always -E "dotnet[0-9]{1,2}" "$(MANIFEST)"
-	grep --line-number --color=always -E "llvm[0-9]{2}" "$(MANIFEST)"
-	grep --line-number --color=always -E "node[0-9]{2}" "$(MANIFEST)"
-
-.PHONY: check-meta
-check-meta:
-	flatpak run --command=appstreamcli org.flatpak.Builder validate $(APPMETA)
-
 .PHONY: add-new-release-to-meta
 add-new-release-to-meta:
 	MAKEFILES/add-new-release-to-meta.sh

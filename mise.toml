@@ -1,0 +1,7 @@
+[tools]
+just = "latest"
+prek = "latest"
+yq = "latest"
+
+[env]
+JUST_TIMESTAMP = true
