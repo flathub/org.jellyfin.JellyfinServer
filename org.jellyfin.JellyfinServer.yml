@@ -6,7 +6,7 @@ sdk: org.freedesktop.Sdk
 # NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet9
-  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.node24
   - org.freedesktop.Sdk.Extension.llvm20
 separate-locales: false
 command: jellyfin.sh
@@ -712,7 +712,7 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node22/bin
+      append-path: /usr/lib/sdk/node24/bin
     build-commands:
       - npm ci --no-audit --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
       - npm run build:production --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
