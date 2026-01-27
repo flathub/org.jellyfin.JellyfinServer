@@ -249,8 +249,8 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
-          #versions:
-          #  - '!=': v2025.4
+          versions:
+            - '!=': v2026.1 # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         dest: third_party/spirv-headers
@@ -548,9 +548,9 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
+          # Known newer versions.
           versions:
-            # FTBFS
-            - '!=': v4.0.0
+            - '!=': v4.0.0 # FTBFS
   - name: clinfo
     buildsystem: simple
     build-commands:
