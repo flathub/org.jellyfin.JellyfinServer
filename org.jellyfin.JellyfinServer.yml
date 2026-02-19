@@ -1,13 +1,13 @@
 id: org.jellyfin.JellyfinServer
 # See https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/releases
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 # NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet9
   - org.freedesktop.Sdk.Extension.node22
-  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm21
 separate-locales: false
 command: jellyfin.sh
 cleanup:
@@ -24,6 +24,18 @@ cleanup:
   - /share/man
   - /share/pkgconfig
   - /share/vpl/examples
+  # Remove Ruby from final image (Ruby is build-time only)
+  - /bin/bundle
+  - /bin/bundler
+  - /bin/erb
+  - /bin/gem
+  - /bin/irb
+  - /bin/rdoc
+  - /bin/ri
+  - /bin/ruby
+  - /lib/ruby
+  - /lib/libruby*.so*
+  - /share/ri
 finish-args:
   - --device=dri
   - --filesystem=home/Jellyfin Server Media:create
@@ -44,6 +56,26 @@ add-extensions:
     autodelete: true
 modules:
   - shared-modules/linux-audio/fftw3f.json
+  # Inline Ruby for build-time usage as Ruby was removed from 25.08 SDK.
+  # Provides `ruby`, `gem`, etc. which are cleaned up prior to packaging.
+  # YJIT is disabled to avoid Rust dependency.
+  - name: ruby
+    buildsystem: simple
+    builddir: true
+    config-opts: []
+    build-commands:
+      - ./configure --prefix=/app --disable-install-doc --disable-yjit
+      - make -j${FLATPAK_BUILDER_N_JOBS}
+      - make install
+    sources:
+      - type: archive
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.1.tar.xz
+        sha256: 0531fe57dfdb56bf591620d2450642ea0e0964f3512a6ebee7dc9305de69395f
+        x-checker-data:
+          type: html
+          url: https://cache.ruby-lang.org/pub/ruby/
+          version-pattern: ruby-(4\.0\.[\d]+)\.tar\.xz
+          url-template: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-$version.tar.xz
   - name: ocl-icd
     build-options:
       arch:
@@ -170,6 +202,21 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
+  - name: fdk-aac
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_SHARED_LIBS=ON
+      - -DCMAKE_INSTALL_LIBDIR=lib
+    sources:
+      - type: git
+        url: https://github.com/mstorsjo/fdk-aac.git
+        commit: cac04476081a23c870fed05c36228cd02c5e7c3d
+        tag: v2.0.3
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
   - name: libass
     config-opts:
       - --enable-shared
@@ -355,13 +402,15 @@ modules:
           config-opts:
             - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
         aarch64:
-          append-path: /usr/lib/sdk/llvm20/bin
-          prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+          append-path: /usr/lib/sdk/llvm21/bin
+          prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
           env:
             CC: clang
             CXX: clang++
           config-opts:
             - -DENABLE_ASSEMBLY=OFF
+      # TODO: Drop once x265 releases proper GCC 15 support.
+      cxxflags: -include cstdint
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DENABLE_CLI=OFF
@@ -375,8 +424,9 @@ modules:
     sources:
       - type: git
         url: https://bitbucket.org/multicoreware/x265_git.git
-        commit: 1d117bed4747758b51bd2c124d738527e30392cb
-        tag: '4.1'
+        # TODO: Replace with tagged version once one > v4.1 is available.
+        # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+        commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
@@ -397,13 +447,15 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm20/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+              append-path: /usr/lib/sdk/llvm21/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
               env:
                 CC: clang
                 CXX: clang++
               config-opts:
                 - -DENABLE_ASSEMBLY=OFF
+          # TODO: Drop once x265 releases proper GCC 15 support.
+          cxxflags: -include cstdint
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -417,8 +469,9 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            tag: '4.1'
+            # TODO: Replace with tagged version once one > v4.1 is available.
+            # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -433,13 +486,15 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm20/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+              append-path: /usr/lib/sdk/llvm21/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
               env:
                 CC: clang
                 CXX: clang++
               config-opts:
                 - -DENABLE_ASSEMBLY=OFF
+          # TODO: Drop once x265 releases proper GCC 15 support.
+          cxxflags: -include cstdint
         config-opts:
           - -DCMAKE_BUILD_TYPE=Release
           - -DENABLE_CLI=OFF
@@ -454,8 +509,9 @@ modules:
         sources:
           - type: git
             url: https://bitbucket.org/multicoreware/x265_git.git
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            tag: '4.1'
+            # TODO: Replace with tagged version once one > v4.1 is available.
+            # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
             x-checker-data:
               type: git
               tag-pattern: ^([\d.]+)$
@@ -618,8 +674,8 @@ modules:
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
-      append-path: /usr/lib/sdk/llvm20/bin
-      prepend-ld-library-path: /usr/lib/sdk/llvm20/lib
+      append-path: /usr/lib/sdk/llvm21/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
       arch:
         x86_64:
           config-opts:
