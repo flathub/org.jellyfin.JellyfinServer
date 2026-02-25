@@ -5,7 +5,7 @@ runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 # NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.dotnet9
+  - org.freedesktop.Sdk.Extension.dotnet10
   - org.freedesktop.Sdk.Extension.node22
   - org.freedesktop.Sdk.Extension.llvm20
 separate-locales: false
@@ -734,16 +734,12 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-ld-library-path: /usr/lib/sdk/dotnet9/lib
-      append-path: /usr/lib/sdk/dotnet9/bin
-      # TODO: Identify if this line is necessary or not. Overlaps with
-      # PKG_CONFIG_PATH. Most other projects in Flathub include it.
-      # com.spacestation14.Launcher and com.github.PintaProject.Pinta do not?
-      #
-      # append-pkg-config-path: /usr/lib/sdk/dotnet9/lib/pkgconfig
+      append-path: "/usr/lib/sdk/dotnet10/bin"
+      append-ld-library-path: "/usr/lib/sdk/dotnet10/lib"
+      prepend-pkg-config-path: "/usr/lib/sdk/dotnet10/lib/pkgconfig"
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
-        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet9/lib/pkgconfig
+        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet10/lib/pkgconfig
       arch:
         x86_64:
           env:
