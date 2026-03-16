@@ -575,8 +575,8 @@ modules:
     sources:
       - type: git
         url: https://salsa.debian.org/xorg-team/vulkan/vulkan-tools.git
-        commit: 63d88fe021f57764000e10c41d44f8897b80dc84
-        tag: debian/1.4.321.0+dfsg1-1
+        commit: 20d634905d79a1c6e2265cd41db79b0153eaf1b6
+        tag: debian/1.4.341.0+dfsg1-1
         x-checker-data:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
