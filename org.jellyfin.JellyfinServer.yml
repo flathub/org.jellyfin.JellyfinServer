@@ -426,11 +426,11 @@ modules:
         url: https://bitbucket.org/multicoreware/x265_git.git
         # TODO: Replace with tagged version once one > v4.1 is available.
         # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
-        commit: 1d117bed4747758b51bd2c124d738527e30392cb
-        x-checker-data:
-          type: git
-          tag-pattern: ^([\d.]+)$
-        tag: '4.1'
+        commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^([\d.]+)$
+        # tag: '4.1'
     modules:
       # NOTE: 2024-11-19 -- CMake will emit the warnng below. Configuraton
       # parameters have been checked and compared with 8bit and 12bit without
@@ -472,11 +472,11 @@ modules:
             url: https://bitbucket.org/multicoreware/x265_git.git
             # TODO: Replace with tagged version once one > v4.1 is available.
             # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            x-checker-data:
-              type: git
-              tag-pattern: ^([\d.]+)$
-            tag: '4.1'
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
+            # x-checker-data:
+            #   type: git
+            #   tag-pattern: ^([\d.]+)$
+            # tag: '4.1'
       - name: x265-12bit
         buildsystem: cmake-ninja
         builddir: true
@@ -513,11 +513,11 @@ modules:
             url: https://bitbucket.org/multicoreware/x265_git.git
             # TODO: Replace with tagged version once one > v4.1 is available.
             # This is the oldest i.e. closest to v4.1 commit with CMAKE fixes.
-            commit: 1d117bed4747758b51bd2c124d738527e30392cb
-            x-checker-data:
-              type: git
-              tag-pattern: ^([\d.]+)$
-            tag: '4.1'
+            commit: 78e5ac35c13c5cbccc5933083edceb0d3eaeaa21
+            # x-checker-data:
+            #   type: git
+            #   tag-pattern: ^([\d.]+)$
+            # tag: '4.1'
   - name: zimg
     config-opts:
       - --enable-shared
