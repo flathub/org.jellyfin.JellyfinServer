@@ -24,18 +24,6 @@ cleanup:
   - /share/man
   - /share/pkgconfig
   - /share/vpl/examples
-  # Remove Ruby from final image (Ruby is build-time only)
-  - /bin/bundle
-  - /bin/bundler
-  - /bin/erb
-  - /bin/gem
-  - /bin/irb
-  - /bin/rdoc
-  - /bin/ri
-  - /bin/ruby
-  - /lib/ruby
-  - /lib/libruby*.so*
-  - /share/ri
 finish-args:
   - --device=dri
   - --filesystem=home/Jellyfin Server Media:create
@@ -56,26 +44,19 @@ add-extensions:
     autodelete: true
 modules:
   - shared-modules/linux-audio/fftw3f.json
-  # Inline Ruby for build-time usage as Ruby was removed from 25.08 SDK.
-  # Provides `ruby`, `gem`, etc. which are cleaned up prior to packaging.
-  # YJIT is disabled to avoid Rust dependency.
   - name: ruby
-    buildsystem: simple
-    builddir: true
-    config-opts: []
-    build-commands:
-      - ./configure --prefix=/app --disable-install-doc --disable-yjit
-      - make -j${FLATPAK_BUILDER_N_JOBS}
-      - make install
+    config-opts:
+      - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.2.tar.xz
-        sha256: 4618db85bb9ec04d8152d0099db488694a3d3c4f52106625e4ad547f1318db87
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.3.tar.gz
+        sha256: 77964acc370d5c8375b9502e5ba6c13c03ef91ab9eb9f521c84fb42b9c9a6b0f
         x-checker-data:
           type: html
-          url: https://cache.ruby-lang.org/pub/ruby/
-          version-pattern: ruby-(4\.0\.[\d]+)\.tar\.xz
-          url-template: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-$version.tar.xz
+          url: https://www.ruby-lang.org/en/downloads/
+          pattern: (https://cache.ruby-lang.org/pub/ruby/[\d\.]+/ruby-([\d\.]+)\.tar\.gz)
+    cleanup:
+        - '*'
   - name: ocl-icd
     build-options:
       arch:
