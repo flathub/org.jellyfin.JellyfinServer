@@ -56,7 +56,7 @@ modules:
           url: https://www.ruby-lang.org/en/downloads/
           pattern: (https://cache.ruby-lang.org/pub/ruby/[\d\.]+/ruby-([\d\.]+)\.tar\.gz)
     cleanup:
-        - '*'
+      - '*'
   - name: ocl-icd
     build-options:
       arch:
@@ -558,8 +558,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.0.tar.gz
-        sha256: bf80ee4a77a731c5a2351b4dd74f524a18806a70099ba66a8058d91aac1150b5
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.2.tar.gz
+        sha256: 8a70b6dc85261e6e6e57769bd81ac1e09c0a4c96bbd5e358ffbc2dee51e8e50a
         x-checker-data:
           type: anitya
           project-id: 138182
