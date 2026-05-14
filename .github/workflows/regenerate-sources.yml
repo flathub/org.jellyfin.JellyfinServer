@@ -112,7 +112,7 @@ jobs:
         # DotNet version, example: 8
         YQ_DOTNETSDK="$(yq '.sdk-extensions[0]' "${MANIFEST}")"
         echo "DOT_NET_VER=${YQ_DOTNETSDK##*dotnet}" >> "$GITHUB_ENV"
-        # Node SDK, example: org.freedesktop.Sdk.Extension.node22
+        # Node SDK, example: org.freedesktop.Sdk.Extension.node24
         echo "YQ_NODESDK=$(yq '.sdk-extensions[1]' "${MANIFEST}")" >> "$GITHUB_ENV"
         # If frontend and backend tags are equal, and backend tag is not empty,
         # and backend tag does not match the manifest, then there must be a new
