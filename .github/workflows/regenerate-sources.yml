@@ -24,7 +24,7 @@ on:
   workflow_dispatch:
 env:
   MANIFEST: "main/org.jellyfin.JellyfinServer.yml"
-  PR_BRANCH: update-nuget-node
+  PR_BRANCH: update-nuget-node-${{ github.run_number }}
   REPO_BACKEND: "jellyfin/jellyfin"
   REPO_FRONTEND: "jellyfin/jellyfin-web"
   SOFTWARE_NAME: "Jellyfin"
@@ -42,18 +42,6 @@ jobs:
       with:
         persist-credentials: false
         path: main
-
-    - name: Check if branch used for Pull Request exists
-      working-directory: main
-      run: |
-        if [[ -n "$(git ls-remote --heads origin "${PR_BRANCH}")" ]]; then
-          echo "Warning: Branch '${PR_BRANCH}' exists. Merge the Pull Request or delete the branch."
-          exit 1
-        else
-          echo "OK: Branch not found."
-        fi
-      env:
-        PR_BRANCH: ${{ env.PR_BRANCH }}
 
     # Restores the path below contains most of the data of installed apps and runtimes.
     # This can save about 1GB of downloads.
