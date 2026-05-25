@@ -17,8 +17,10 @@ on:
   # workflow on demand from the GitHub app on a mobile device when the bot
   # detects a new release of Jellyfin.
   schedule:
-  # Past releases usually happened late on Ssturday
-  - cron: 15 6 * * SUN
+  # Past releases usually happened late on Saturday
+  #- cron: 15 6 * * SUN
+  # Refresh sources only once per month to conserve resources.
+  - cron: 15 6 1-7 * SUN
   workflow_dispatch:
 env:
   MANIFEST: "main/org.jellyfin.JellyfinServer.yml"
