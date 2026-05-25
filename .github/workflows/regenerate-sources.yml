@@ -38,7 +38,7 @@ jobs:
 
     steps:
     - name: Checkout this repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         persist-credentials: false
         path: main
@@ -58,7 +58,7 @@ jobs:
     # Restores the path below contains most of the data of installed apps and runtimes.
     # This can save about 1GB of downloads.
     - name: Restore Flatpak apps from cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: |
           ~/.local/share/flatpak
@@ -147,7 +147,7 @@ jobs:
         YQ_RUNTIME_VERSION: ${{ env.YQ_RUNTIME_VERSION }}
 
     - name: Checkout Flatpak Builder Tools
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         persist-credentials: false
         repository: flatpak/flatpak-builder-tools
@@ -158,7 +158,7 @@ jobs:
         pipx install "./flatpak-builder-tools/node/"
 
     - name: Checkout jellyfin
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         persist-credentials: false
         repository: jellyfin/jellyfin
@@ -166,7 +166,7 @@ jobs:
         ref: ${{ env.JF_TAG }}
 
     - name: Checkout jellyfin-web
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         persist-credentials: false
         repository: jellyfin/jellyfin-web
@@ -199,7 +199,7 @@ jobs:
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
 
     - name: Install Node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: latest
 
