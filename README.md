@@ -18,6 +18,21 @@
 
 New co-maintainers are welcome, check the development section in the Wiki if you are interested.
 
+## How is this repository maintained?
+
+* GitHub Depandabot regularly checks for updated modules in the manifest, submits PRs and starts builds.
+* The repository contains GitHub Action Workflows and scripts (`make` / `just`) for recurring maintenance.
+  The GitHub Action Workflows are preferred.
+
+### How to publish new releases to Flathub?
+
+New Jellyfin releases are also module updates in the manifest.
+
+> [!IMPORTANT]
+> When a new Jellyfin version is released and a PR is automatically submitted, the `regenerate-sources.yml` Action Workflow needs to be run on the respective branch of the PR, which will create a new PR that should be merged with the PR that was created for the version upgrade.
+> TODO: mermaid diagram.
+> Alternatively a repository maintainer runs `make refresh-sources` and adds a commit the the PR branch.
+
 ## Installation
 
 <table cellspacing="0" cellpadding="0" >
@@ -33,5 +48,4 @@ New co-maintainers are welcome, check the development section in the Wiki if you
       </a>
     </td>
   </tr>
-</table> 
-
+</table>
