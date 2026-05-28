@@ -271,8 +271,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         dest: third_party/spirv-tools
-        commit: 262bdab48146c937467f826699a40da0fdfc0f1a
-        tag: v2025.5
+        commit: 0539c81f69a3daeb706fd3477dca61435b475156
+        tag: v2026.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
