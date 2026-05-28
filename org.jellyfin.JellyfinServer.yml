@@ -730,8 +730,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: f6f3061ba5d2ec56d9bae07d899f3d54c206f541
-        tag: v7.1.3-6
+        commit: 44fc3be3250756165a56de40298ea9eb4cbaea94
+        tag: v7.1.4-1
         x-checker-data:
           is-main-source: true
           type: git
