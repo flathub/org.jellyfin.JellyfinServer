@@ -72,8 +72,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OCL-dev/ocl-icd.git
-        commit: e5b32d5395582d027c3d68d7dbdf92e961bdc9c8
-        tag: v2.3.4
+        commit: 3e1155f0796cb9ac0fe309664d98e4b0ed2c3300
+        tag: v2.3.5
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
