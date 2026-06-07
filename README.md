@@ -1,5 +1,11 @@
 # Unofficial Jellyfin Server Flatpak on Flathub
 
+> [!NOTE]
+> Version information in the releases section and `org.jellyfin.JellyfinServer.metainfo.xml` do not always contain the latest version information.
+> `org.jellyfin.JellyfinServer.yml` contains all the version numbers.
+> The porcess has not been fully automated yet.
+> The releases section is currently used for important version information, like on major or minor releases of Jellyfin.
+
 > [!TIP]
 > Get help here:
 > [FAQ](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/FAQ-%E2%80%94-Frequently-Asked-Questions)
@@ -33,5 +39,4 @@ New co-maintainers are welcome, check the development section in the Wiki if you
       </a>
     </td>
   </tr>
-</table> 
-
+</table>
