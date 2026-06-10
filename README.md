@@ -12,7 +12,7 @@
 > |
 > [Wiki](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki)
 > |
-> [Offical Documentation](https://jellyfin.org/docs/)
+> [Official Documentation](https://jellyfin.org/docs/)
 > |
 > [Flatpak Development](https://github.com/flathub/org.jellyfin.JellyfinServer/wiki/Development:-How-build-the-Flatpak-on-your-workstation%3F)
 
