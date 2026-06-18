@@ -283,7 +283,7 @@ modules:
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         dest: third_party/spirv-headers
         commit: ad9184e76a66b1001c29db9b0a3e87f646c64de0
-        tag: vulkan-sdk-1.4.350.0
+        tag: vulkan-sdk-1.4.350.1
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -294,7 +294,7 @@ modules:
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
         commit: 275822a6261ee689aadb1da5f09a0ec2f058685c
-        tag: vulkan-sdk-1.4.350.0
+        tag: vulkan-sdk-1.4.350.1
         x-checker-data:
           type: git
           tag-pattern: ^vulkan-sdk-([\d.]+)$
@@ -332,7 +332,7 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/Vulkan-Loader.git
         commit: a9e72c66d5cb79911eb9a9063bf4016dd0a3a123
-        tag: vulkan-sdk-1.4.350.0
+        tag: vulkan-sdk-1.4.350.1
         dest: tmp/vulkan-loader
         x-checker-data:
           type: git
