@@ -206,8 +206,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libass/libass.git
-        commit: bbb3c7f1570a4a021e52683f3fbdf74fe492ae84
-        tag: 0.17.4
+        commit: 4a05d8127f525943ebf45fdc6497c9e665947f0d
+        tag: 0.17.5
         x-checker-data:
           type: git
           tag-pattern: ^([\d.]+)$
