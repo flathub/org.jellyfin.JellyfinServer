@@ -46,7 +46,7 @@ jobs:
     # Restores the path below contains most of the data of installed apps and runtimes.
     # This can save about 1GB of downloads.
     - name: Restore Flatpak apps from cache
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: |
           ~/.local/share/flatpak
