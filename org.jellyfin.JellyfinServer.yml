@@ -828,8 +828,6 @@ modules:
         path: org.jellyfin.JellyfinServer.metainfo.xml
       - type: file
         path: data/org.jellyfin.JellyfinServer.desktop
-      #- type: file
-      #  path: branding/org.jellyfin.JellyfinServer-128.png
       - type: file
         path: branding/org.jellyfin.JellyfinServer.svg
       - type: file
