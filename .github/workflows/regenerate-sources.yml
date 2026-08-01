@@ -187,7 +187,7 @@ jobs:
         -o "main/npm-generated-sources.json" npm "jellyfin-web/package-lock.json"
 
     - name: Install Node
-      uses: actions/setup-node@v6
+      uses: actions/setup-node@v7
       with:
         node-version: latest
 
