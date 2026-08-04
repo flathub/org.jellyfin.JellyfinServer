@@ -589,8 +589,8 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
-          versions:
-            '!=': v4.0.0 # FTBFS
+          #versions:
+          #  '!=': v4.0.0 # FTBFS
   - name: clinfo
     buildsystem: simple
     build-commands:
@@ -621,8 +621,8 @@ modules:
           type: git
           tag-pattern: ^debian/([\d.]+)\+dfsg1-1$
           # Known newer versions.
-          versions:
-            '!=': 1.4.328.1
+          #versions:
+          #  '!=': 1.4.328.1
     modules:
       - name: vulkan-headers
         buildsystem: cmake-ninja
@@ -637,8 +637,8 @@ modules:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
-              #versions:
-              #  - '!=': 1.4.304.0
+              versions:
+                '!=': 1.4.357.0
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
