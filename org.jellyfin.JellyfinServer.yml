@@ -526,8 +526,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        tag: v0.2.44
-        commit: 5169a428d51c3ae8ff7b0897e8a687d8e05e37b5
+        tag: v0.2.45
+        commit: d3a5ee9f2b047bf16cd1ee5ccf6ec05ee75409d0
         #branch: main
         x-checker-data:
           type: git
