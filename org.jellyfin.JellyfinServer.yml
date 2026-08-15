@@ -278,7 +278,7 @@ modules:
           tag-pattern: ^v([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': v2026.1 # FTBFS
+            '!=': v2026.3 # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Headers.git
         dest: third_party/spirv-headers
