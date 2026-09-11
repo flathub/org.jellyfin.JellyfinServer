@@ -260,8 +260,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/google/shaderc.git
-        commit: 2c8cae778eec0283b44acbe7ed1a386865d78799
-        tag: v2026.3
+        commit: b64fd42c4a2a9d501c47aca5d3571f7673a5e9cc
+        tag: v2026.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -647,8 +647,8 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: 922ed3bdff9b283bca2564e64a693a2936d9a785
-            tag: debian/1.4.341.0-1
+            commit: a2720982c30356f99702ad9774575c4de7abf06f
+            tag: debian/1.4.357.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
