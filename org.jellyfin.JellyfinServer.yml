@@ -49,8 +49,8 @@ modules:
       - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz
-        sha256: 837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz
+        sha256: 911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d
         x-checker-data:
           type: html
           url: https://www.ruby-lang.org/en/downloads/
@@ -141,9 +141,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 0c9806972b31e68b20776c076e1f2d7cce4e90fe
+        commit: 4157ca42adae5fc717e45d2f784a9ed6c14b230e
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.3
+        tag: intel-onevpl-26.3.4
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
