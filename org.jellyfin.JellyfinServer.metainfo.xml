@@ -34,6 +34,11 @@
     </ul>
   </description>
   <releases>
+    <release version="12.1" date="2026-09-15">
+      <description>
+        <p>Updated Jellyfin and Jellyfin Web to 12.1, Jellyfin FFmpeg to 8.1.2</p>
+      </description>
+    </release>
     <release version="10.11.11" date="2026-06-07">
       <description>
         <p>Updated Jellyfin and Jellyfin Web to 10.11.11, Jellyfin FFmpeg to 7.1.4</p>
