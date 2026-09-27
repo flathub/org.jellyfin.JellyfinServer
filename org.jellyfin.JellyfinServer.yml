@@ -599,8 +599,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Oblomov/clinfo.git
-        commit: c57b7e73e910ca1b558415472c8192eeb75711b1
-        tag: 3.0.25.02.14
+        commit: 0cb539d22d6e47ec4d635c8a2173d21cab600c3b
+        tag: 3.1.26.09.26
         x-checker-data:
           type: git
           tag-pattern: ^([\d]+\.[\d]+\.[\d]+\.[\d]+\.[\d]+)$
