@@ -289,7 +289,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -300,7 +301,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -339,7 +341,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       # Already included as a submodule: glad, jinja, markupsafe
   - name: numactl
     rm-configure: true
@@ -558,8 +561,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.2.tar.gz
-        sha256: 8a70b6dc85261e6e6e57769bd81ac1e09c0a4c96bbd5e358ffbc2dee51e8e50a
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.3.tar.gz
+        sha256: 2b17561ce131d4313c152e2ab197c41a81c7bc3f53577d8deb321164db6a4a2f
         x-checker-data:
           type: anitya
           project-id: 138182
