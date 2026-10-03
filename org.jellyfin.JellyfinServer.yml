@@ -634,8 +634,8 @@ modules:
           # NOTE: GitHub does not have the headers, Debian archives versions were different 296 vs 290
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-loader.git
-            commit: e3a3df62e0b7e9b12dacb626a8d554a47ad9ed2d
-            tag: debian/1.4.341.0-1
+            commit: 6e08b9a39c80d67c411090891267dee066ed8ba9
+            tag: debian/1.4.363.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
