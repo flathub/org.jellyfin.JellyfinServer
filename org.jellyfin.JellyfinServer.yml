@@ -641,7 +641,8 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': 1.4.357.0
+                - '!=': 1.4.357.0 # FTBFS
+                - '!=': 1.4.363.0 # FTBFS
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
