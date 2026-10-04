@@ -7,7 +7,7 @@ sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet10
   - org.freedesktop.Sdk.Extension.node24
-  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
 separate-locales: false
 command: jellyfin.sh
 cleanup:
