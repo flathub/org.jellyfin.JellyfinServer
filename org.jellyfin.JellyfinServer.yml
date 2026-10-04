@@ -49,8 +49,8 @@ modules:
       - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz
-        sha256: 837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz
+        sha256: 911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d
         x-checker-data:
           type: html
           url: https://www.ruby-lang.org/en/downloads/
@@ -143,9 +143,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 0c9806972b31e68b20776c076e1f2d7cce4e90fe
+        commit: 6fccf7601d036ccf0e93048d9e0ff1c5e5d63027
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.3
+        tag: intel-onevpl-26.3.5
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -291,7 +291,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -302,7 +303,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -341,7 +343,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       # Already included as a submodule: glad, jinja, markupsafe
   - name: numactl
     rm-configure: true
@@ -560,8 +563,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.2.tar.gz
-        sha256: 8a70b6dc85261e6e6e57769bd81ac1e09c0a4c96bbd5e358ffbc2dee51e8e50a
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.3.tar.gz
+        sha256: 2b17561ce131d4313c152e2ab197c41a81c7bc3f53577d8deb321164db6a4a2f
         x-checker-data:
           type: anitya
           project-id: 138182
@@ -601,8 +604,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Oblomov/clinfo.git
-        commit: c57b7e73e910ca1b558415472c8192eeb75711b1
-        tag: 3.0.25.02.14
+        commit: 0cb539d22d6e47ec4d635c8a2173d21cab600c3b
+        tag: 3.1.26.09.26
         x-checker-data:
           type: git
           tag-pattern: ^([\d]+\.[\d]+\.[\d]+\.[\d]+\.[\d]+)$
