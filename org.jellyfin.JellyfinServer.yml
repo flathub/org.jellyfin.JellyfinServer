@@ -5,8 +5,8 @@ runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 # NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
-  - org.freedesktop.Sdk.Extension.dotnet9
-  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.dotnet10
+  - org.freedesktop.Sdk.Extension.node24
   - org.freedesktop.Sdk.Extension.llvm21
 separate-locales: false
 command: jellyfin.sh
@@ -49,8 +49,8 @@ modules:
       - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz
-        sha256: 837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz
+        sha256: 911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d
         x-checker-data:
           type: html
           url: https://www.ruby-lang.org/en/downloads/
@@ -80,6 +80,8 @@ modules:
     modules:
       - name: khronos-opencl-headers
         buildsystem: cmake-ninja
+        config-opts:
+          - -DBUILD_TESTS=OFF
         sources:
           - type: git
             url: https://github.com/KhronosGroup/OpenCL-Headers.git
@@ -141,9 +143,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 4157ca42adae5fc717e45d2f784a9ed6c14b230e
+        commit: 6fccf7601d036ccf0e93048d9e0ff1c5e5d63027
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.4
+        tag: intel-onevpl-26.3.5
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -289,7 +291,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -300,7 +303,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -339,7 +343,8 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.357.0 # FTBFS
+            - '!=': 1.4.363.0 # FTBFS
       # Already included as a submodule: glad, jinja, markupsafe
   - name: numactl
     rm-configure: true
@@ -558,8 +563,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.2.tar.gz
-        sha256: 8a70b6dc85261e6e6e57769bd81ac1e09c0a4c96bbd5e358ffbc2dee51e8e50a
+        url: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v1.5.3.tar.gz
+        sha256: 2b17561ce131d4313c152e2ab197c41a81c7bc3f53577d8deb321164db6a4a2f
         x-checker-data:
           type: anitya
           project-id: 138182
@@ -599,8 +604,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Oblomov/clinfo.git
-        commit: c57b7e73e910ca1b558415472c8192eeb75711b1
-        tag: 3.0.25.02.14
+        commit: 0cb539d22d6e47ec4d635c8a2173d21cab600c3b
+        tag: 3.1.26.09.26
         x-checker-data:
           type: git
           tag-pattern: ^([\d]+\.[\d]+\.[\d]+\.[\d]+\.[\d]+)$
@@ -638,7 +643,8 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': 1.4.357.0
+                - '!=': 1.4.357.0 # FTBFS
+                - '!=': 1.4.363.0 # FTBFS
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -647,8 +653,8 @@ modules:
         sources:
           - type: git
             url: https://salsa.debian.org/xorg-team/vulkan/vulkan-volk.git
-            commit: 922ed3bdff9b283bca2564e64a693a2936d9a785
-            tag: debian/1.4.341.0-1
+            commit: a2720982c30356f99702ad9774575c4de7abf06f
+            tag: debian/1.4.357.0-1
             x-checker-data:
               type: git
               tag-pattern: ^debian/([\d.]+)-1$
@@ -690,7 +696,6 @@ modules:
       - --disable-doc
       - --disable-ffplay
       - --disable-libxcb
-      - --disable-ptx-compression
       - --disable-sdl2
       - --disable-static
       - --disable-xlib
@@ -730,8 +735,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: d4590e12452f94d40e413caecb34b08de608353b
-        tag: v7.1.4-3
+        commit: 5b16ac4eeef9559e652faac4a5907c3de6e15eb8
+        tag: v8.1.2-5
         x-checker-data:
           is-main-source: true
           type: git
@@ -744,7 +749,7 @@ modules:
           #   of jellyfin-ffmpeg which has reached the version number below, thus
           #   effectively breaking the Flatpak build.
           versions:
-            <: '8.0'
+            <: '9.0'
       - type: shell
         commands:
           - cat debian/patches/*.patch | patch -Np1 -d .
@@ -752,7 +757,7 @@ modules:
     disabled: false
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/node22/bin
+      append-path: /usr/lib/sdk/node24/bin
     build-commands:
       - npm ci --no-audit --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
       - npm run build:production --offline --cache=$FLATPAK_BUILDER_BUILDDIR/flatpak-node/npm-cache
@@ -762,28 +767,28 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 35c0793ece3adbd247eab290ae1effab851f3d37
-        tag: v10.11.11
+        commit: fae41f33eb7cd636a9ef68984adb82bb247a6e1b
+        tag: v12.1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            <: v10.12.0
+            <: v13.0.0
   - name: jellyfin
     disabled: false
     buildsystem: simple
     build-options:
-      append-ld-library-path: /usr/lib/sdk/dotnet9/lib
-      append-path: /usr/lib/sdk/dotnet9/bin
+      append-ld-library-path: /usr/lib/sdk/dotnet10/lib
+      append-path: /usr/lib/sdk/dotnet10/bin
       # TODO: Identify if this line is necessary or not. Overlaps with
       # PKG_CONFIG_PATH. Most other projects in Flathub include it.
       # com.spacestation14.Launcher and com.github.PintaProject.Pinta do not?
       #
-      # append-pkg-config-path: /usr/lib/sdk/dotnet9/lib/pkgconfig
+      # append-pkg-config-path: /usr/lib/sdk/dotnet10/lib/pkgconfig
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
-        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet9/lib/pkgconfig
+        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet10/lib/pkgconfig
       arch:
         x86_64:
           env:
@@ -815,15 +820,15 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: 1fbd8739292cce610231be93daf43368733edf63
+        commit: ee91c75e777da41a9c4f4855e70adc604fbf2ef8
         # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
-        tag: v10.11.11
+        tag: v12.1
         x-checker-data:
           is-main-source: true
           type: git
           tag-pattern: ^v([\d.]+)$
           versions:
-            <: v10.12.0
+            <: v13.0.0
       - type: file
         path: org.jellyfin.JellyfinServer.metainfo.xml
       - type: file
