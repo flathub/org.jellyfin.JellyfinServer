@@ -735,8 +735,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/jellyfin/jellyfin-ffmpeg.git
-        commit: 5b16ac4eeef9559e652faac4a5907c3de6e15eb8
-        tag: v8.1.2-5
+        commit: 253db2a7b0a8045c54ce68ce33d7f601229b1822
+        tag: v8.1.3-1
         x-checker-data:
           is-main-source: true
           type: git
@@ -767,8 +767,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: fae41f33eb7cd636a9ef68984adb82bb247a6e1b
-        tag: v12.1
+        commit: 61b1f890365ad15138e943e694af723c1d47df2a
+        tag: v12.2
         x-checker-data:
           is-main-source: true
           type: git
@@ -820,9 +820,9 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: ee91c75e777da41a9c4f4855e70adc604fbf2ef8
+        commit: ca0f16eb7c195f720a1493ed469a27c4657db0c6
         # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
-        tag: v12.1
+        tag: v12.2
         x-checker-data:
           is-main-source: true
           type: git
