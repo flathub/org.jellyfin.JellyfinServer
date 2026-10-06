@@ -1233,10 +1233,10 @@
   },
   {
     "type": "file",
-    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/7.16.0/z440.atl.core.7.16.0.nupkg",
-    "sha512": "7907b5ffa45f739e04ad49ea2b30b3a00527cd2480bf625c795a765d084a983411181fbd40fc9f035fe7df6ef803da84d6f1a3c40dc861c4b0ffdbf3375ab1c6",
+    "url": "https://api.nuget.org/v3-flatcontainer/z440.atl.core/7.18.0/z440.atl.core.7.18.0.nupkg",
+    "sha512": "f78799856081d7936c55570799465a897b552a7071bf19a8d639585d9d0829f5a76ed01c7270a09a2ba536181983783e114160a72e582288ccf774e575a3506f",
     "dest": "nuget-sources",
-    "dest-filename": "z440.atl.core.7.16.0.nupkg"
+    "dest-filename": "z440.atl.core.7.18.0.nupkg"
   },
   {
     "type": "file",

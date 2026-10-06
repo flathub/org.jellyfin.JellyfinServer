@@ -13346,6 +13346,12 @@
   },
   {
     "type": "inline",
+    "contents": "316c9923fa8420bb5ee8f5fe958e165860c8777d\t{\"key\": \"make-fetch-happen:request-cache:https://registry.npmjs.org/ms/-/ms-2.0.0.tgz\", \"integrity\": \"sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==\", \"time\": 0, \"size\": 2874, \"metadata\": {\"url\": \"https://registry.npmjs.org/ms/-/ms-2.0.0.tgz\", \"reqHeaders\": {}, \"resHeaders\": {}}}",
+    "dest-filename": "566b3f51b41fae7dbf0388b1e25646a6b71607252abb83dba47dae5334da",
+    "dest": "flatpak-node/npm-cache/_cacache/index-v5/64/17"
+  },
+  {
+    "type": "inline",
     "contents": "31a59ee4cd7a999ae58ba69acba3e09507bbaf97\t{\"key\": \"make-fetch-happen:request-cache:https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-1.0.0.tgz\", \"integrity\": \"sha512-m5hnHTkcVsPfqx3AKlyttIPb7J+XykHvJP2B9bZDjlhLIoEq4XoK64Vg7boZlVWYK6LUY94dYPEE7Lh0ZkZKcQ==\", \"time\": 0, \"size\": 3250, \"metadata\": {\"url\": \"https://registry.npmjs.org/is-accessor-descriptor/-/is-accessor-descriptor-1.0.0.tgz\", \"reqHeaders\": {}, \"resHeaders\": {}}}",
     "dest-filename": "bf2bcdddc9d93974071f3171514978b550e44e1885fbb5b0ebc598de1b1c",
     "dest": "flatpak-node/npm-cache/_cacache/index-v5/07/16"
@@ -15047,12 +15053,6 @@
     "contents": "5dead9c8586c99d24688b7a8f975ecc4c93c8f9b\t{\"key\": \"make-fetch-happen:request-cache:https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.25.2.tgz\", \"integrity\": \"sha512-MpM6LUVTXAzOvN4KbjzU/q5smzryuoNjlriAIx+06RpecwCkL9JpenNzpKd2YMzLJFOdPqBpuub6eVRP5IgiSA==\", \"time\": 0, \"size\": 4155063, \"metadata\": {\"url\": \"https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.25.2.tgz\", \"reqHeaders\": {}, \"resHeaders\": {}}}",
     "dest-filename": "9e5cffdba4dd6b0aa4b61c18845de03356fb8db235ff696a2a0b9fda530d",
     "dest": "flatpak-node/npm-cache/_cacache/index-v5/44/46"
-  },
-  {
-    "type": "inline",
-    "contents": "5e4d8c93eac5a7809e1a4e6a63353079cda0f73f\t{\"key\": \"make-fetch-happen:request-cache:https://registry.npmjs.org/ms/-/ms-2.0.0.tgz\", \"integrity\": \"sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=\", \"time\": 0, \"size\": 2874, \"metadata\": {\"url\": \"https://registry.npmjs.org/ms/-/ms-2.0.0.tgz\", \"reqHeaders\": {}, \"resHeaders\": {}}}",
-    "dest-filename": "566b3f51b41fae7dbf0388b1e25646a6b71607252abb83dba47dae5334da",
-    "dest": "flatpak-node/npm-cache/_cacache/index-v5/64/17"
   },
   {
     "type": "inline",
