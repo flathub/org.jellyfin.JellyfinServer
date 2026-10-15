@@ -143,9 +143,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 6fccf7601d036ccf0e93048d9e0ff1c5e5d63027
+        commit: 86000ef5e7348d4441b42fa59a3094ffeb6549ed
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.5
+        tag: intel-onevpl-26.4.0
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -160,9 +160,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/acoustid/chromaprint.git
-        commit: aed8eba2202dd9d7b3b0a56c77904cc805490d72
+        commit: 3b38c100022bdfb49be7797c4828a476f1621d55
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: v1.6.1
+        tag: v1.6.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -195,8 +195,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mstorsjo/fdk-aac.git
-        commit: 716f4394641d53f0d79c9ddac3fa93b03a49f278
-        tag: v2.0.3
+        commit: a68a51aa45d86a43c7b228e3d45624af09dcdd8d
+        tag: v3.0.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -273,8 +273,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         dest: third_party/spirv-tools
-        commit: 0539c81f69a3daeb706fd3477dca61435b475156
-        tag: v2026.2
+        commit: ef96ed763b43b59b33b31b362f09a02b729fa1c9
+        tag: v2026.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
