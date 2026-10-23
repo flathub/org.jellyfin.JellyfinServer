@@ -49,8 +49,8 @@ modules:
       - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz
-        sha256: 911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.9.tar.gz
+        sha256: c35350682ff050b79702d57ade4516e7336063f510155d19fb2fb5b3f3909511
         x-checker-data:
           type: html
           url: https://www.ruby-lang.org/en/downloads/
@@ -143,9 +143,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 6fccf7601d036ccf0e93048d9e0ff1c5e5d63027
+        commit: c2052626b7f62f30530cf1fc8b73b74e586df707
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.5
+        tag: intel-onevpl-26.4.1
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -160,9 +160,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/acoustid/chromaprint.git
-        commit: aed8eba2202dd9d7b3b0a56c77904cc805490d72
+        commit: 3b38c100022bdfb49be7797c4828a476f1621d55
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: v1.6.1
+        tag: v1.6.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -195,8 +195,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mstorsjo/fdk-aac.git
-        commit: 716f4394641d53f0d79c9ddac3fa93b03a49f278
-        tag: v2.0.3
+        commit: a68a51aa45d86a43c7b228e3d45624af09dcdd8d
+        tag: v3.0.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -273,8 +273,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         dest: third_party/spirv-tools
-        commit: 0539c81f69a3daeb706fd3477dca61435b475156
-        tag: v2026.2
+        commit: ef96ed763b43b59b33b31b362f09a02b729fa1c9
+        tag: v2026.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -531,8 +531,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        tag: v0.2.45
-        commit: d3a5ee9f2b047bf16cd1ee5ccf6ec05ee75409d0
+        tag: v0.2.46
+        commit: 34bb6f660c5c1bacd4a66cc7b22311e4ca3c1ab5
         #branch: main
         x-checker-data:
           type: git
@@ -767,8 +767,8 @@ modules:
       - npm-generated-sources.json
       - type: git
         url: https://github.com/jellyfin/jellyfin-web.git
-        commit: 61b1f890365ad15138e943e694af723c1d47df2a
-        tag: v12.2
+        commit: c06cb17b274c10f9015412305edb0afdc010ae7a
+        tag: v12.3
         x-checker-data:
           is-main-source: true
           type: git
@@ -820,9 +820,9 @@ modules:
       - nuget-generated-sources-arm64.json
       - type: git
         url: https://github.com/jellyfin/jellyfin.git
-        commit: ca0f16eb7c195f720a1493ed469a27c4657db0c6
+        commit: 06de749d435e2d0be0c5119a41f2300fdd7143e5
         # NOTE: Modifying data here might break yq in regenerate-sources.yml -- yq fetches the tag from the last module
-        tag: v12.2
+        tag: v12.3
         x-checker-data:
           is-main-source: true
           type: git
