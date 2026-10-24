@@ -1,7 +1,7 @@
 id: org.jellyfin.JellyfinServer
 # See https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/releases
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 # NOTE: Modifying data here might break yq in regenerate-sources.yml
 sdk-extensions:
@@ -44,6 +44,13 @@ add-extensions:
     autodelete: true
 modules:
   - shared-modules/linux-audio/fftw3f.json
+  - name: libyaml
+    sources:
+      - type: archive
+        url: https://github.com/yaml/libyaml/releases/download/0.2.5/yaml-0.2.5.tar.gz
+        sha256: c642ae9b75fee120b2d96c712538bd2cf283228d2337df2cf2988e3c02678ef4
+    cleanup:
+      - '*'
   - name: ruby
     config-opts:
       - --enable-shared
