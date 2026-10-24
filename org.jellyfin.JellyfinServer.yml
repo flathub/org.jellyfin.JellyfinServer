@@ -7,7 +7,7 @@ sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.dotnet10
   - org.freedesktop.Sdk.Extension.node24
-  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
 separate-locales: false
 command: jellyfin.sh
 cleanup:
@@ -388,8 +388,8 @@ modules:
           config-opts:
             - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
         aarch64:
-          append-path: /usr/lib/sdk/llvm21/bin
-          prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
+          append-path: /usr/lib/sdk/llvm22/bin
+          prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
           env:
             CC: clang
             CXX: clang++
@@ -434,8 +434,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm21/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
+              append-path: /usr/lib/sdk/llvm22/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -474,8 +474,8 @@ modules:
               config-opts:
                 - -DCMAKE_ASM_NASM_FLAGS=-w-macro-params-legacy
             aarch64:
-              append-path: /usr/lib/sdk/llvm21/bin
-              prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
+              append-path: /usr/lib/sdk/llvm22/bin
+              prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
               env:
                 CC: clang
                 CXX: clang++
@@ -664,8 +664,8 @@ modules:
   - name: jellyfin-ffmpeg
     disabled: false
     build-options:
-      append-path: /usr/lib/sdk/llvm21/bin
-      prepend-ld-library-path: /usr/lib/sdk/llvm21/lib
+      append-path: /usr/lib/sdk/llvm22/bin
+      prepend-ld-library-path: /usr/lib/sdk/llvm22/lib
       arch:
         x86_64:
           config-opts:
