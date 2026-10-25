@@ -49,8 +49,8 @@ modules:
       - --enable-shared
     sources:
       - type: archive
-        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.7.tar.gz
-        sha256: 911ace20f90d068ca0e4dda6d0e4f0f81e52e52f2dd4f4004c721e253412e82d
+        url: https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.9.tar.gz
+        sha256: c35350682ff050b79702d57ade4516e7336063f510155d19fb2fb5b3f3909511
         x-checker-data:
           type: html
           url: https://www.ruby-lang.org/en/downloads/
