@@ -34,6 +34,11 @@
     </ul>
   </description>
   <releases>
+    <release version="12.4" date="2026-10-26">
+      <description>
+        <p>Updated Jellyfin and Jellyfin Web to 12.4</p>
+      </description>
+    </release>
     <release version="12.3" date="2026-10-24">
       <description>
         <p>Updated Jellyfin and Jellyfin Web to 12.3</p>
