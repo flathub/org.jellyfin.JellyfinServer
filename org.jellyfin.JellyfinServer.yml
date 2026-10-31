@@ -298,8 +298,9 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            - '!=': 1.4.357.0 # FTBFS
-            - '!=': 1.4.363.0 # FTBFS
+            '!=':
+              - '1.4.357.0' # FTBFS
+              - '1.4.363.0' # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -310,8 +311,9 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            - '!=': 1.4.357.0 # FTBFS
-            - '!=': 1.4.363.0 # FTBFS
+            '!=':
+              - '1.4.357.0' # FTBFS
+              - '1.4.363.0' # FTBFS
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -350,8 +352,9 @@ modules:
           tag-pattern: ^vulkan-sdk-([\d.]+)$
           # Known newer versions.
           versions:
-            - '!=': 1.4.357.0 # FTBFS
-            - '!=': 1.4.363.0 # FTBFS
+            '!=':
+              - '1.4.357.0' # FTBFS
+              - '1.4.363.0' # FTBFS
       # Already included as a submodule: glad, jinja, markupsafe
   - name: numactl
     rm-configure: true
@@ -650,8 +653,9 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                - '!=': 1.4.357.0 # FTBFS
-                - '!=': 1.4.363.0 # FTBFS
+                '!=': 
+                  - '1.4.357.0' # FTBFS
+                  - '1.4.363.0' # FTBFS
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
