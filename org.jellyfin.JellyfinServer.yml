@@ -202,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mstorsjo/fdk-aac.git
-        commit: 716f4394641d53f0d79c9ddac3fa93b03a49f278
-        tag: v2.0.3
+        commit: a68a51aa45d86a43c7b228e3d45624af09dcdd8d
+        tag: v3.0.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
