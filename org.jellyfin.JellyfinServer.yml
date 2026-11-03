@@ -150,9 +150,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/intel/vpl-gpu-rt.git
-        commit: 6fccf7601d036ccf0e93048d9e0ff1c5e5d63027
+        commit: c2052626b7f62f30530cf1fc8b73b74e586df707
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: intel-onevpl-26.3.5
+        tag: intel-onevpl-26.4.1
         x-checker-data:
           type: git
           tag-pattern: ^intel-onevpl-([\d.]+)$
@@ -167,9 +167,9 @@ modules:
     sources:
       - type: git
         url: https://github.com/acoustid/chromaprint.git
-        commit: aed8eba2202dd9d7b3b0a56c77904cc805490d72
+        commit: 3b38c100022bdfb49be7797c4828a476f1621d55
         # NOTE: Pick the latest release, not the latest tag. The latter might not compile.
-        tag: v1.6.1
+        tag: v1.6.2
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -187,8 +187,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/OpenMPT/openmpt.git
-        commit: 5d605f5bd6944931fad9266947dad953017ed9b0
-        tag: libopenmpt-0.8.9
+        commit: dc4ddcf682763d55c33dcf6c874a3153dea7b304
+        tag: libopenmpt-0.8.10
         x-checker-data:
           type: git
           tag-pattern: ^libopenmpt-([\d.]+)$
@@ -202,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mstorsjo/fdk-aac.git
-        commit: 716f4394641d53f0d79c9ddac3fa93b03a49f278
-        tag: v2.0.3
+        commit: a68a51aa45d86a43c7b228e3d45624af09dcdd8d
+        tag: v3.0.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -280,8 +280,8 @@ modules:
       - type: git
         url: https://github.com/KhronosGroup/SPIRV-Tools.git
         dest: third_party/spirv-tools
-        commit: 0539c81f69a3daeb706fd3477dca61435b475156
-        tag: v2026.2
+        commit: ef96ed763b43b59b33b31b362f09a02b729fa1c9
+        tag: v2026.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -299,8 +299,8 @@ modules:
           # Known newer versions.
           versions:
             '!=':
-              - '1.4.357.0' # FTBFS
-              - '1.4.363.0' # FTBFS
+              - 1.4.357.0   # FTBFS
+              - 1.4.363.0   # FTBFS
       - type: git
         url: https://github.com/KhronosGroup/glslang.git
         dest: third_party/glslang
@@ -312,8 +312,8 @@ modules:
           # Known newer versions.
           versions:
             '!=':
-              - '1.4.357.0' # FTBFS
-              - '1.4.363.0' # FTBFS
+              - 1.4.357.0   # FTBFS
+              - 1.4.363.0   # FTBFS
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -337,8 +337,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
-        tag: v7.360.1
+        commit: 275f7dea27924cdd34ab2e6c20e448b6bc4fab65
+        tag: v7.387.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -353,8 +353,8 @@ modules:
           # Known newer versions.
           versions:
             '!=':
-              - '1.4.357.0' # FTBFS
-              - '1.4.363.0' # FTBFS
+              - 1.4.357.0   # FTBFS
+              - 1.4.363.0   # FTBFS
       # Already included as a submodule: glad, jinja, markupsafe
   - name: numactl
     rm-configure: true
@@ -541,8 +541,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/zapping-vbi/zvbi.git
-        tag: v0.2.45
-        commit: d3a5ee9f2b047bf16cd1ee5ccf6ec05ee75409d0
+        tag: v0.2.46
+        commit: 34bb6f660c5c1bacd4a66cc7b22311e4ca3c1ab5
         #branch: main
         x-checker-data:
           type: git
@@ -579,7 +579,8 @@ modules:
           type: anitya
           project-id: 138182
           stable-only: true
-          url-template: https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v$version.tar.gz
+          url-template: 
+            https://github.com/GPUOpen-LibrariesAndSDKs/AMF/archive/refs/tags/v$version.tar.gz
           #versions:
           #  - '!=': 1.4.36
   - name: svt-av1
@@ -598,8 +599,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.com/AOMediaCodec/SVT-AV1.git
-        commit: 9292ec8e32bce26f781f277ec8739b53426c4300
-        tag: v4.2.0
+        commit: e3d63405f9ba8219913a7276c2c47d10e5d022fe
+        tag: v4.3.0
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -653,9 +654,9 @@ modules:
               tag-pattern: ^debian/([\d.]+)-1$
               # Known newer versions.
               versions:
-                '!=': 
-                  - '1.4.357.0' # FTBFS
-                  - '1.4.363.0' # FTBFS
+                '!=':
+                  - 1.4.357.0   # FTBFS
+                  - 1.4.363.0   # FTBFS
       - name: volk
         buildsystem: cmake-ninja
         config-opts:
@@ -799,7 +800,8 @@ modules:
       # append-pkg-config-path: /usr/lib/sdk/dotnet10/lib/pkgconfig
       env:
         DOTNET_CLI_TELEMETRY_OPTOUT: 'true'
-        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet10/lib/pkgconfig
+        PKG_CONFIG_PATH: 
+          /app/lib/pkgconfig:/app/share/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig:/usr/lib/sdk/dotnet10/lib/pkgconfig
       arch:
         x86_64:
           env:
