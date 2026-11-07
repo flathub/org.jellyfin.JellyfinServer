@@ -34,6 +34,10 @@
     </ul>
   </description>
   <releases>
+    <release version="8.1.3" date="2026-11-07">
+      <url type="details">https://github.com/jellyfin/jellyfin-ffmpeg/releases/tag/v8.1.3-2</url>
+      <description></description>
+    </release>
     <release version="12.4" date="2026-10-26">
       <description>
         <p>Updated Jellyfin and Jellyfin Web to 12.4</p>
