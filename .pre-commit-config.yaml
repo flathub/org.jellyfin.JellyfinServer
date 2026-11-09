@@ -40,7 +40,7 @@ repos:
         args: ["--color=always", "--external-sources"]
         types: ["file", "shell", "text"]
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.12.0-2
+    rev: v3.14.1-1
     hooks:
       - id: shfmt
         args: ["--diff", "--indent", "2", "--binary-next-line", "--space-redirects", "--case-indent"]
@@ -51,24 +51,29 @@ repos:
               path/to/file\.py
           )$
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.30.0
+    rev: v8.30.1
     hooks:
       - id: gitleaks
         args: ["--no-banner"]
   - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.10
+    rev: v1.7.12
     hooks:
       - id: actionlint
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.22.0
+    rev: v1.32.0
     hooks:
     - id: zizmor
       files: ^\.github/workflows/.*\.ya?ml$
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+        args: ["--strict"]
   # NOTE: It looks like community maintainers have given up on maintaining the
   # prettier pre-commit hook. Therefore we integrate it in the makefile.
   # This takes a few seconds longer, but it is so wasteful and embarrassing when a builder fails with a linter error.
   - repo: https://github.com/oxipng/oxipng
-    rev: v10.0.0
+    rev: v10.2.1
     hooks:
       - id: oxipng
         args: ["-o", "4", "--strip", "safe", "--alpha"]
