@@ -2,3 +2,6 @@
 # https://yamllint.readthedocs.io/en/stable/rules.html
 # https://yamllint.readthedocs.io/en/stable/disable_with_comments.html
 extends: default
+
+rules:
+  document-start: disable
