@@ -1,3 +1,4 @@
+#
 id: org.jellyfin.JellyfinServer
 # See https://gitlab.com/freedesktop-sdk/freedesktop-sdk/-/releases
 runtime: org.freedesktop.Platform
@@ -389,7 +390,7 @@ modules:
         url: https://code.videolan.org/videolan/x264.git
         # mirror-urls:
         #   - https://github.com/jpsdr/x264
-        #   # NOTE: Unoffical, repo has tags.
+        #   # NOTE: Unofficial, repo has tags.
         #   - https://github.com/ShiftMediaProject/x264.git
         commit: 0480cb05fa188d37ae87e8f4fd8f1aea3711f7ee
         # branch: master
@@ -768,7 +769,7 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)-\d$
           # NOTE: Bump this to an appropriate version number when:
-          # - A new version of jellyfin-ffmpeg gets pushed which is not inteded
+          # - A new version of jellyfin-ffmpeg gets pushed which is not intended
           #   for use with the current release of Jellyfin. The release notes of
           #   jellyfin-ffmpeg will tell you if this is the case.
           # - A new release of Jellyfin gets released alongside a new version
